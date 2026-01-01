@@ -12110,7 +12110,7 @@ function Zo() {
       B: {
         name: "B方案",
         duration: "50分鐘",
-        title: "修護調理",
+        title: "柔嫩亮膚",
         description:
           "服務流程：胺基酸淨膚泡泡潔面基礎清潔臉部，透過高光波柔嫩提亮肌膚，再使用歐盟認證天然精油按摩提亮。",
         originalPrice: "$1250",
@@ -12158,7 +12158,7 @@ function Zo() {
       C: {
         name: "C方案",
         duration: "60分鐘",
-        title: "全效修護",
+        title: "提拉保濕",
         description:
           "服務流程：胺基酸淨膚泡泡潔面基礎清潔臉部，使用玻尿酸精華透過水光探頭注入肌膚，選用歐盟認證天然精油搭配專業級射頻探頭提拉肌膚。",
         originalPrice: "$1650",
@@ -12206,7 +12206,7 @@ function Zo() {
       EXOSOME: {
         name: "EXOSOME方案",
         duration: "60分鐘",
-        title: "童顏肌泌",
+        title: "科技逆齡",
         description:
           "服務流程：胺基酸泡泡清潔臉部，透過超聲波與氫氧小氣泡導出粉刺並淨化角質。肌膚深層清潔後，先利用牛奶肌提亮膚色與強化吸收力，再進行外泌體精華搭配電波儀器進行全臉導入拉提，最後使用面膜與鎖水精華完美收尾。",
         originalPrice: "$4480",
