@@ -12736,10 +12736,7 @@ function Zo() {
                             "text-lg font-semibold text-brand-primary mb-2",
                           children: "AI智能肌膚檢測",
                         }),
-                        f.jsx("p", {
-                          className: "text-sm text-gray-500 mb-3",
-                          children: "5分鐘",
-                        }),
+                        
                         f.jsx("p", {
                           className: "text-gray-600 text-sm mb-4",
                           children:
@@ -12768,10 +12765,7 @@ function Zo() {
                             "text-lg font-semibold text-brand-primary mb-2",
                           children: "頭皮釋壓按摩",
                         }),
-                        f.jsx("p", {
-                          className: "text-sm text-gray-500 mb-3",
-                          children: "10分鐘",
-                        }),
+                        
                         f.jsx("p", {
                           className: "text-gray-600 text-sm mb-4",
                           children:
@@ -12800,10 +12794,7 @@ function Zo() {
                             "text-lg font-semibold text-brand-primary mb-2",
                           children: "牛奶肌光感保養",
                         }),
-                        f.jsx("p", {
-                          className: "text-sm text-gray-500 mb-3",
-                          children: "7分鐘",
-                        }),
+                        
                         f.jsx("p", {
                           className: "text-gray-600 text-sm mb-4",
                           children:
@@ -12832,10 +12823,7 @@ function Zo() {
                             "text-lg font-semibold text-brand-primary mb-2",
                           children: "手工清粉刺",
                         }),
-                        f.jsx("p", {
-                          className: "text-sm text-gray-500 mb-3",
-                          children: "15分鐘",
-                        }),
+                        
                         f.jsx("p", {
                           className: "text-gray-600 text-sm mb-4",
                           children:
@@ -12864,10 +12852,7 @@ function Zo() {
                             "text-lg font-semibold text-brand-primary mb-2",
                           children: "提拉肌膚",
                         }),
-                        f.jsx("p", {
-                          className: "text-sm text-gray-500 mb-3",
-                          children: "15分鐘",
-                        }),
+                        
                         f.jsx("p", {
                           className: "text-gray-600 text-sm mb-4",
                           children:
