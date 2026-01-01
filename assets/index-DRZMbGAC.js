@@ -12066,9 +12066,9 @@ function Zo() {
       A: {
         name: "A方案",
         duration: "40分鐘",
-        title: "掃除髒汙",
+        title: "痘粉清潔",
         description:
-          "基礎清潔臉部，利用胺基酸淨膚泡泡潔面帶走表面髒污，利用超聲波將老廢角質淨化，氫氧小氣泡導出粉刺與黑頭。深層清潔肌膚後，保養的黃金時間使用面膜來舒緩鎮定肌膚，最後鎖水精華將保養品完美鎖在肌膚內。",
+          "針對粉刺、痘痘肌膚，注重於肌膚深層清潔、無痛粉刺痘痘導出與老廢角質清除。",
         originalPrice: "$850",
         memberPrice: "$550",
         steps: 15,
@@ -12253,10 +12253,10 @@ function Zo() {
       },
     },
     N = [
-      { image: "p1.png", title: "A方案 掃除髒汙" },
-      { image: "p2.png", title: "B方案 修護調理" },
-      { image: "p3.png", title: "C方案 全效修護" },
-      { image: "p4.png", title: "EXOSOME方案 童顏肌泌" },
+      { image: "p1.png", title: "A方案 痘粉清潔" },
+      { image: "p2.png", title: "B方案 柔嫩亮膚" },
+      { image: "p3.png", title: "C方案 提拉保濕" },
+      { image: "p4.png", title: "EXOSOME方案 科技逆齡" },
       { image: "p5.png", title: "方案加購項目" },
     ],
     _ = (Y) => {
