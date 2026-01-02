@@ -12083,7 +12083,7 @@ function Zo() {
           "a-step-08-ice-massage.png",
           "a-step-09-chamomile-mask.png",
           "a-step-10-ultrasonic-infusion.png",
-          "a-step-11-light-energy-treatment.png",
+          "a-step-11-light-energy-conditioning.png",
           "a-step-12-light-skincare.png",
           "a-step-13-massage-absorption.png",
           "a-step-14-sunscreen-protection.png",
