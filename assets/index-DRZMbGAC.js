@@ -12876,11 +12876,7 @@ function Zo() {
                           className:
                             "text-lg font-semibold text-brand-primary mb-2",
                           children: "玻尿酸導入",
-                        }),
-                        f.jsx("p", {
-                          className: "text-sm text-gray-500 mb-3",
-                          children: "15分鐘",
-                        }),
+                        }),                        
                         f.jsx("p", {
                           className: "text-gray-600 text-sm mb-4",
                           children:
