@@ -571,12 +571,9 @@ export default function Home({initialPlan='A'}) {
                         children: f.jsx("img", {
                           src: `images/${P.stepImages[B]}`,
                           "data-role": "step-image",
+                          sizes: "(max-width: 1023px) 100vw, 560px",
                           alt: P.stepNames[B],
                           className: "w-full h-full object-cover",
-                          onError: (Y) => {
-                            Y.target.src =
-                              "/LOGO3.jpg";
-                          },
                         }),
                       }),
                       f.jsxs("div", {
@@ -648,12 +645,9 @@ export default function Home({initialPlan='A'}) {
                               children: [
                                 f.jsx("img", {
                                   src: `/images/${Y}`,
+                                  sizes: "(max-width: 639px) 22vw, 130px",
                                   alt: P.stepNames[al],
                                   className: "w-full h-full object-cover",
-                                  onError: (ot) => {
-                                    ot.target.src =
-                                      "/LOGO3.jpg";
-                                  },
                                 }),
                                 f.jsx("div", {
                                   className:
@@ -725,10 +719,6 @@ export default function Home({initialPlan='A'}) {
                     src: "/images/membercard.png",
                     alt: "會員卡制度",
                     className: "w-full h-auto",
-                    onError: (Y) => {
-                      Y.target.src =
-                        "/LOGO3.jpg";
-                    },
                   }),
                 }),
                 f.jsxs("div", {

@@ -1,12 +1,20 @@
 // Progressive enhancement only: all site content is already in the HTML.
 // No React runtime is shipped to visitors.
+import {checkImages} from './images.js';
 let currentStep=0;
 function selectStep(index) {
   const section=document.getElementById('process');
   const thumbs=[...section.querySelectorAll('[data-step]')].filter(button=>button.querySelector('img'));
   currentStep=(index+thumbs.length)%thumbs.length;
   const source=thumbs[currentStep].querySelector('img'),image=section.querySelector('[data-role="step-image"]');
-  for(const name of ['src','srcset','sizes','width','height','alt'])image.setAttribute(name,source.getAttribute(name));
+  image.removeAttribute('data-image-recovered');
+  image.setAttribute('data-fallback-src',source.getAttribute('data-fallback-src'));
+  // Main images must not inherit thumbnail sizes or a previous step's fallback.
+  image.setAttribute('sizes','(max-width: 1023px) 100vw, 560px');
+  for(const name of ['width','height','alt','srcset','src']) {
+    const value=source.getAttribute(name);
+    if(value===null)image.removeAttribute(name);else image.setAttribute(name,value);
+  }
   image.loading='eager';
   section.querySelector('[data-role="step-counter"]').textContent=`${currentStep+1} / ${thumbs.length}`;
   section.querySelector('[data-role="step-label"]').textContent=`步驟 ${currentStep+1}`;
@@ -28,6 +36,8 @@ document.addEventListener('click',event=>{
     if(template){
       document.getElementById('process').replaceWith(template.content.cloneNode(true));
       currentStep=0;
+      document.querySelector('#process [data-role="step-image"]').loading='eager';
+      checkImages(document.getElementById('process'));
       document.querySelector(`#process [data-plan="${button.dataset.plan}"]`).focus({preventScroll:true});
     }
   }else if(button?.hasAttribute('data-step'))selectStep(Number(button.dataset.step));

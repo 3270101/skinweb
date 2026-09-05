@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node build.mjs",
     "test": "node test.mjs",
+    "test:images": "node test-images.mjs",
     "quality": "node quality.mjs"
   },
   "dependencies": {

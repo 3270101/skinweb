@@ -9,6 +9,7 @@ export function imageProps(source, alt = '', priority = false) {
   if (!data) return {src: source.startsWith('/') ? source : `/${source}`, alt, loading:priority?'eager':'lazy', decoding:'async'};
   return {
     src:data.variants.at(-1).src,
+    'data-fallback-src':'/'+key,
     srcSet:data.variants.map(v=>`${v.src} ${v.width}w`).join(', '),
     sizes:key.startsWith('LOGO')?'128px':'(max-width: 768px) 100vw, 800px',
     width:data.width, height:data.height, alt,
@@ -19,7 +20,12 @@ export function imageProps(source, alt = '', priority = false) {
 
 function element(factory,type,props,key) {
   let next={...props};
-  if (type==='img') next={...next,...imageProps(next.src,next.alt,next.src==='LOGO3.jpg')};
+  if (type==='img') {
+    const sizes=next.sizes;
+    next={...next,...imageProps(next.src,next.alt,next.src==='LOGO3.jpg')};
+    if(sizes)next.sizes=sizes;
+    delete next.onError;
+  }
   if (type==='button' && ['立即預約','立即預約 ✨','立即加入LINE','了解加盟詳情'].includes(next.children)) {
     type='a'; next.href=next.children==='了解加盟詳情'?site.facebook:site.line;
     next.target='_blank'; next.rel='noopener noreferrer'; delete next.onClick;
