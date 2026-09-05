@@ -60,7 +60,10 @@ try {
   const live=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1});
   const interactive=await live.newPage();
   interactive.on('pageerror',error=>errors.push(error.message));
-  interactive.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  interactive.on('console',m=>{
+    const expected404=m.location().url===target+'/skinow-missing-page-test/'&&/status of 404/.test(m.text());
+    if(m.type()==='error'&&!expected404)errors.push(`${m.location().url}: ${m.text()}`);
+  });
   await interactive.goto(target+'/',{waitUntil:'networkidle'});
   await interactive.screenshot({path:path.join(tooling,'artifacts/home-desktop.png'),fullPage:true});
   await interactive.screenshot({path:path.join(tooling,'artifacts/home-desktop-top.png')});
@@ -108,8 +111,7 @@ try {
     if(file==='sitemap.xml')assert.equal((content.match(/<loc>/g)||[]).length,routes.length);
     if(file==='robots.txt'){assert.ok(content.includes('OAI-SearchBot'));assert.ok(content.includes('Sitemap: '+site.origin+'/sitemap.xml'));}
   }
-  // The intentionally requested 404 may be logged as a browser resource error.
-  assert.deepEqual(errors.filter(e=>!e.includes('404 (Not Found)')),[],'browser errors');
+  assert.deepEqual(errors,[],'browser errors');
   await fs.writeFile(path.join(tooling,'artifacts/test-results.json'),JSON.stringify({target,passed:outputs.length,pages:outputs},null,2));
   console.log(`PASS ${outputs.length} routes; no-JS content; canonical/schema; all internal links/anchors; mobile overflow; all plan tabs/step controls; LINE links; manual $300; robots/sitemap/llms; real 404; no browser errors.`);
 } finally {await browser.close();await new Promise(resolve=>server.close(resolve));}
