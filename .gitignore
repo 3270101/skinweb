@@ -1,2 +1,5 @@
 images/.DS_Store
 .DS_Store
+tooling/node_modules/
+tooling/.cache/
+tooling/artifacts/

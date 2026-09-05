@@ -1,0 +1,930 @@
+{
+  "LOGO3.jpg": {
+    "width": 2048,
+    "height": 2048,
+    "variants": [
+      {
+        "src": "/assets/media/LOGO3-d9f0ad46aee4-80.webp",
+        "width": 80
+      },
+      {
+        "src": "/assets/media/LOGO3-894780390ac3-256.webp",
+        "width": 256
+      }
+    ]
+  },
+  "LOGO4.jpg": {
+    "width": 2048,
+    "height": 2048,
+    "variants": [
+      {
+        "src": "/assets/media/LOGO4-6dcf23ff96ac-80.webp",
+        "width": 80
+      },
+      {
+        "src": "/assets/media/LOGO4-00be06d75e7a-256.webp",
+        "width": 256
+      }
+    ]
+  },
+  "images/membercard.png": {
+    "width": 1414,
+    "height": 1509,
+    "variants": [
+      {
+        "src": "/assets/media/membercard-b01f079918b5-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/media/membercard-9f645c1bc5fb-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "/assets/media/membercard-df7da393a357-1414.webp",
+        "width": 1414
+      }
+    ]
+  },
+  "images/a-c-step-01-makeup-removal.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-c-step-01-makeup-removal-6a81da8db132-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-c-step-01-makeup-removal-fa7540d1f31d-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-c-step-02-amino-acid-cleansing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-c-step-02-amino-acid-cleansing-91ced0923733-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-c-step-02-amino-acid-cleansing-ee02d79a0d69-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-03-blackhead-extraction.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-03-blackhead-extraction-715861097d15-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-03-blackhead-extraction-acdc1dc9aad2-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-04-steam-softening.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-04-steam-softening-73dcd299c4dd-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-04-steam-softening-01775a9b6295-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-05-hydro-bubble-cleansing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-05-hydro-bubble-cleansing-dad5da2c7b4b-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-05-hydro-bubble-cleansing-a3aabba881f8-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-06-ultrasonic-purification.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-06-ultrasonic-purification-d3ee5c16faf3-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-06-ultrasonic-purification-a6559515a60a-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-07-berry-aloe-soothing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-07-berry-aloe-soothing-ee1b9b05ad44-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-07-berry-aloe-soothing-164b7192d8d8-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-08-ice-massage.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-08-ice-massage-fda5860c6d9a-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-08-ice-massage-ab936e2a26e0-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-09-chamomile-mask.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-09-chamomile-mask-dd09a24f314d-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-09-chamomile-mask-0407fcff6f00-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-10-ultrasonic-infusion.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-10-ultrasonic-infusion-fe842cd02f1e-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-10-ultrasonic-infusion-3668bf737ef9-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-11-light-energy-conditioning.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-11-light-energy-conditioning-bde27797e162-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-11-light-energy-conditioning-bc0e57992b56-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-12-light-skincare.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-12-light-skincare-e74e98c89433-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-12-light-skincare-5deb09e2bfdd-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-13-massage-absorption.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-13-massage-absorption-ce5847d6360b-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-13-massage-absorption-1b38b1193156-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-14-sunscreen-protection.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-14-sunscreen-protection-e2098a1dec84-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-14-sunscreen-protection-15a12d478cff-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/a-step-15-daily-care-advice.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/a-step-15-daily-care-advice-94b4eb8bcdd5-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/a-step-15-daily-care-advice-ce4afbade593-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-c-step-01-makeup-removal.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-c-step-01-makeup-removal-6a81da8db132-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-c-step-01-makeup-removal-fa7540d1f31d-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-c-step-02-amino-acid-cleansing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-c-step-02-amino-acid-cleansing-91ced0923733-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-c-step-02-amino-acid-cleansing-ee02d79a0d69-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-03-blackhead-extraction.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-03-blackhead-extraction-715861097d15-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-03-blackhead-extraction-acdc1dc9aad2-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-04-steam-softening.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-04-steam-softening-73dcd299c4dd-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-04-steam-softening-01775a9b6295-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-05-hydro-bubble-cleansing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-05-hydro-bubble-cleansing-dad5da2c7b4b-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-05-hydro-bubble-cleansing-a3aabba881f8-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-06-ultrasonic-purification.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-06-ultrasonic-purification-d3ee5c16faf3-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-06-ultrasonic-purification-a6559515a60a-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-07-hyaluronic-acid-hydration.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-07-hyaluronic-acid-hydration-38af92a1c399-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-07-hyaluronic-acid-hydration-30402e569eff-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-08-european-oil-massage.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-08-european-oil-massage-fdb8b29dd9c6-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-08-european-oil-massage-4364d0bf865d-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-09-chamomile-mask-moisturizing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-09-chamomile-mask-moisturizing-dd09a24f314d-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-09-chamomile-mask-moisturizing-0407fcff6f00-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-10-ice-massage.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-10-ice-massage-fda5860c6d9a-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-10-ice-massage-ab936e2a26e0-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-11-light-energy-treatment.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-11-light-energy-treatment-bde27797e162-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-11-light-energy-treatment-bc0e57992b56-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-12-light-skincare-treatment.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-12-light-skincare-treatment-e74e98c89433-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-12-light-skincare-treatment-5deb09e2bfdd-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-13-massage-absorption-enhancement.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-13-massage-absorption-enhancement-ce5847d6360b-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-13-massage-absorption-enhancement-1b38b1193156-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-14-sunscreen-isolation.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-14-sunscreen-isolation-e2098a1dec84-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-14-sunscreen-isolation-15a12d478cff-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/b-step-15-daily-care-consultation.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/b-step-15-daily-care-consultation-94b4eb8bcdd5-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/b-step-15-daily-care-consultation-ce4afbade593-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-01-makeup-removal.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-01-makeup-removal-6a81da8db132-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-01-makeup-removal-fa7540d1f31d-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-02-amino-acid-cleansing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-02-amino-acid-cleansing-91ced0923733-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-02-amino-acid-cleansing-ee02d79a0d69-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-03-blackhead-extraction.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-03-blackhead-extraction-715861097d15-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-03-blackhead-extraction-acdc1dc9aad2-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-04-steam-softening.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-04-steam-softening-73dcd299c4dd-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-04-steam-softening-01775a9b6295-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-05-hydro-bubble-cleansing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-05-hydro-bubble-cleansing-475b6155fe9b-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-05-hydro-bubble-cleansing-2b4ee47aea9a-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-06-ultrasonic-purification.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-06-ultrasonic-purification-d3ee5c16faf3-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-06-ultrasonic-purification-a6559515a60a-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-07-hyaluronic-acid-hydration.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-07-hyaluronic-acid-hydration-97f64a8b43ec-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-07-hyaluronic-acid-hydration-d6906cfd797e-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-08-water-light-gun-brightening.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-08-water-light-gun-brightening-61f7b471abc8-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-08-water-light-gun-brightening-7428e4b2183b-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-09-european-botanical-massage.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-09-european-botanical-massage-fdb8b29dd9c6-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-09-european-botanical-massage-4364d0bf865d-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-12-ice-massage.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-12-ice-massage-fda5860c6d9a-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-12-ice-massage-ab936e2a26e0-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-11-chamomile-mask.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-11-chamomile-mask-dd09a24f314d-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-11-chamomile-mask-0407fcff6f00-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-13-mask-removal.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-13-mask-removal-ea0768848a72-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-13-mask-removal-eee9add6e976-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-14-light-skincare.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-14-light-skincare-e74e98c89433-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-14-light-skincare-5deb09e2bfdd-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-15-massage-absorption.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-15-massage-absorption-ce5847d6360b-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-15-massage-absorption-1b38b1193156-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-16-sunscreen-protection.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-16-sunscreen-protection-e2098a1dec84-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-16-sunscreen-protection-15a12d478cff-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/c-step-17-daily-care-advice.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/c-step-17-daily-care-advice-94b4eb8bcdd5-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/c-step-17-daily-care-advice-ce4afbade593-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-01-makeup-removal.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-01-makeup-removal-6a81da8db132-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-01-makeup-removal-fa7540d1f31d-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-02-amino-acid-cleansing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-02-amino-acid-cleansing-91ced0923733-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-02-amino-acid-cleansing-ee02d79a0d69-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-03-blackhead-extraction.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-03-blackhead-extraction-715861097d15-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-03-blackhead-extraction-acdc1dc9aad2-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-04-steam-softening.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-04-steam-softening-73dcd299c4dd-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-04-steam-softening-01775a9b6295-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-05-hydro-bubble-cleansing.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-05-hydro-bubble-cleansing-dad5da2c7b4b-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-05-hydro-bubble-cleansing-a3aabba881f8-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-06-ultrasonic-purification.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-06-ultrasonic-purification-d3ee5c16faf3-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-06-ultrasonic-purification-a6559515a60a-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-07-hyaluronic-acid-hydration.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-07-hyaluronic-acid-hydration-38af92a1c399-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-07-hyaluronic-acid-hydration-30402e569eff-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-08-water-light-gun-brightening.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-08-water-light-gun-brightening-0ebf66ded2c8-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-08-water-light-gun-brightening-ae4396ef5120-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-09-european-botanical-massage.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-09-european-botanical-massage-44acb22ec7e4-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-09-european-botanical-massage-c137fe0b9d9b-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-10-light-energy-conditioning.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-10-light-energy-conditioning-fda5860c6d9a-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-10-light-energy-conditioning-ab936e2a26e0-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-11-chamomile-mask.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-11-chamomile-mask-dd09a24f314d-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-11-chamomile-mask-0407fcff6f00-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-12-ice-massage.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-12-ice-massage-fe842cd02f1e-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-12-ice-massage-3668bf737ef9-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-13-mask-removal.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-13-mask-removal-ea0768848a72-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-13-mask-removal-eee9add6e976-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-14-light-skincare.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-14-light-skincare-e74e98c89433-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-14-light-skincare-5deb09e2bfdd-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-15-massage-absorption.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-15-massage-absorption-ce5847d6360b-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-15-massage-absorption-1b38b1193156-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-16-sunscreen-protection.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-16-sunscreen-protection-e2098a1dec84-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-16-sunscreen-protection-15a12d478cff-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/e-step-17-daily-care-advice.png": {
+    "width": 1040,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/media/e-step-17-daily-care-advice-94b4eb8bcdd5-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/e-step-17-daily-care-advice-ce4afbade593-800.webp",
+        "width": 800
+      }
+    ]
+  }
+}
