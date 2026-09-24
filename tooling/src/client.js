@@ -5,6 +5,7 @@ let currentStep=0;
 function selectStep(index) {
   const section=document.getElementById('process');
   const thumbs=[...section.querySelectorAll('[data-step]')].filter(button=>button.querySelector('img'));
+  if(!thumbs.length)return;
   currentStep=(index+thumbs.length)%thumbs.length;
   const source=thumbs[currentStep].querySelector('img'),image=section.querySelector('[data-role="step-image"]');
   image.removeAttribute('data-image-recovered');
@@ -31,14 +32,18 @@ function selectStep(index) {
 }
 document.addEventListener('click',event=>{
   const button=event.target.closest('#process button');
-  if(button?.dataset.plan){
-    const template=document.querySelector(`template[data-plan-template="${button.dataset.plan}"]`);
+  const shortcut=event.target.closest('a[data-select-plan]');
+  const plan=button?.dataset.plan||shortcut?.dataset.selectPlan;
+  if(plan){
+    const template=document.querySelector(`template[data-plan-template="${plan}"]`);
     if(template){
+      document.querySelector('#process video')?.pause();
       document.getElementById('process').replaceWith(template.content.cloneNode(true));
       currentStep=0;
-      document.querySelector('#process [data-role="step-image"]').loading='eager';
+      const stepImage=document.querySelector('#process [data-role="step-image"]');
+      if(stepImage)stepImage.loading='eager';
       checkImages(document.getElementById('process'));
-      document.querySelector(`#process [data-plan="${button.dataset.plan}"]`).focus({preventScroll:true});
+      document.querySelector(`#process [data-plan="${plan}"]`).focus({preventScroll:true});
     }
   }else if(button?.hasAttribute('data-step'))selectStep(Number(button.dataset.step));
   else if(button?.dataset.action==='next-step')selectStep(currentStep+1);

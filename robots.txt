@@ -22,3 +22,4 @@ User-agent: meta-externalagent
 Disallow: /
 
 Sitemap: https://skinow.tw/sitemap.xml
+Sitemap: https://skinow.tw/video-sitemap.xml

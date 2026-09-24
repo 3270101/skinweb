@@ -93,6 +93,10 @@ try {
   await interactive.goto(target+'/',{waitUntil:'networkidle'});
   await interactive.screenshot({path:path.join(tooling,'artifacts/home-mobile.png'),fullPage:true});
   await interactive.screenshot({path:path.join(tooling,'artifacts/home-mobile-top.png')});
+  assert.equal(await interactive.getByRole('button',{name:'洗髮方案（流程影片）',exact:true}).getAttribute('aria-pressed'),'true');
+  assert.equal(await interactive.locator('#process video').count(),1);
+  assert.equal(await interactive.locator('#process [data-role="step-image"]').count(),0);
+  await interactive.getByRole('button',{name:'A方案 (15步驟)',exact:true}).click();
   await interactive.locator('#process [data-role="step-image"]').scrollIntoViewIfNeeded();
   await interactive.locator('#process [data-role="step-image"]').evaluate(image=>image.decode());
   await interactive.screenshot({path:path.join(tooling,'artifacts/process-mobile.png')});

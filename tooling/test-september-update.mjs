@@ -27,7 +27,7 @@ for(const route of routes){
     if(url.hash)assert.ok((await fs.readFile(file,'utf8')).includes(`id="${decodeURIComponent(url.hash.slice(1))}"`),route.path+' broken anchor '+href);
   }
   for(const img of html.matchAll(/<img\b[^>]*>/g)){assert.match(img[0],/alt="[^"]+"/);assert.match(img[0],/width="\d+"/);imageReferences++;}
-  if(['home','scalp'].includes(route.kind)){
+  if(['home','scalp','video'].includes(route.kind)){
     assert.ok(html.includes(`src="${scalpVideo.src}"`));assert.ok(html.includes(`poster="${scalpVideo.poster}"`));
     assert.match(html,/<video[^>]*controls=""[^>]*preload="none"/);
     assert.doesNotMatch(html,/<video[^>]*autoplay/);

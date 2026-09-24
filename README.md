@@ -15,6 +15,16 @@ GitHub Pages 備援網域維持 [backup.skinow.tw](https://backup.skinow.tw/)，
 
 ## 修改與發布
 
+### 2026-09-24 洗髮主方案與 SEO/GEO 架構修訂
+
+- 洗髮方案與 A、B、C、EXOSOME 並列，顯示順序在 A 之前；首頁服務卡、流程切換與服務總覽一致。洗髮流程預設顯示三種服務及全店服務影片，四種護膚流程仍保留逐步圖片。
+- 洗髮方案下有深層洗髮 50 分鐘／會員 NT$500、頭皮調理 60 分鐘／NT$899、頭皮深層養護 75 分鐘／NT$1,200。水珍柔光精粹 NT$1,000 僅為洗髮加購，不是第四個主服務。
+- 業主確認洗髮只由台中忠明店提供。洗髮頁、價目表、FAQ、門市頁及服務提供者結構化資料同步；台北站前店不列洗髮服務。
+- 保留 `/services/scalp-care/` 既有網址，以台中洗髮搜尋意圖整理內容；新增 `/videos/store-service-process/` 全店影片觀看頁與 `video-sitemap.xml`。影片不是洗髮專屬影片，原 MP4 內容不變。
+- 15 個頁面具獨立標題／摘要、單一 H1、正式網址 canonical、靜態可讀內容與實際內部連結。洗髮 FAQ 與結構化資料同源，三項服務和加購分開建模，不製造空泛的重複服務頁。
+- 建置後執行 `npm run test:structure --prefix tooling`、`npm run test:update --prefix tooling`、`npm run test:images --prefix tooling`；前兩項可指定 `SKINOW_TEST_ORIGIN` 測線上版本。`test:structure` 不啟動瀏覽器。
+- 本次發布前基準為 `c06df1c7e037596df0205fd3050e041f9820c79d`；需回復本輪架構時使用新提交的 `git revert`，不要回復前輪已確認的會員與門市更新。
+
 ### 2026-09-24 會員與頭皮養護更新
 
 - 專屬會員卡原價 NT$1,200、優惠價 NT$999、12 個月，首頁圖片／規章、會員頁、FAQ、摘要及結構化資料同步。使用提供的原圖，不重畫、不改圖片文字。
@@ -72,7 +82,7 @@ SKINOW_TEST_ORIGIN=https://skinow.tw npm run quality --prefix tooling
 ## SEO / AIO 原則與邊界
 
 - 全站 canonical 統一指向 `https://skinow.tw/` 對應路徑；備援網站仍能瀏覽，但不主張重複收錄。
-- 結構化資料僅使用頁面公開的服務、價格及三間門市資料，不捏造評論、星等、地理座標、醫師或營業日。
+- 結構化資料僅使用頁面公開的服務、價格及兩間現有門市資料，不捏造評論、星等、地理座標、醫師或營業日。
 - FAQ 答案也呈現在可展開的網頁內容，不是僅供機器看的隱藏文字。FAQ 標記不保證 Google 豐富搜尋結果。
 - 允許一般搜尋及 AI 搜尋／使用者指定讀取的爬蟲；維持訓練用途爬蟲的限制。Cloudflare 管理型 robots 可能在檔案前加上自己的規則；仍須以正式站回應為準。
 - `llms.txt` 僅是額外的公開索引，並非 Google 或 AI 平台必須採用的標準。
@@ -83,7 +93,7 @@ SKINOW_TEST_ORIGIN=https://skinow.tw npm run quality --prefix tooling
 
 ## 驗證及回復
 
-測試涵蓋 14 路由、無 JS 文字、單一 H1、canonical、JSON-LD、內部連結及錨點、手機溢出、LINE 連結、所有方案切換／步驟按鈕、$300 價格、robots/sitemap/llms 及 404。
+測試涵蓋 15 路由、無 JS 文字、單一 H1、canonical、JSON-LD、內部連結及錨點、手機溢出、LINE 連結、所有方案切換／步驟按鈕、$300 價格、robots/sitemap/llms 及 404；另有洗髮主從層級、忠明店提供者、影片觀看頁與影片 sitemap 的靜態回歸檢查。
 
 `tooling/artifacts/` 保存本機截圖、回歸、axe 和 Lighthouse 報告（不公開部署）。Lighthouse 是單次實驗室測試，不等同真實訪客 Core Web Vitals。
 

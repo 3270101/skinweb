@@ -1,10 +1,10 @@
 import * as gu from "react";
 import { ui as f } from "./ui.js";
 import { plans } from "./plans.js";
-import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpSection } from "./components.js";
+import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpMainCard, ScalpProcess, PlanTabs } from "./components.js";
 import {membership} from './content.js';
 
-export default function Home({initialPlan='A'}) {
+export default function Home({initialPlan='SCALP'}) {
   const [M, ol] = gu.useState("home"),
     [k, g] = gu.useState(initialPlan),
     [B, K] = gu.useState(0),
@@ -59,7 +59,7 @@ export default function Home({initialPlan='A'}) {
                 children: [
                   { id: "home", label: "關於我們" },
                   { id: "services", label: "服務項目" },
-                  { id: "scalp-care", label: "頭皮養護" },
+                  { id: "scalp-care", label: "洗髮方案" },
                   { id: "process", label: "服務流程" },
                   { id: "pricing", label: "價目表" },
                   { id: "contact", label: "門市預約" },
@@ -113,7 +113,7 @@ export default function Home({initialPlan='A'}) {
               }),
               f.jsx("p", {
                 className: "text-xl text-gray-600 mb-8",
-                children: "提供痘粉清潔、柔嫩亮膚、提拉保濕與 EXOSOME 護膚方案，新增洗髮與頭皮養護服務介紹。台中忠明店與台北站前店，透過官方 LINE 確認服務與預約。",
+                children: "台中忠明店提供洗髮與頭皮養護方案；台中忠明店與台北站前店提供痘粉清潔、柔嫩亮膚、提拉保濕與 EXOSOME 護膚方案。透過官方 LINE 確認服務與預約。",
               }),
               f.jsx("a", {
                 href: "#services",
@@ -223,11 +223,12 @@ export default function Home({initialPlan='A'}) {
             }),
             f.jsx("p", {
               className: "text-center text-gray-600 mb-12",
-              children: "選擇最適合您的護膚方案",
+              children: "選擇適合您的洗髮或護膚方案",
             }),
             f.jsxs("div", {
-              className: "grid md:grid-cols-2 lg:grid-cols-4 gap-6",
+              className: "skin-main-services grid gap-6",
               children: [
+                f.jsx(ScalpMainCard, {}),
                 f.jsxs("div", {
                   className:
                     "bg-white rounded-xl shadow-lg overflow-hidden card-hover",
@@ -463,7 +464,7 @@ export default function Home({initialPlan='A'}) {
           ],
         }),
       }),
-      f.jsx("section", {
+      k === 'SCALP' ? f.jsx(ScalpProcess, {}) : f.jsx("section", {
         id: "process",
         className: "py-16 bg-white",
         children: f.jsxs("div", {
@@ -476,34 +477,9 @@ export default function Home({initialPlan='A'}) {
             }),
             f.jsx("p", {
               className: "text-center text-gray-600 mb-12",
-              children: "透明公開的專業護膚步驟",
+              children: "選擇方案，查看流程影片或逐步圖解",
             }),
-            f.jsx("div", {
-              className: "flex flex-wrap justify-center gap-4 mb-12",
-              children: Object.entries(A).map(([Y, al]) =>
-                f.jsxs(
-                  "button",
-                  {
-                    onClick: () => cl(Y),
-                    "aria-pressed": k === Y,
-                    "data-plan": Y,
-                    className: `px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                      k === Y
-                        ? Y === "A"
-                          ? "bg-brand-primary text-white"
-                          : Y === "B"
-                          ? "bg-orange-500 text-white"
-                          : Y === "C"
-                          ? "bg-green-500 text-white"
-                          : "bg-red-500 text-white"
-                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                    }`,
-                    children: [al.name, " (", al.steps, "步驟)"],
-                  },
-                  Y
-                )
-              ),
-            }),
+            f.jsx(PlanTabs, {selected:k}),
             f.jsx("div", {
               className: "max-w-4xl mx-auto mb-12",
               children: f.jsxs("div", {
@@ -699,7 +675,6 @@ export default function Home({initialPlan='A'}) {
           ],
         }),
       }),
-      f.jsx(ScalpSection, {}),
       f.jsx(PricingSection, {}),
       f.jsx("section", {
         id: "membership",
