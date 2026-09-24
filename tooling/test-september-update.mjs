@@ -46,8 +46,14 @@ const retired=origin?await fetch(origin+'/stores/taichung-jingming/',{redirect:'
 if(retired&&retired.status!==200){assert.ok([301,302,308].includes(retired.status));assert.ok(new URL(retired.headers.get('location'),origin).pathname==='/stores/');}
 else {const html=retired?await retired.text():await read('/stores/taichung-jingming/');assert.match(html,/noindex/);assert.match(html,/url=\/stores\//);assert.doesNotMatch(html,forbidden);}
 const bytes=await fs.readFile(path.join(root,scalpVideo.src));assert.ok(bytes.length<25*1024*1024);assert.ok(bytes.includes(Buffer.from('avc1')));assert.ok(bytes.includes(Buffer.from('mp4a')));assert.ok(bytes.indexOf('moov')<bytes.indexOf('mdat'),'fast start');
+let videoDelivery='local fast-start MP4';
 if(origin){
-  const range=await fetch(origin+scalpVideo.src,{headers:{Range:'bytes=0-1023'}});assert.equal(range.status,206,'video seek');assert.match(range.headers.get('content-type'),/video\/mp4/);assert.equal((await range.arrayBuffer()).byteLength,1024);
+  const range=await fetch(origin+scalpVideo.src,{headers:{Range:'bytes=0-1023'}});assert.match(range.headers.get('content-type'),/video\/mp4/);
+  const received=Buffer.from(await range.arrayBuffer());
+  // Pages' direct domain returns the complete asset for Range requests.
+  // https://developers.cloudflare.com/pages/configuration/serving-pages/
+  if(new URL(origin).hostname.endsWith('.pages.dev')&&range.status===200){assert.ok(received.equals(bytes),'complete Pages video matches local MP4');videoDelivery='full-file 200 (Pages direct-domain limitation)';}
+  else {assert.equal(range.status,206,'video seek');assert.equal(received.byteLength,1024);assert.ok(received.equals(bytes.subarray(0,1024)));videoDelivery='byte-range 206';}
   const poster=await fetch(origin+scalpVideo.poster);assert.equal(poster.status,200);assert.match(poster.headers.get('content-type'),/image\/jpeg/);
 }
-console.log(JSON.stringify({origin:origin||'local',pages:routes.length,imageReferences,membership:'999 / 12 months',stores:2,scalpServices:3,scalpAddons:1,videoBytes:bytes.length,retiredStoreHandled:true,result:'PASS'},null,2));
+console.log(JSON.stringify({origin:origin||'local',pages:routes.length,imageReferences,membership:'999 / 12 months',stores:2,scalpServices:3,scalpAddons:1,videoBytes:bytes.length,videoDelivery,retiredStoreHandled:true,result:'PASS'},null,2));

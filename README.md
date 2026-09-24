@@ -25,6 +25,8 @@ GitHub Pages 備援網域維持 [backup.skinow.tw](https://backup.skinow.tw/)，
 
 影片大小依據：[Cloudflare Pages limits](https://developers.cloudflare.com/pages/platform/limits/)。原始會員卡舊網址目前也改用新圖；舊版雜湊圖片屬歷史資產，頁面不再引用。
 
+影片交付限制：正式網域 `skinow.tw` 及 GitHub 備援 `backup.skinow.tw` 已驗證 HTTP 206 分段回應；直接使用 `skinweb.pages.dev` 時會回傳整份影片（HTTP 200），這是 [Pages 目前的 Range 行為](https://developers.cloudflare.com/pages/configuration/serving-pages/)。測試會比對該完整 MP4，不將 200 誤報為支援分段快轉。瀏覽器須下載所需片段後才能跳轉；行動裝置以正式網址或 GitHub 備援觀看為宜。
+
 2026-09-06 圖片維護：全站 WebP 載入失敗時改用同一張 PNG/JPG 原圖（只嘗試一次），不再用品牌標誌代替服務照片。四種方案切換後主圖立即載入；縮圖使用符合實際顯示寬度的尺寸，減少不必要下載。執行 `npm run test:images --prefix tooling` 可檢查所有圖片檔及回復邏輯；設定 `SKINOW_TEST_ORIGIN` 可另測指定正式或備援站。
 
 環境：Node.js **22.19+ 或 24 LTS**、npm、Git。瀏覽器測試需要 Google Chrome；非 macOS 可設定 `CHROME_PATH` 為 Chrome 執行檔絕對路徑。
