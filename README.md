@@ -15,6 +15,16 @@ GitHub Pages 備援網域維持 [backup.skinow.tw](https://backup.skinow.tw/)，
 
 ## 修改與發布
 
+### 2026-09-24 會員與頭皮養護更新
+
+- 專屬會員卡原價 NT$1,200、優惠價 NT$999、12 個月，首頁圖片／規章、會員頁、FAQ、摘要及結構化資料同步。使用提供的原圖，不重畫、不改圖片文字。
+- 精明店自門市清單、FAQ、服務頁與 sitemap 移除。Cloudflare 將舊路徑 301 至 `/stores/`；GitHub Pages 使用 noindex 的轉址頁與連結，不再顯示舊店資料。忠明店時間改為 13:30–22:30。
+- `tooling/src/scalp.js` 管理附件中的三種洗髮／頭皮養護方案及水珍柔光精粹加購；首頁新增專區、`/services/scalp-care/` 新增服務與影片頁，全站價格與 FAQ 一併更新。附件未提供各方案逐項步驟，因此不自行編造步驟。
+- 原始 MOV 不提交、不改動；網站 MP4 為完整 153.5 秒，720×1280、H.264/AAC，22,752,012 bytes，支援快轉，點擊後才載入，不自動播放。小於 Cloudflare Pages 的單檔 25 MiB 上限，未新增付費影片服務。
+- 執行 `npm run test:update --prefix tooling` 檢查本次內容與影音，設定 `SKINOW_TEST_ORIGIN` 可檢查正式站、Pages 網址與 GitHub 備援。完整回復可用本次提交的 `git revert`；這會同時還原會員方案及門市資訊，需先確認業務需求。
+
+影片大小依據：[Cloudflare Pages limits](https://developers.cloudflare.com/pages/platform/limits/)。原始會員卡舊網址目前也改用新圖；舊版雜湊圖片屬歷史資產，頁面不再引用。
+
 2026-09-06 圖片維護：全站 WebP 載入失敗時改用同一張 PNG/JPG 原圖（只嘗試一次），不再用品牌標誌代替服務照片。四種方案切換後主圖立即載入；縮圖使用符合實際顯示寬度的尺寸，減少不必要下載。執行 `npm run test:images --prefix tooling` 可檢查所有圖片檔及回復邏輯；設定 `SKINOW_TEST_ORIGIN` 可另測指定正式或備援站。
 
 環境：Node.js **22.19+ 或 24 LTS**、npm、Git。瀏覽器測試需要 Google Chrome；非 macOS 可設定 `CHROME_PATH` 為 Chrome 執行檔絕對路徑。

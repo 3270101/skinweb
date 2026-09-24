@@ -7,6 +7,7 @@
     "build": "node build.mjs",
     "test": "node test.mjs",
     "test:images": "node test-images.mjs",
+    "test:update": "node test-september-update.mjs",
     "quality": "node quality.mjs"
   },
   "dependencies": {

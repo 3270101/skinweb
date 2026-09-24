@@ -5,8 +5,10 @@ export const site = {
   name: '肌密宣言 SKINOW',
   line: 'https://lin.ee/ANemNqJ',
   facebook: 'https://www.facebook.com/people/肌密宣言/61575704535521/',
-  updated: '2026-09-05',
+  updated: '2026-09-24',
 };
+
+export const membership={name:'專屬會員卡',original:1200,price:999,months:12,image:'images/membercard-999-20260924.png'};
 
 export const money = value => `NT$${Number(String(value).replace(/[^\d.]/g, '')).toLocaleString('en-US')}`;
 export const amount = value => Number(String(value).replace(/[^\d.]/g, ''));
@@ -26,8 +28,7 @@ export const serviceInfo = {
   EXOSOME: {slug:'exosome', focus:'希望了解 EXOSOME 精華與儀器搭配的護理流程', lead:'EXOSOME 方案約 60 分鐘，共 17 個步驟，會員價 NT$2,480。', summary:'清潔後搭配外泌體精華、儀器護理、面膜與鎖水保養；產品及施作方式請向門市確認。', related:'hydration'},
 };
 export const stores = [
-  {slug:'taichung-jingming', name:'台中精明店', city:'臺中市', district:'西區', street:'精明一街78號2樓', address:'台中市西區精明一街78號2樓', phone:'04-2326-0035', tel:'+886423260035', hours:'12:00–20:00', note:'位於精明一街 78 號 2 樓。請依門牌找到入口，預約時可先向門市確認抵達方式。'},
-  {slug:'taichung-zhongming', name:'台中忠明店', city:'臺中市', district:'北區', street:'忠明路502-1號', address:'台中市北區忠明路502-1號', phone:'04-2206-0037', tel:'+886422060037', hours:'12:00–20:00', note:'位於忠明路 502-1 號。可透過地圖查看路線，預約時請告知欲前往台中忠明店。'},
+  {slug:'taichung-zhongming', name:'台中忠明店', city:'臺中市', district:'北區', street:'忠明路502-1號', address:'台中市北區忠明路502-1號', phone:'04-2206-0037', tel:'+886422060037', hours:'13:30–22:30', note:'位於忠明路 502-1 號。可透過地圖查看路線，預約時請告知欲前往台中忠明店。'},
   {slug:'taipei-station', name:'台北站前店', city:'臺北市', district:'中正區', street:'公園路16號2樓', address:'台北市中正區公園路16號2樓', phone:'02-2383-2513', tel:'+886223832513', hours:'11:00–22:00', note:'位於公園路 16 號 2 樓。預約時可向門市確認入口與抵達方式。'},
 ];
 export const faqs = [
@@ -36,20 +37,22 @@ export const faqs = [
   {q:'肌密宣言有哪些護膚方案？', a:'提供 A 痘粉清潔、B 柔嫩亮膚、C 提拉保濕與 EXOSOME 方案。會員價依序為 NT$550、NT$850、NT$1,250、NT$2,480；完整內容與原價可查看價目表。'},
   {q:'一次護膚需要多久？', a:'A 方案約 40 分鐘，B 方案約 50 分鐘，C 與 EXOSOME 方案約 60 分鐘。加購與現場安排可能影響所需時間，請於預約時確認。'},
   {q:'A 方案的小氣泡清潔和手工清粉刺是一樣的嗎？', a:'不是同一項目。A 方案包含粉刺導出液與氫氧小氣泡等清潔步驟；手工清粉刺在官網列為另外計價的加購服務，需搭配方案。'},
-  {q:'要如何享有會員價？', a:'依官網會員規章，購買 VIP 會員卡並於會員資格有效期間消費，可享會員價；結帳時需出示有效會員卡，會員卡限本人使用。銀卡費用 NT$3,000、效期 6 個月，金卡 NT$5,000、效期 12 個月。'},
-  {q:'肌密宣言的門市在哪裡？', a:'目前官網列有台中精明店（西區精明一街78號2樓）、台中忠明店（北區忠明路502-1號）與台北站前店（中正區公園路16號2樓）。各店電話與服務時間請查看門市資訊。'},
+  {q:'要如何享有會員價？', a:`依官網會員規章，購買專屬會員卡並於會員資格有效期間消費，可享會員價；結帳時需出示有效會員卡，會員卡限本人使用。專屬會員卡優惠價 ${money(membership.price)}（原價 ${money(membership.original)}），效期 ${membership.months} 個月。`},
+  {q:'肌密宣言的門市在哪裡？', a:'目前官網列有台中忠明店（北區忠明路502-1號）與台北站前店（中正區公園路16號2樓）。忠明店服務時間為 13:30–22:30，站前店為 11:00–22:00；營業日與可預約時段請向門市確認。'},
   {q:'如何預約護膚或詢問方案？', a:'可點擊官網的官方 LINE 預約連結，或直接致電欲前往的門市。請提供門市、希望預約的時段、護膚方案與加購需求，由門市確認安排。'},
   {q:'第一次預約前應先確認哪些資訊？', a:'先確認門市與時段，再告知想了解的方案、是否加購手工清粉刺，以及目前是否有正在使用的護膚產品或療程，由門市說明實際服務安排。'},
+  {q:'有哪些洗髮與頭皮養護方案？',a:'深層洗髮約 50 分鐘，原價 NT$1,200、會員價 NT$500；頭皮調理約 60 分鐘，原價 NT$1,600、會員價 NT$899；頭皮深層養護約 75 分鐘，原價 NT$1,800、會員價 NT$1,200。另有水珍柔光精粹加購，原價 NT$1,800、會員價 NT$1,000。提供門市、適用方案及預約時段請透過官方 LINE 確認。'},
 ];
 
 export const routes = [
-  {path:'/',kind:'home',title:'肌密宣言 SKINOW｜台中・台北美容護膚、清粉刺與價目表',description:`肌密宣言 SKINOW 提供台中、台北臉部護膚，A 痘粉清潔會員價 NT$550 起，手工清粉刺會員加購價 ${money(manual.member)}。查看完整方案、服務流程、VIP 會員制度與三間門市，透過官方 LINE 預約。`},
-  {path:'/services/',kind:'services',title:'護膚方案與服務流程｜肌密宣言 SKINOW',description:'比較 A 痘粉清潔、B 柔嫩亮膚、C 提拉保濕與 EXOSOME 方案的時間、原價、會員價及完整步驟，了解方案加購項目。'},
+  {path:'/',kind:'home',title:'肌密宣言 SKINOW｜美容護膚、洗髮與頭皮養護價目表',description:`肌密宣言 SKINOW 提供臉部護膚、洗髮與頭皮養護服務介紹。手工清粉刺會員加購價 ${money(manual.member)}，專屬會員卡優惠價 NT$999、效期 12 個月。查看台中忠明與台北站前門市，透過官方 LINE 預約。`},
+  {path:'/services/',kind:'services',title:'護膚、洗髮與頭皮養護服務｜肌密宣言 SKINOW',description:'比較四種臉部護膚方案及深層洗髮、頭皮調理、頭皮深層養護的時間、原價與會員價，觀看服務流程影片並了解加購項目。'},
+  {path:'/services/scalp-care/',kind:'scalp',title:'頭皮深層養護與洗髮流程｜方案價格與介紹影片｜肌密宣言',description:'深層洗髮 50 分鐘會員價 NT$500、頭皮調理 60 分鐘 NT$899、頭皮深層養護 75 分鐘 NT$1,200；另有水珍柔光精粹加購。觀看洗髮流程影片，透過官方 LINE 確認服務與預約。'},
   ...Object.entries(serviceInfo).map(([key,info])=>({path:`/services/${info.slug}/`,kind:'service',key,title:`${plans[key].name} ${plans[key].title}｜${plans[key].duration}・會員價 ${money(plans[key].memberPrice)}｜肌密宣言`,description:`${info.lead}${info.summary}`})),
   {path:'/services/manual-extraction/',kind:'manual',title:`手工清粉刺會員加購價 ${money(manual.member)}｜肌密宣言 SKINOW`,description:`手工清粉刺原價 ${money(manual.original)}，會員加購價 ${money(manual.member)}，需搭配護膚方案、無法單獨施作。查看方案搭配、價格條件與台中／台北門市預約資訊。`},
-  {path:'/pricing/',kind:'pricing',title:'護膚價目表｜方案、會員價與加購價格｜肌密宣言 SKINOW',description:`一次比較肌密宣言四種護膚方案的原價與會員價、服務時間，以及手工清粉刺會員加購 ${money(manual.member)} 等六項加購價格。`},
-  {path:'/membership/',kind:'membership',title:'VIP 會員制度｜銀卡、金卡與會員價格｜肌密宣言 SKINOW',description:'肌密宣言銀卡 NT$3,000、有效 6 個月；金卡 NT$5,000、有效 12 個月。了解会员價適用條件、本人使用規則與申請方式。'.replace('会员','會員')},
-  {path:'/stores/',kind:'stores',title:'門市資訊與預約｜台中精明・台中忠明・台北站前｜肌密宣言',description:'查看肌密宣言台中精明店、台中忠明店與台北站前店的地址、電話、服務時間、地圖與官方 LINE 預約方式。'},
+  {path:'/pricing/',kind:'pricing',title:'護膚與頭皮養護價目表｜方案、會員價與加購｜肌密宣言',description:`比較四種護膚方案、三種洗髮與頭皮養護服務，以及各類加購價格。手工清粉刺會員加購 ${money(manual.member)}，專屬會員卡優惠價 NT$999，效期 12 個月。`},
+  {path:'/membership/',kind:'membership',title:'專屬會員卡優惠價 NT$999｜效期 12 個月｜肌密宣言 SKINOW',description:'肌密宣言專屬會員卡原價 NT$1,200、優惠價 NT$999，有效期限 12 個月。了解會員價適用條件、本人使用規則、續約與申請方式。'},
+  {path:'/stores/',kind:'stores',title:'門市資訊與預約｜台中忠明・台北站前｜肌密宣言',description:'查看肌密宣言台中忠明店與台北站前店的地址、電話、服務時間、地圖與官方 LINE 預約方式。忠明店服務時間 13:30–22:30。'},
   ...stores.map(store=>({path:`/stores/${store.slug}/`,kind:'store',key:store.slug,title:`${store.name}｜${store.address}・美容護膚預約｜肌密宣言`,description:`肌密宣言${store.name}位於${store.address}，電話 ${store.phone}，官網服務時間 ${store.hours}。查看護膚方案、價目表、地圖與預約資訊。`})),
   {path:'/faq/',kind:'faq',title:'護膚與清粉刺常見問題｜價格、會員、門市預約｜肌密宣言',description:'解答手工清粉刺會員加購價格、方案時間、會員價條件、門市位置與 LINE 預約方式；內容依肌密宣言官網服務資訊整理。'},
 ];

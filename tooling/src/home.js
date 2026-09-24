@@ -1,7 +1,8 @@
 import * as gu from "react";
 import { ui as f } from "./ui.js";
 import { plans } from "./plans.js";
-import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection } from "./components.js";
+import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpSection } from "./components.js";
+import {membership} from './content.js';
 
 export default function Home({initialPlan='A'}) {
   const [M, ol] = gu.useState("home"),
@@ -58,6 +59,7 @@ export default function Home({initialPlan='A'}) {
                 children: [
                   { id: "home", label: "關於我們" },
                   { id: "services", label: "服務項目" },
+                  { id: "scalp-care", label: "頭皮養護" },
                   { id: "process", label: "服務流程" },
                   { id: "pricing", label: "價目表" },
                   { id: "contact", label: "門市預約" },
@@ -111,7 +113,7 @@ export default function Home({initialPlan='A'}) {
               }),
               f.jsx("p", {
                 className: "text-xl text-gray-600 mb-8",
-                children: "提供痘粉清潔、柔嫩亮膚、提拉保濕與 EXOSOME 護膚方案；台中精明店、台中忠明店與台北站前店，透過官方 LINE 預約。",
+                children: "提供痘粉清潔、柔嫩亮膚、提拉保濕與 EXOSOME 護膚方案，新增洗髮與頭皮養護服務介紹。台中忠明店與台北站前店，透過官方 LINE 確認服務與預約。",
               }),
               f.jsx("a", {
                 href: "#services",
@@ -697,6 +699,7 @@ export default function Home({initialPlan='A'}) {
           ],
         }),
       }),
+      f.jsx(ScalpSection, {}),
       f.jsx(PricingSection, {}),
       f.jsx("section", {
         id: "membership",
@@ -716,8 +719,8 @@ export default function Home({initialPlan='A'}) {
                   className:
                     "bg-white rounded-xl shadow-lg overflow-hidden mb-8",
                   children: f.jsx("img", {
-                    src: "/images/membercard.png",
-                    alt: "會員卡制度",
+                    src: membership.image,
+                    alt: "專屬會員卡原價 1,200 元，優惠價 999 元",
                     className: "w-full h-auto",
                   }),
                 }),
@@ -747,7 +750,7 @@ export default function Home({initialPlan='A'}) {
                                 }),
                                 f.jsx("li", {
                                   children:
-                                    "• 凡年滿十八歲且經由肌密宣言審核通過者，均可申請成為銀卡/金卡會員",
+                                    "• 凡年滿十八歲且經由肌密宣言審核通過者，均可申請專屬會員卡",
                                 }),
                                 f.jsx("li", {
                                   children:
@@ -774,15 +777,8 @@ export default function Home({initialPlan='A'}) {
                                 f.jsxs("li", {
                                   children: [
                                     "• ",
-                                    f.jsx("strong", { children: "銀卡會員" }),
-                                    "：新台幣3,000元，有效期限6個月",
-                                  ],
-                                }),
-                                f.jsxs("li", {
-                                  children: [
-                                    "• ",
-                                    f.jsx("strong", { children: "金卡會員" }),
-                                    "：新台幣5,000元，有效期限12個月",
+                                    f.jsx("strong", { children: membership.name }),
+                                    `：原價${membership.original.toLocaleString('en-US')}元，優惠價${membership.price}元，有效期限${membership.months}個月`,
                                   ],
                                 }),
                                 f.jsx("li", {
@@ -875,7 +871,7 @@ export default function Home({initialPlan='A'}) {
                                 }),
                                 f.jsx("li", {
                                   children:
-                                    "• 購買VIP會員卡，會員資格期間消費皆可享有會員價，",
+                                    "• 購買專屬會員卡，會員資格期間消費皆可享有會員價，",
                                 }),
                                 f.jsx("li", {
                                   children:

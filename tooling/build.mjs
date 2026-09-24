@@ -4,7 +4,8 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {build} from 'esbuild';
 import sharp from 'sharp';
-import {routes, site, faqs, addons, money} from './src/content.js';
+import {routes, site, faqs, addons, money, membership} from './src/content.js';
+import {scalpVideo} from './src/scalp.js';
 import {plans} from './src/plans.js';
 import {structuredData} from './src/schema.js';
 
@@ -15,7 +16,7 @@ const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
 const write=async(relative,content)=>{const file=path.join(root,relative);await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file,content);};
 await fs.mkdir(path.join(tooling,'.cache'),{recursive:true});
 const manifest={};
-const sources=[...new Set(['LOGO3.jpg','LOGO4.jpg','images/membercard.png',...Object.values(plans).flatMap(p=>p.stepImages.map(name=>'images/'+name))])];
+const sources=[...new Set(['LOGO3.jpg','LOGO4.jpg',membership.image,...Object.values(plans).flatMap(p=>p.stepImages.map(name=>'images/'+name))])];
 let originalBytes=0, optimizedBytes=0;
 for (const source of sources) {
   const input=await fs.readFile(path.join(root,source));
@@ -48,9 +49,14 @@ for(const route of routes) await write(route.path.slice(1)+'index.html',htmlPage
 await write('404.html',htmlPage({path:'/404.html',kind:'404',title:'找不到頁面｜肌密宣言 SKINOW',description:'此頁面不存在，請返回肌密宣言首頁或價目表。'},'<main id="main-content" class="skin-document"><h1>找不到這個頁面</h1><p>連結可能已變更，請從以下入口繼續瀏覽。</p><nav class="skin-link-row"><a href="/">返回首頁</a><a href="/pricing/">完整價目表</a><a href="/stores/">門市預約</a></nav></main>',{notFound:true}));
 await write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+routes.map(r=>`  <url><loc>${site.origin}${r.path}</loc><lastmod>${site.updated}</lastmod></url>`).join('\n')+'\n</urlset>\n');
 await write('robots.txt',`# Search and user-requested retrieval are allowed. Training access is separate.\nUser-agent: *\nAllow: /\nDisallow: /tooling/\n\nUser-agent: OAI-SearchBot\nUser-agent: ChatGPT-User\nUser-agent: PerplexityBot\nUser-agent: Claude-SearchBot\nUser-agent: Claude-User\nAllow: /\nDisallow: /tooling/\n\nUser-agent: GPTBot\nUser-agent: ClaudeBot\nUser-agent: Google-Extended\nUser-agent: CCBot\nUser-agent: Bytespider\nUser-agent: Amazonbot\nUser-agent: Applebot-Extended\nUser-agent: meta-externalagent\nDisallow: /\n\nSitemap: ${site.origin}/sitemap.xml\n`);
-await write('llms.txt',`# ${site.name}\n\n> 台中與台北臉部美容護膚。以下為官網公開資料索引，所有金額均為新台幣。此檔案是輔助索引，不代表任何搜尋或 AI 平台保證採用。\n\n官網：${site.origin}/\n資料更新：${site.updated}\n手工清粉刺原價 NT$500，會員加購价 NT$300；需搭配護膚方案，無法單獨施作。會員價限有效 VIP 會員並須出示會員卡。\n\n## 官方頁面\n${routes.map(r=>`- [${r.title}](${site.origin}${r.path}): ${r.description}`).join('\n')}\n\n## 常見問題\n${faqs.map(f=>`### ${f.q}\n${f.a}`).join('\n\n')}\n`.replace('加購价','加購價'));
+await write('llms.txt',`# ${site.name}\n\n> 美容護膚、洗髮與頭皮養護。以下為官網公開資料索引，所有金額均為新台幣。此檔案是輔助索引，不代表任何搜尋或 AI 平台保證採用。\n\n官網：${site.origin}/\n資料更新：${site.updated}\n手工清粉刺原價 NT$500，會員加購价 NT$300；需搭配護膚方案，無法單獨施作。會員價限有效會員並須出示會員卡。專屬會員卡原價 NT$1,200，優惠價 NT$999，效期 12 個月。台中忠明店服務時間 13:30–22:30；台北站前店 11:00–22:00。\n\n## 官方頁面\n${routes.map(r=>`- [${r.title}](${site.origin}${r.path}): ${r.description}`).join('\n')}\n\n## 常見問題\n${faqs.map(f=>`### ${f.q}\n${f.a}`).join('\n\n')}\n`.replace('加購价','加購價'));
 await write('_headers','/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n\n/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/tooling/*\n  X-Robots-Tag: noindex, nofollow\n\n/404.html\n  X-Robots-Tag: noindex\n');
-await write('_redirects','/images/p5.png /pricing/ 301\n');
+await write('_redirects',`/images/p5.png /pricing/ 301\n/images/membercard.png /${membership.image} 301\n/stores/taichung-jingming /stores/ 301\n/stores/taichung-jingming/ /stores/ 301\n/stores/taichung-jingming/index.html /stores/ 301\n`);
+// Retire the former store page on GitHub Pages too, which does not read _redirects.
+await write('stores/taichung-jingming/index.html','<!doctype html>\n<html lang="zh-Hant-TW"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>門市資訊已更新｜肌密宣言 SKINOW</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="https://skinow.tw/stores/"><meta http-equiv="refresh" content="0; url=/stores/"></head><body><main><h1>門市資訊已更新</h1><p>請前往<a href="/stores/">現有門市與預約資訊</a>。</p></main></body></html>\n');
+const videoStat=await fs.stat(path.join(root,scalpVideo.src));
+if(videoStat.size>=25*1024*1024)throw new Error('Video exceeds the Cloudflare Pages single asset limit');
+await fs.access(path.join(root,scalpVideo.poster));
 await write('.nojekyll','');
 await write('.assetsignore','tooling/\n.git/\nREADME.md\n');
 // Retire only this builder's hash-named outputs, never original/user assets.
