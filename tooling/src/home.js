@@ -3,6 +3,7 @@ import { ui as f } from "./ui.js";
 import { plans } from "./plans.js";
 import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpMainCard, ScalpProcess, PlanTabs } from "./components.js";
 import {membership} from './content.js';
+import {ProcessGallery} from './process-gallery.js';
 
 export default function Home({initialPlan='SCALP'}) {
   const [M, ol] = gu.useState("home"),
@@ -535,143 +536,7 @@ export default function Home({initialPlan='SCALP'}) {
                 ],
               }),
             }),
-            f.jsx("div", {
-              className: "max-w-6xl mx-auto",
-              children: f.jsxs("div", {
-                className: "grid lg:grid-cols-2 gap-8",
-                children: [
-                  f.jsxs("div", {
-                    className: "space-y-4",
-                    children: [
-                      f.jsx("div", {
-                        className:
-                          "relative bg-gray-100 rounded-xl overflow-hidden aspect-video",
-                        children: f.jsx("img", {
-                          src: `images/${P.stepImages[B]}`,
-                          "data-role": "step-image",
-                          sizes: "(max-width: 1023px) 100vw, 560px",
-                          alt: P.stepNames[B],
-                          className: "w-full h-full object-cover",
-                        }),
-                      }),
-                      f.jsxs("div", {
-                        className: "flex items-center justify-between",
-                        children: [
-                          f.jsx("button", {
-                            onClick: () => F(B > 0 ? B - 1 : P.steps - 1),
-                            "data-action": "previous-step",
-                            className:
-                              "px-4 py-2 bg-brand-primary text-white rounded-lg hover:bg-brand-secondary transition-colors",
-                            children: "← 上一步",
-                          }),
-                          f.jsxs("span", {
-                            className: "text-gray-600",
-                            children: [B + 1, " / ", P.steps],
-                            "data-role": "step-counter",
-                          }),
-                          f.jsx("button", {
-                            onClick: () => F(B < P.steps - 1 ? B + 1 : 0),
-                            "data-action": "next-step",
-                            className:
-                              "px-4 py-2 bg-brand-primary text-white rounded-lg hover:bg-brand-secondary transition-colors",
-                            children: "下一步 →",
-                          }),
-                        ],
-                      }),
-                      f.jsxs("div", {
-                        className: "bg-white rounded-xl p-6 shadow-lg",
-                        children: [
-                          f.jsxs("h4", {
-                            className:
-                              "text-xl font-semibold text-brand-primary mb-2",
-                            children: ["步驟 ", B + 1],
-                            "data-role": "step-label",
-                          }),
-                          f.jsx("h5", {
-                            className: "text-lg font-medium text-gray-800",
-                            "data-role": "step-title",
-                            children: P.stepNames[B],
-                          }),
-                        ],
-                      }),
-                    ],
-                  }),
-                  f.jsxs("div", {
-                    children: [
-                      f.jsxs("h4", {
-                        className: "text-lg font-semibold text-gray-800 mb-4",
-                        children: [P.name, " - ", P.title, " - 完整流程"],
-                      }),
-                      f.jsx("h5", {
-                        className: "text-md text-gray-600 mb-6",
-                        children: "所有步驟一覽",
-                      }),
-                      f.jsx("div", {
-                        className: "grid grid-cols-4 gap-3",
-                        children: P.stepImages.map((Y, al) =>
-                          f.jsxs(
-                            "button",
-                            {
-                              onClick: () => F(al),
-                              "aria-pressed": B === al,
-                              "data-step": al,
-                              className: `relative aspect-square rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-                                B === al
-                                  ? "border-brand-primary shadow-lg scale-105"
-                                  : "border-gray-200 hover:border-brand-primary hover:scale-102"
-                              }`,
-                              children: [
-                                f.jsx("img", {
-                                  src: `/images/${Y}`,
-                                  sizes: "(max-width: 639px) 22vw, 130px",
-                                  alt: P.stepNames[al],
-                                  className: "w-full h-full object-cover",
-                                }),
-                                f.jsx("div", {
-                                  className:
-                                    "absolute bottom-1 right-1 bg-black bg-opacity-70 rounded-full w-6 h-6 flex items-center justify-center",
-                                  children: f.jsx("span", {
-                                    className: "text-white font-bold text-xs",
-                                    children: al + 1,
-                                  }),
-                                }),
-                              ],
-                            },
-                            al
-                          )
-                        ),
-                      }),
-                      f.jsx("div", {
-                        className: "mt-6 space-y-2 max-h-64 overflow-y-auto",
-                        children: P.stepNames.map((Y, al) =>
-                          f.jsxs(
-                            "button",
-                            {
-                              onClick: () => F(al),
-                              "aria-pressed": B === al,
-                              "data-step": al,
-                              className: `w-full text-left px-3 py-2 rounded-lg transition-colors ${
-                                B === al
-                                  ? "bg-brand-primary text-white"
-                                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                              }`,
-                              children: [
-                                f.jsxs("span", {
-                                  className: "font-medium",
-                                  children: [al + 1, "."],
-                                }),
-                                Y,
-                              ],
-                            },
-                            al
-                          )
-                        ),
-                      }),
-                    ],
-                  }),
-                ],
-              }),
-            }),
+            f.jsx(ProcessGallery, {plan:P}),
           ],
         }),
       }),

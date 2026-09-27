@@ -7,13 +7,23 @@ GitHub Pages 備援網域維持 [backup.skinow.tw](https://backup.skinow.tw/)，
 
 - 手工清粉刺原價維持 NT$500，會員加購價改為 **NT$300**，需搭配方案，不能單獨施作。
 - 首頁與 13 個資訊頁在建置時輸出完整 HTML，無須 JavaScript 即可閱讀服務、價格、門市與常見問題。
-- React 僅於建置時產生 HTML，不傳送到瀏覽器；首頁以少量原生 JavaScript 保留互動流程，其他資訊頁僅載入圖片失敗回復程式，所有文字仍不依賴 JavaScript。
+- React 僅於建置時產生 HTML，不傳送到瀏覽器；首頁與四個護膚方案頁以少量原生 JavaScript 保留互動流程，其他資訊頁僅載入圖片失敗回復程式，所有文字仍不依賴 JavaScript。
 - 每頁有獨立標題、摘要、canonical、社群分享資訊及與頁面內容相符的結構化資料。
 - `sitemap.xml`、純文字 `robots.txt`、選用的 `llms.txt`、真正的 404、可追蹤的內部連結。
 - 原始流程圖產生 WebP 多尺寸版本，補齊圖片尺寸、替代文字及延遲載入。
 - 停用包含 $200 舊價格的 `images/p5.png` 與兩份舊 JS；可由 Git 歷史還原。Cloudflare 舊圖片網址轉往 `/pricing/`。
 
 ## 修改與發布
+
+### 2026-09-27 四方案流程圖解與透明價格
+
+- A、B、C、EXOSOME 獨立服務頁加入與首頁共用的流程照片元件：15／15／17／17 步驟，具大圖、具名縮圖、步驟編號與前後切換。64 個步驟皆使用既有對應照片，不新增或改造照片。
+- `tooling/src/process-gallery.js` 同時用於首頁與獨立頁，資料仍由 `plans.js` 管理，避免兩處流程不同步。所有照片和步驟名稱直接輸出到 HTML，沒有 JavaScript 仍可閱讀。
+- `tooling/src/plan-pricing.js` 清楚列出原價、有效會員價、服務時間、步驟數、會員卡另計及六項護膚加購，並提供方案加手工清粉刺的計價範例。既有售價不變；洗髮服務、影片與門市資訊不變。
+- 手機版縮圖採三欄；點選縮圖後顯示對應大圖，保留鍵盤焦點並尊重減少動態效果設定。圖片失敗仍回復同張原圖。
+- 執行 `npm run test:service-pages --prefix tooling` 驗證四頁共 64 步驟、與首頁照片排序一致、可見價格與結構化價格相符、會員與加購費用分開。可用 `SKINOW_TEST_ORIGIN` 驗證部署站點。
+- 同時執行既有 `test:structure`、`test:update`、`test:images`，並在 Chrome 實測所有步驟切換、桌機／手機排版與首頁頁籤。瀏覽器 CLI 測試需在允許啟動瀏覽器的環境執行。
+- 發布前基準為 `7218f20b834c426f47d362bba8b9d1f140c1ec69`。需回復本次變更時，對本次發布 commit 建立 `git revert` 提交，不使用強制 reset/push，不回復先前已確認的洗髮、會員與門市修訂。
 
 ### 2026-09-24 洗髮主方案與 SEO/GEO 架構修訂
 
@@ -51,6 +61,8 @@ npm ci --prefix tooling
 
 - `tooling/src/content.js`：加購價格、門市、FAQ、路由與各頁摘要。
 - `tooling/src/plans.js`：四種方案價格、時長及服務步驟。
+- `tooling/src/process-gallery.js`：首頁及四方案頁共用流程圖解。
+- `tooling/src/plan-pricing.js`：四方案頁公開價格、會員條件與加購計價範例。
 - `tooling/src/home.js`：首頁內容與互動。
 - `tooling/src/components.js`：文字價目表、門市與獨立資訊頁。
 - `tooling/src/schema.js`：結構化資料，從相同價格及門市資料產生。

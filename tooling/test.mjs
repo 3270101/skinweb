@@ -75,13 +75,13 @@ try {
     const tab=interactive.getByRole('button',{name:`${p.name} (${p.steps}步驟)`,exact:true});
     await tab.click();assert.equal(await tab.getAttribute('aria-pressed'),'true');
     await interactive.getByRole('button',{name:'下一步 →',exact:true}).click();
-    await interactive.getByRole('heading',{name:'步驟 2',exact:true}).waitFor();
+    assert.equal(await interactive.locator('[data-role="step-label"]').textContent(),'步驟 2');
     const stepImage=interactive.locator('#process [data-role="step-image"]');
     await stepImage.scrollIntoViewIfNeeded();
     await stepImage.evaluate(image=>image.decode());
     assert.ok(await stepImage.evaluate(image=>image.naturalWidth>0));
     await interactive.getByRole('button',{name:'← 上一步',exact:true}).click();
-    await interactive.getByRole('heading',{name:'步驟 1',exact:true}).waitFor();
+    assert.equal(await interactive.locator('[data-role="step-label"]').textContent(),'步驟 1');
   }
   await interactive.getByText('手工清粉刺的會員價是多少？',{exact:true}).click();
   assert.equal(await interactive.locator('#faq details').first().getAttribute('open'),'');
@@ -89,6 +89,23 @@ try {
   for(let i=0;i<await booking.count();i++)assert.equal(await booking.nth(i).getAttribute('href'),site.line);
   const noFailures=await interactive.locator('img').evaluateAll(imgs=>imgs.filter(i=>i.complete&&i.naturalWidth===0).map(i=>i.src));
   assert.deepEqual(noFailures,[],'image fetch failures');
+  for(const route of routes.filter(route=>route.kind==='service')){
+    const p=plans[route.key];
+    await interactive.goto(target+route.path,{waitUntil:'networkidle'});
+    assert.equal(await interactive.locator('#process [data-step]').count(),p.steps);
+    for(let step=0;step<p.steps;step++){
+      await interactive.locator(`#process [data-step="${step}"]`).click();
+      assert.equal(await interactive.locator('[data-role="step-counter"]').textContent(),`${step+1} / ${p.steps}`);
+      assert.equal(await interactive.locator('[data-role="step-title"]').textContent(),p.stepNames[step]);
+      const image=interactive.locator('[data-role="step-image"]');
+      await image.evaluate(image=>image.decode());
+      assert.ok(await image.evaluate(image=>image.naturalWidth>0));
+    }
+    await interactive.getByRole('button',{name:'下一步 →',exact:true}).click();
+    assert.equal(await interactive.locator('[data-role="step-counter"]').textContent(),`1 / ${p.steps}`);
+    await interactive.getByRole('button',{name:'← 上一步',exact:true}).click();
+    assert.equal(await interactive.locator('[data-role="step-counter"]').textContent(),`${p.steps} / ${p.steps}`);
+  }
   await interactive.setViewportSize({width:390,height:844});
   await interactive.goto(target+'/',{waitUntil:'networkidle'});
   await interactive.screenshot({path:path.join(tooling,'artifacts/home-mobile.png'),fullPage:true});

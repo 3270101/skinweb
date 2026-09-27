@@ -2,6 +2,8 @@ import { site, addons, manual, serviceInfo, stores, faqs, money, membership } fr
 import {scalpServices,scalpAddon,scalpVideo,scalpFaqs,scalpStoreSlug,videoPagePath} from './scalp.js';
 import { plans } from './plans.js';
 import { imageProps } from './ui.js';
+import {ProcessGallery} from './process-gallery.js';
+import {PlanPricing,PlanAddonPricing} from './plan-pricing.js';
 const scalpStore=stores.find(s=>s.slug===scalpStoreSlug);
 
 export function BookingLink({children='透過官方 LINE 預約',className='skin-button'}) {
@@ -176,12 +178,10 @@ export function PageBody({route}) {
   if(route.kind==='service') {
     const p=plans[route.key],info=serviceInfo[route.key];
     return <>
-      <p className="skin-lead">{info.lead}</p><p>{info.summary}</p>
-      <dl className="skin-facts"><div><dt>所需時間</dt><dd>{p.duration}</dd></div><div><dt>原價</dt><dd>{money(p.originalPrice)}</dd></div><div><dt>有效會員價</dt><dd>{money(p.memberPrice)}</dd></div><div><dt>流程</dt><dd>{p.steps} 個步驟</dd></div></dl>
+      <p className="skin-lead">{info.lead}</p><PlanPricing plan={p}/>
       <h2>這個方案著重什麼？</h2><p>{info.focus}的顧客，可先參考本方案，再向門市確認當次護理內容與適用情況。</p>
-      <h2>{p.name}完整服務流程</h2><ol className="skin-steps">{p.stepNames.map((name,i)=><li key={i}>{name}</li>)}</ol>
-      <h2>可以搭配手工清粉刺嗎？</h2><p>手工清粉刺為方案加購項目，會員加購價 {money(manual.member)}、原價 {money(manual.original)}，無法單獨施作。預約時請一併告知門市。</p>
-      <p><a href="/services/manual-extraction/">了解手工清粉刺價格與搭配方式</a> · <a href="/membership/">會員價適用條件</a></p>
+      <section id="process" className="skin-service-process" aria-labelledby="service-process-title"><h2 id="service-process-title">{p.name}完整服務流程圖解</h2><p>{p.description}</p><ProcessGallery plan={p}/></section>
+      <PlanAddonPricing plan={p}/>
       <h2>如何預約與選擇門市？</h2><p>肌密宣言官網列有台中忠明店與台北站前店。可透過官方 LINE 或門市電話，確認方案、加購與可預約時間。</p><BookingLink/>
       <nav className="skin-link-row" aria-label="相關護膚服務"><a href={`/services/${info.related}/`}>查看相關服務</a><a href="/pricing/">比較其他方案價格</a><a href="/stores/">查看門市與電話</a></nav>
     </>;

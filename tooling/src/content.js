@@ -5,7 +5,7 @@ export const site = {
   name: '肌密宣言 SKINOW',
   line: 'https://lin.ee/ANemNqJ',
   facebook: 'https://www.facebook.com/people/肌密宣言/61575704535521/',
-  updated: '2026-09-24',
+  updated: '2026-09-27',
 };
 
 export const membership={name:'專屬會員卡',original:1200,price:999,months:12,image:'images/membercard-999-20260924.png'};

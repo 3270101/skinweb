@@ -23,11 +23,6 @@ function selectStep(index) {
   for(const button of section.querySelectorAll('[data-step]')){
     const active=Number(button.dataset.step)===currentStep;
     button.setAttribute('aria-pressed',String(active));
-    const thumb=Boolean(button.querySelector('img'));
-    const selected=thumb?['border-brand-primary','shadow-lg','scale-105']:['bg-brand-primary','text-white'];
-    const unselected=thumb?['border-gray-200','hover:border-brand-primary','hover:scale-102']:['bg-gray-100','text-gray-700','hover:bg-gray-200'];
-    selected.forEach(name=>button.classList.toggle(name,active));
-    unselected.forEach(name=>button.classList.toggle(name,!active));
   }
 }
 document.addEventListener('click',event=>{
@@ -45,7 +40,14 @@ document.addEventListener('click',event=>{
       checkImages(document.getElementById('process'));
       document.querySelector(`#process [data-plan="${plan}"]`).focus({preventScroll:true});
     }
-  }else if(button?.hasAttribute('data-step'))selectStep(Number(button.dataset.step));
+  }else if(button?.hasAttribute('data-step')){
+    selectStep(Number(button.dataset.step));
+    // On stacked layouts the preview is above the thumbnails. Reveal the result
+    // without moving keyboard focus away from the selected step.
+    const preview=document.querySelector('#process .skin-process-preview');
+    if(matchMedia('(max-width: 1023px)').matches&&preview.getBoundingClientRect().top<0)
+      preview.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  }
   else if(button?.dataset.action==='next-step')selectStep(currentStep+1);
   else if(button?.dataset.action==='previous-step')selectStep(currentStep-1);
   const navigation=event.target.closest('.skin-home-links a');
