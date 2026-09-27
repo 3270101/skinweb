@@ -1,7 +1,7 @@
 import * as gu from "react";
 import { ui as f } from "./ui.js";
 import { plans } from "./plans.js";
-import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpMainCard, ScalpProcess, PlanTabs } from "./components.js";
+import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpMainCard, ScalpProcess, PlanTabs, ServiceIntroLink, SiteDirectory } from "./components.js";
 import {membership} from './content.js';
 import {ProcessGallery} from './process-gallery.js';
 
@@ -282,6 +282,7 @@ export default function Home({initialPlan='SCALP'}) {
                             }),
                           ],
                         }),
+                        f.jsx(ServiceIntroLink, {planKey:"A"}),
                       ],
                     }),
                   ],
@@ -338,6 +339,7 @@ export default function Home({initialPlan='SCALP'}) {
                             }),
                           ],
                         }),
+                        f.jsx(ServiceIntroLink, {planKey:"B"}),
                       ],
                     }),
                   ],
@@ -394,6 +396,7 @@ export default function Home({initialPlan='SCALP'}) {
                             }),
                           ],
                         }),
+                        f.jsx(ServiceIntroLink, {planKey:"C"}),
                       ],
                     }),
                   ],
@@ -455,6 +458,7 @@ export default function Home({initialPlan='SCALP'}) {
                             }),
                           ],
                         }),
+                        f.jsx(ServiceIntroLink, {planKey:"EXOSOME"}),
                       ],
                     }),
                   ],
@@ -751,6 +755,7 @@ export default function Home({initialPlan='SCALP'}) {
         children: f.jsxs("div", {
           className: "container mx-auto px-4 text-center",
           children: [
+            f.jsx(SiteDirectory, {}),
             f.jsxs("div", {
               className: "mb-6",
               children: [

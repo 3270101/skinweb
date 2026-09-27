@@ -15,6 +15,22 @@ GitHub Pages 備援網域維持 [backup.skinow.tw](https://backup.skinow.tw/)，
 
 ## 修改與發布
 
+### 2026-09-28 首頁方案介紹連結
+
+- 首頁 A、B、C、EXOSOME 卡片在價格下方加入「完整介紹與原價 →」，分別前往對應服務頁；外觀與洗髮方案連結一致，原有價格與流程不變。
+- `ServiceIntroLink` 從既有 `serviceInfo` 取得路徑，並為各連結提供含方案名稱的無障礙標籤；使用標準 HTML 連結，不依賴 JavaScript。
+- `test:structure` 驗證四個連結的順序、目的頁及文字。發布前基準 `54767a2515eb955a40fe35c1f961211abbd7a568`；若連結導向或排版異常，對本次提交使用 `git revert` 回復，不變更先前價格與流程資料。
+
+### 2026-09-28 SEO／GEO 架構複查
+
+- 保留 15 個既有正式網址，不建立重複關鍵字頁。全站共用「服務介紹與流程／公開價格與預約須知／台中台北門市」分組導覽；任何主要頁面都能由首頁一個連結抵達。
+- 四方案頁補上直接門市及電話連結、預約門市錨點、具名的相關方案連結；門市頁維持回連實際提供服務的方案，洗髮只列台中忠明店。
+- JSON-LD 將每頁明確連至其主要內容（服務、方案清單、價目表、門市、會員卡、影片或問題），首頁及服務頁的 FAQ 改列為從屬內容，不讓 FAQ 取代頁面主要主題。所有價格與 FAQ 均由可見內容的同一份資料產生。
+- 四護膚頁標題與摘要清楚交代台中／台北、價格與逐步圖解；服務、會員與影片頁使用對應既有圖片作為 Open Graph／Twitter／頁面主圖資訊，不再全部共用品牌標誌。
+- 補齊門市頁標題層級及加購價目表的可定位錨點；修正平板首頁導覽擠壓換行。保留 canonical、sitemap、robots、真實 404 與圖片 fallback；不放寬既有 AI 訓練爬蟲限制。
+- 新增 `npm run test:seo --prefix tooling`，可用 `SKINOW_TEST_ORIGIN` 驗證線上站點。檢查 15 頁主體、分類導覽、內部連結／錨點、標題層級、canonical／sitemap、FAQ 與畫面一致、圖片及搜尋爬蟲規則。這不等同 Search Console 實際收錄或 Rich Results 資格認證。
+- 技術原則依 Google Search Central 的 AI features、canonical 與 structured data 文件，以及 Bing Webmaster Guidelines；沒有必要為 GEO 另外發明 AI 專用 schema 或關鍵字堆疊頁，也不承諾搜尋排名或 AI 引用。
+
 ### 2026-09-27 四方案流程圖解與透明價格
 
 - A、B、C、EXOSOME 獨立服務頁加入與首頁共用的流程照片元件：15／15／17／17 步驟，具大圖、具名縮圖、步驟編號與前後切換。64 個步驟皆使用既有對應照片，不新增或改造照片。

@@ -10,6 +10,7 @@
     "test:update": "node test-september-update.mjs",
     "test:structure": "node test-wash-structure.mjs",
     "test:service-pages": "node test-service-pages.mjs",
+    "test:seo": "node test-seo-architecture.mjs",
     "quality": "node quality.mjs"
   },
   "dependencies": {

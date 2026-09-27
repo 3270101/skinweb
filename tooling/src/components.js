@@ -10,6 +10,11 @@ export function BookingLink({children='透過官方 LINE 預約',className='skin
   return <a className={className} href={site.line} target="_blank" rel="noopener noreferrer">{children}</a>;
 }
 
+export function ServiceIntroLink({planKey}) {
+  const plan=plans[planKey],info=serviceInfo[planKey];
+  return <a className="skin-text-link" href={`/services/${info.slug}/`} aria-label={`${plan.name} ${plan.title}：完整介紹與原價`} data-service-intro={planKey}>完整介紹與原價 →</a>;
+}
+
 export function ScalpMainCard() {
   return <article id="scalp-care" className="skin-scalp-main-card bg-white rounded-xl shadow-lg overflow-hidden card-hover">
     <div className="skin-scalp-card-header"><p>3 種服務</p><div><h3>洗髮方案</h3><span>50–75 分鐘</span></div></div>
@@ -96,7 +101,7 @@ export function PriceTable() {
     <div className="skin-table-wrap"><table className="skin-table">
       <caption>護膚方案加購價格：需搭配護膚方案，無法單獨施作</caption>
       <thead><tr><th scope="col">加購項目</th><th scope="col">原價</th><th scope="col">會員加購價</th></tr></thead>
-      <tbody>{addons.map(item=><tr key={item.slug} data-addon={item.slug}>
+      <tbody>{addons.map(item=><tr key={item.slug} data-addon={item.slug} id={`price-${item.slug}`}>
         <th scope="row">{item.slug==='manual-extraction'?<a href="/services/manual-extraction/">{item.name}</a>:item.name}</th>
         <td>{money(item.original)}</td><td className="skin-price">{money(item.member)}{item.member===0?'（免費）':''}</td>
       </tr>)}</tbody>
@@ -121,9 +126,10 @@ export function ServiceLinks({includeScalp=true}) {
   </article>)}</div>;
 }
 
-export function StoreCard({store,link=true}) {
+export function StoreCard({store,link=true,headingLevel=3}) {
+  const Heading=`h${headingLevel}`;
   return <article className="skin-card" id={store.slug}>
-      <h3>{link?<a href={`/stores/${store.slug}/`}>肌密宣言 {store.name}</a>:`肌密宣言 ${store.name}`}</h3>
+      <Heading>{link?<a href={`/stores/${store.slug}/`}>肌密宣言 {store.name}</a>:`肌密宣言 ${store.name}`}</Heading>
     {store.slug===scalpStoreSlug&&<p className="skin-note">提供護膚與<a href="/services/scalp-care/">洗髮方案</a>。</p>}
     <address>{store.address}<br/><a href={`tel:${store.tel}`}>{store.phone}</a></address>
     <p>官網服務時間：{store.hours}</p>
@@ -167,8 +173,15 @@ export function ExploreSection() {
 export function Header() {
   return <header className="skin-header"><a className="skin-brand" href="/"><img {...imageProps('LOGO4.jpg','肌密宣言 SKINOW')} width="40" height="40"/>{site.name}</a><nav aria-label="主選單"><a href="/services/">方案</a><a href="/pricing/">價格</a><a href="/stores/">門市</a><a href="/faq/">問答</a></nav><BookingLink>LINE 預約</BookingLink></header>;
 }
+export function SiteDirectory() {
+  return <nav className="skin-site-directory" aria-label="分類網站導覽">
+    <div><h2>服務介紹與流程</h2><ul><li><a href="/services/">全部服務方案</a></li><li><a href="/services/scalp-care/">台中洗髮與頭皮養護</a></li>{Object.entries(plans).map(([key,p])=><li key={key}><a href={`/services/${serviceInfo[key].slug}/`}>{p.name} {p.title}</a></li>)}<li><a href="/services/manual-extraction/">手工清粉刺加購</a></li></ul></div>
+    <div><h2>公開價格與預約須知</h2><ul><li><a href="/pricing/">完整價目表</a></li><li><a href="/membership/">專屬會員卡與使用條件</a></li><li><a href="/faq/">洗髮與護膚常見問題</a></li><li><a href={videoPagePath}>全店服務流程影片</a></li></ul></div>
+    <div><h2>台中・台北門市</h2><ul><li><a href="/stores/">門市資訊與預約</a></li>{stores.map(s=><li key={s.slug}><a href={`/stores/${s.slug}/`}>{s.name}｜{s.city}{s.district}</a></li>)}<li><a href="/">肌密宣言首頁</a></li></ul><p>洗髮方案由台中忠明店提供；預約日期、營業日與加購安排請向門市確認。</p></div>
+  </nav>;
+}
 export function Footer() {
-  return <footer className="skin-footer"><nav className="skin-link-row" aria-label="網站導覽"><a href="/">首頁</a><a href="/services/">服務方案</a><a href="/services/scalp-care/">台中洗髮方案</a><a href={videoPagePath}>全店流程影片</a><a href="/pricing/">價目表</a><a href="/membership/">會員制度</a><a href="/stores/">門市</a><a href="/faq/">常見問題</a></nav><p>© 2026 {site.name} · CLEAN FACE. CLEAR MIND.</p></footer>;
+  return <footer className="skin-footer"><SiteDirectory/><p>© 2026 {site.name} · CLEAN FACE. CLEAR MIND.</p></footer>;
 }
 
 export function PageBody({route}) {
@@ -177,13 +190,15 @@ export function PageBody({route}) {
   if(route.kind==='video') return <><p className="skin-lead">觀看肌密宣言全店服務流程影片，內容包含洗髮方案，完整長度約 2 分 34 秒。</p><ScalpVideo watchLink={false}/><h2>影片與服務資訊</h2><p>本片為全店服務流程介紹，並非只有洗髮方案。洗髮方案由台中忠明店提供，因沒有逐步拆解圖片，以本片呈現流程。各方案的內容、時間與價格請查看對應服務頁，實際安排請向門市確認。</p><nav className="skin-link-row" aria-label="影片相關服務"><a href="/services/scalp-care/">台中忠明店洗髮方案與價格</a><a href="/services/">全部服務方案</a><a href="/pricing/">完整價目表</a><a href="/stores/">門市與預約</a></nav></>;
   if(route.kind==='service') {
     const p=plans[route.key],info=serviceInfo[route.key];
+    const relatedKey=Object.keys(serviceInfo).find(key=>serviceInfo[key].slug===info.related);
+    const relatedLabel=relatedKey?`${plans[relatedKey].name} ${plans[relatedKey].title}完整介紹`:'手工清粉刺加購價格與條件';
     return <>
       <p className="skin-lead">{info.lead}</p><PlanPricing plan={p}/>
       <h2>這個方案著重什麼？</h2><p>{info.focus}的顧客，可先參考本方案，再向門市確認當次護理內容與適用情況。</p>
       <section id="process" className="skin-service-process" aria-labelledby="service-process-title"><h2 id="service-process-title">{p.name}完整服務流程圖解</h2><p>{p.description}</p><ProcessGallery plan={p}/></section>
       <PlanAddonPricing plan={p}/>
-      <h2>如何預約與選擇門市？</h2><p>肌密宣言官網列有台中忠明店與台北站前店。可透過官方 LINE 或門市電話，確認方案、加購與可預約時間。</p><BookingLink/>
-      <nav className="skin-link-row" aria-label="相關護膚服務"><a href={`/services/${info.related}/`}>查看相關服務</a><a href="/pricing/">比較其他方案價格</a><a href="/stores/">查看門市與電話</a></nav>
+      <h2 id="service-booking">如何預約與選擇門市？</h2><p>肌密宣言官網列有台中忠明店與台北站前店。可透過官方 LINE 或門市電話，確認方案、加購與可預約時間。</p><ul className="skin-service-stores">{stores.map(s=><li key={s.slug}><a href={`/stores/${s.slug}/`}>{s.name}：{s.address}</a>，電話 <a href={`tel:${s.tel}`}>{s.phone}</a>。</li>)}</ul><BookingLink/>
+      <nav className="skin-link-row" aria-label="相關護膚服務"><a href={`/services/${info.related}/`}>{relatedLabel}</a><a href="/pricing/">比較其他方案價格</a><a href="/stores/">查看門市與電話</a></nav>
     </>;
   }
   if(route.kind==='manual') return <>
@@ -202,9 +217,9 @@ export function PageBody({route}) {
     <h2>會員價與方案加購</h2><p>例如 A 方案會員價 NT$550；手工清粉刺會員加購價 {money(manual.member)}，需搭配方案。<a href="/pricing/">查看完整價格</a>。</p>
     <h2>續約與申請諮詢</h2><p>官網列明：到期後 2 個月內續約，效期自原到期日起算；超過 2 個月後續約，效期自續約日起算。續約由會員本人親自至門市辦理。完整會員規章可於<a href="/#membership">首頁會員卡制度</a>查看，申請前請洽門市確認。</p><BookingLink>詢問會員卡申請</BookingLink>
   </>;
-  if(route.kind==='stores') return <><p className="skin-lead">查看台中忠明店與台北站前店的地址、電話與服務時間，預約時請告知希望前往的門市。</p><div className="skin-grid">{stores.map(s=><StoreCard store={s} key={s.slug}/>)}</div><p><a href="/services/">查看服務方案</a> · <a href="/pricing/">查看價格</a></p></>;
+  if(route.kind==='stores') return <><p className="skin-lead">查看台中忠明店與台北站前店的地址、電話與服務時間，預約時請告知希望前往的門市。</p><div className="skin-grid">{stores.map(s=><StoreCard store={s} key={s.slug} headingLevel={2}/>)}</div><p><a href="/services/">查看服務方案</a> · <a href="/pricing/">查看價格</a></p></>;
   if(route.kind==='store') {const s=stores.find(s=>s.slug===route.key);return <>
-    <p className="skin-lead">肌密宣言{s.name}，地址為{s.address}，聯絡電話 <a href={`tel:${s.tel}`}>{s.phone}</a>。</p><StoreCard store={s} link={false}/>
+    <p className="skin-lead">肌密宣言{s.name}，地址為{s.address}，聯絡電話 <a href={`tel:${s.tel}`}>{s.phone}</a>。</p><StoreCard store={s} link={false} headingLevel={2}/>
     <h2>到店位置與預約方式</h2><p>{s.note}</p><p>官網服務時間為 {s.hours}，營業日與可預約時段請先電話或 LINE 確認。提供欲預約日期、方案與加購需求，待門市確認後再安排到店。</p>
     <h2>預約前可先了解的服務</h2><ServiceLinks includeScalp={s.slug===scalpStoreSlug}/>{s.slug===scalpStoreSlug&&<><h2>台中忠明店洗髮服務</h2><p>本店提供深層洗髮、頭皮調理、頭皮深層養護三種洗髮服務，另有水珍柔光精粹加購。<a href="/services/scalp-care/">查看完整洗髮內容、價格與流程影片</a>。</p><ScalpPriceTable/></>}<p>想加購手工清粉刺，可先查看<a href="/services/manual-extraction/">會員加購價 {money(manual.member)} 與搭配條件</a>。</p>
     <h2>其他門市</h2><ul>{stores.filter(other=>other.slug!==s.slug).map(other=><li key={other.slug}><a href={`/stores/${other.slug}/`}>{other.name}：{other.address}</a></li>)}</ul><p><a href="/pricing/">完整價目表</a> · <a href="/faq/">預約常見問題</a></p>

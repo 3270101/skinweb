@@ -7,7 +7,7 @@ export function PlanPricing({plan}) {
     <dl className="skin-plan-price-grid"><div><dt>原價</dt><dd><span data-price="original">{money(plan.originalPrice)}</span><p>未具有效專屬會員資格，依原價計費。</p></dd></div><div className="skin-plan-member-price"><dt>有效會員價</dt><dd><span data-price="member">{money(plan.memberPrice)}</span><p>須於會員資格有效期間，出示本人會員卡。</p></dd></div></dl>
     <dl className="skin-plan-facts"><div><dt>服務時間</dt><dd>{plan.duration}</dd></div><div><dt>方案流程</dt><dd>{plan.steps} 個步驟</dd></div></dl>
     <p className="skin-plan-price-note"><strong>會員卡費用另計：</strong>專屬會員卡優惠價 {money(membership.price)}（原價 {money(membership.original)}），效期 {membership.months} 個月。上述方案價格不包含另外選購的加購項目。<a href="/membership/">查看會員資格與規章 →</a></p>
-    <nav className="skin-plan-jump" aria-label="方案內容導覽"><a href="#process">查看 {plan.steps} 步驟照片圖解 ↓</a><a href="#plan-addons">查看加購價格 ↓</a></nav>
+    <nav className="skin-plan-jump" aria-label="方案內容導覽"><a href="#process">查看 {plan.steps} 步驟照片圖解 ↓</a><a href="#plan-addons">查看加購價格 ↓</a><a href="#service-booking">選擇預約門市 ↓</a></nav>
   </section>;
 }
 

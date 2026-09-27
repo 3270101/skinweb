@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {routes,site} from './src/content.js';
+import {routes,site,serviceInfo} from './src/content.js';
+import {plans} from './src/plans.js';
 import {scalpServices,scalpAddon,scalpFaqs,scalpStoreSlug,scalpVideo,videoPagePath} from './src/scalp.js';
 
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -80,6 +81,13 @@ const services=visibleHome.match(/<section id="services"[^]*?<\/section>/)[0];
 const mainCard=services.match(/<article id="scalp-care"[^]*?<\/article>/)[0];
 assert.ok(services.indexOf('洗髮方案')<services.indexOf('A方案'));
 assert.ok(!mainCard.includes(scalpAddon.name),'addon is not a main category');
+const introLinks=[...services.matchAll(/<a\b[^>]*data-service-intro="([^"]+)"[^>]*>[^]*?<\/a>/g)];
+assert.deepEqual(introLinks.map(match=>match[1]),['A','B','C','EXOSOME'],'all four home cards link to their service introduction');
+for(const [link,key] of introLinks){
+  assert.ok(link.includes(`href="/services/${serviceInfo[key].slug}/"`),key+' service destination');
+  assert.ok(link.includes(`aria-label="${plans[key].name} ${plans[key].title}：完整介紹與原價"`),key+' accessible link name');
+  assert.ok(link.includes('>完整介紹與原價 →</a>'),key+' visible introduction link');
+}
 const processSection=visibleHome.match(/<section id="process"[^]*?<\/section>/)[0];
 assert.deepEqual([...processSection.matchAll(/data-plan="([^"]+)"/g)].map(m=>m[1]),['SCALP','A','B','C','EXOSOME']);
 assert.match(processSection,/data-plan="SCALP" aria-pressed="true"/);
@@ -96,4 +104,4 @@ assert.ok(videoSitemap.includes(`<loc>${site.origin+videoPagePath}</loc>`));
 assert.ok(videoSitemap.includes(site.origin+scalpVideo.src));
 assert.ok(robots.includes(`Sitemap: ${site.origin}/video-sitemap.xml`));
 assert.ok(llms.includes('洗髮方案由台中忠明店提供'));
-console.log(JSON.stringify({origin:origin||'local',pages:routes.length,uniqueTitles:titles.size,uniqueDescriptions:descriptions.size,orphanPages:0,mainServiceOrder:['洗髮','A','B','C','EXOSOME'],washServices:3,washAddons:1,provider:scalpStoreSlug,videoWatchPage:videoPagePath,result:'PASS'},null,2));
+console.log(JSON.stringify({origin:origin||'local',pages:routes.length,uniqueTitles:titles.size,uniqueDescriptions:descriptions.size,orphanPages:0,homeServiceIntroLinks:introLinks.length,mainServiceOrder:['洗髮','A','B','C','EXOSOME'],washServices:3,washAddons:1,provider:scalpStoreSlug,videoWatchPage:videoPagePath,result:'PASS'},null,2));

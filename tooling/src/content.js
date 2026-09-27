@@ -5,7 +5,7 @@ export const site = {
   name: '肌密宣言 SKINOW',
   line: 'https://lin.ee/ANemNqJ',
   facebook: 'https://www.facebook.com/people/肌密宣言/61575704535521/',
-  updated: '2026-09-27',
+  updated: '2026-09-28',
 };
 
 export const membership={name:'專屬會員卡',original:1200,price:999,months:12,image:'images/membercard-999-20260924.png'};
@@ -49,7 +49,7 @@ export const routes = [
   {path:'/services/',kind:'services',title:'護膚、洗髮與頭皮養護服務｜肌密宣言 SKINOW',description:'比較四種臉部護膚方案及深層洗髮、頭皮調理、頭皮深層養護的時間、原價與會員價，觀看服務流程影片並了解加購項目。'},
   {path:'/services/scalp-care/',kind:'scalp',title:'台中洗髮方案｜深層洗髮、頭皮調理與養護價格｜肌密宣言忠明店',description:'台中忠明店洗髮方案：深層洗髮 50 分鐘會員價 NT$500、頭皮調理 60 分鐘 NT$899、頭皮深層養護 75 分鐘 NT$1,200。另有水珍柔光精粹加購，附全店服務流程影片，查看忠明路門市與 LINE 預約。'},
   {path:'/videos/store-service-process/',kind:'video',title:'全店服務流程影片｜包含洗髮方案｜肌密宣言 SKINOW',description:'觀看肌密宣言全店服務流程影片，完整約 2 分 34 秒，內容包含洗髮方案。連結台中忠明店洗髮服務、護膚方案、價目表與門市預約資訊。'},
-  ...Object.entries(serviceInfo).map(([key,info])=>({path:`/services/${info.slug}/`,kind:'service',key,title:`${plans[key].name} ${plans[key].title}｜${plans[key].duration}・會員價 ${money(plans[key].memberPrice)}｜肌密宣言`,description:`${info.lead}${info.summary}`})),
+  ...Object.entries(serviceInfo).map(([key,info])=>({path:`/services/${info.slug}/`,kind:'service',key,title:`${plans[key].name} ${plans[key].title}｜台中・台北護膚・會員價 ${money(plans[key].memberPrice)}｜肌密宣言`,description:`${info.lead}原價 ${money(plans[key].originalPrice)}，提供 ${plans[key].steps} 步驟照片圖解。${info.summary}查看會員條件、另計加購費用與台中忠明／台北站前門市預約。`})),
   {path:'/services/manual-extraction/',kind:'manual',title:`手工清粉刺會員加購價 ${money(manual.member)}｜肌密宣言 SKINOW`,description:`手工清粉刺原價 ${money(manual.original)}，會員加購價 ${money(manual.member)}，需搭配護膚方案、無法單獨施作。查看方案搭配、價格條件與台中／台北門市預約資訊。`},
   {path:'/pricing/',kind:'pricing',title:'護膚與頭皮養護價目表｜方案、會員價與加購｜肌密宣言',description:`比較四種護膚方案、三種洗髮與頭皮養護服務，以及各類加購價格。手工清粉刺會員加購 ${money(manual.member)}，專屬會員卡優惠價 NT$999，效期 12 個月。`},
   {path:'/membership/',kind:'membership',title:'專屬會員卡優惠價 NT$999｜效期 12 個月｜肌密宣言 SKINOW',description:'肌密宣言專屬會員卡原價 NT$1,200、優惠價 NT$999，有效期限 12 個月。了解會員價適用條件、本人使用規則、續約與申請方式。'},
