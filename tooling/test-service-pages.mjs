@@ -42,7 +42,7 @@ for(const route of routes.filter(r=>r.kind==='service')){
   assert.ok(html.includes(`data-price="original">${money(p.originalPrice)}`));
   assert.ok(html.includes(`data-price="member">${money(p.memberPrice)}`));
   assert.ok(html.includes('公開價格・透明服務流程'));
-  assert.ok(html.includes('會員卡費用另計'));
+  assert.ok(html.includes('購卡費可抵服務消費'));
   assert.ok(html.includes(`專屬會員卡優惠價 ${money(membership.price)}`));
   assert.ok(html.includes(`效期 ${membership.months} 個月`));
   assert.ok(html.includes('上述方案價格不包含另外選購的加購項目'));
@@ -60,4 +60,4 @@ for(const route of routes.filter(r=>r.kind==='service')){
   assert.deepEqual(service.offers.map(o=>o.price),[amount(p.originalPrice),amount(p.memberPrice)]);
   result.push({path:route.path,steps:p.steps,original:amount(p.originalPrice),member:amount(p.memberPrice),addons:addons.length});
 }
-console.log(JSON.stringify({origin:origin||'local',services:result,totalPhotoSteps:result.reduce((n,s)=>n+s.steps,0),homeGalleryParity:true,memberFeeSeparate:true,result:'PASS'},null,2));
+console.log(JSON.stringify({origin:origin||'local',services:result,totalPhotoSteps:result.reduce((n,s)=>n+s.steps,0),homeGalleryParity:true,memberCreditExplained:true,result:'PASS'},null,2));

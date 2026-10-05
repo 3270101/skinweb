@@ -2,6 +2,7 @@ import * as gu from "react";
 import { ui as f } from "./ui.js";
 import { plans } from "./plans.js";
 import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpMainCard, ScalpProcess, PlanTabs, ServiceIntroLink, SiteDirectory } from "./components.js";
+import {MembershipCredit} from './membership-credit.js';
 import {membership} from './content.js';
 import {ProcessGallery} from './process-gallery.js';
 
@@ -110,11 +111,11 @@ export default function Home({initialPlan='SCALP'}) {
               }),
               f.jsx("p", {
                 className: "text-3xl font-light text-brand-secondary mb-4",
-                children: "CLEAN FACE. CLEAR MIND.",
+                children: "把日常保養，排進你的生活。",
               }),
               f.jsx("p", {
                 className: "text-xl text-gray-600 mb-8",
-                children: "台中忠明店提供洗髮與頭皮養護方案；台中忠明店與台北站前店提供痘粉清潔、柔嫩亮膚、提拉保濕與 EXOSOME 護膚方案。透過官方 LINE 確認服務與預約。",
+                children: "從洗臉、臉部保養，到台中忠明店的洗髮與頭皮養護，依你的需求安排。忠明店服務至晚上 22:30；台北站前店提供臉部護膚。選擇適合的方案，使用 LINE 預約系統安排服務與時段。",
               }),
               f.jsx("a", {
                 href: "#services",
@@ -126,6 +127,7 @@ export default function Home({initialPlan='SCALP'}) {
           }),
         }),
       }),
+      f.jsx("div", {className:"skin-credit-home",children:f.jsx(MembershipCredit,{})}),
       f.jsx("section", {
         className: "py-16 bg-white",
         children: f.jsxs("div", {
@@ -622,7 +624,7 @@ export default function Home({initialPlan='SCALP'}) {
                                   children: [
                                     "• ",
                                     f.jsx("strong", { children: membership.name }),
-                                    `：原價${membership.original.toLocaleString('en-US')}元，優惠價${membership.price}元，有效期限${membership.months}個月`,
+                                    `：原價${membership.original.toLocaleString('en-US')}元，優惠價${membership.price}元，有效期限${membership.months}個月；購卡費可抵扣服務消費`,
                                   ],
                                 }),
                                 f.jsx("li", {
@@ -715,7 +717,7 @@ export default function Home({initialPlan='SCALP'}) {
                                 }),
                                 f.jsx("li", {
                                   children:
-                                    "• 購買專屬會員卡，會員資格期間消費皆可享有會員價，",
+                                    "• 專屬會員卡購卡優惠價 NT$999，有效期限 12 個月；享店內服務會員價，購卡費可抵扣服務消費。",
                                 }),
                                 f.jsx("li", {
                                   children:
