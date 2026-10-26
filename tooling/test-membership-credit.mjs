@@ -31,6 +31,9 @@ for(const route of routes){
       const matches=[...html.matchAll(new RegExp(`<li[^>]*data-beauty-plan="${p.slug}"[^]*?</li>`,'g'))];
       assert.ok(matches.length,route.path+' '+p.slug+' card');
       for(const [card] of matches){
+        assert.ok(card.includes(p.name));
+        assert.ok(card.includes(`多享 ${money(p.credit-p.price)} 保養額度`));
+        assert.doesNotMatch(card,/方案 [123]|原 \$999 會員卡方案/);
         assert.ok(card.includes(`data-purchase="${p.price}">${money(p.price)}`));
         assert.ok(card.includes(`data-credit="${p.credit}">${money(p.credit)}`));
         assert.equal(card.includes('data-gift="one"'),p.gift);
@@ -48,6 +51,7 @@ for(const route of routes){
   if(['home','faq','service'].includes(route.kind))assert.ok(html.includes(membershipSummary));
   if(route.kind==='membership'){
     assert.ok(html.includes('NT$650'),'1200 minus 550 example');
+    assert.ok(html.includes('NT$100'),'1200 minus two 550 services');
     assert.ok(html.includes('既有會員卡的額度與轉換事宜'));
     for(const p of membership.plans){
       const row=html.match(new RegExp(`<tr id="${p.slug}"[^]*?</tr>`))?.[0];

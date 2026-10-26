@@ -42,7 +42,13 @@ html{scroll-padding-top:90px}body{color:#334155}a,button{-webkit-tap-highlight-c
 .skin-credit-plans .skin-credit-gift,.skin-credit-plans .skin-credit-origin{margin:auto 0 16px;padding:9px 10px;line-height:1.5;font-size:.85rem;border-radius:8px;background:#eef7f8;color:#235d67}
 .skin-credit-plans .skin-credit-gift{background:#f8f0df;color:#6a4c16;font-weight:700}
 .skin-credit-plans .skin-credit-validity{margin:0;font-size:.8rem;line-height:1.6;color:#526975}
+.skin-credit-plans .skin-credit-bonus{margin:-6px 0 18px;font-size:.85rem;font-weight:700;color:#526975}
+.skin-price-nowrap{white-space:nowrap}
+.skin-value-guide{margin:36px 0;padding:24px 0}.skin-value-guide h2,.skin-search-intro h2{color:#175e70;font-size:clamp(1.5rem,3vw,2rem);line-height:1.4}
+.skin-value-guide .skin-card{padding:24px}.skin-value-guide h3{font-size:1.1rem;line-height:1.6}.skin-value-guide p,.skin-search-intro p{line-height:1.85}
+.skin-search-intro{background:#f2f8f9;border-left:4px solid #217d92;padding:22px 28px;margin:24px 0}.skin-search-intro h2{margin-top:0}
 .skin-credit-note,.skin-credit-location{font-size:14px;color:#355f69}.skin-credit-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin:20px 0 12px}.skin-credit-actions>a:last-child{font-weight:700;text-decoration:underline}
 @media(max-width:767px){.skin-credit-plans{grid-template-columns:1fr;gap:16px}.skin-credit-plans>li{padding:24px}.skin-credit-plans h3{font-size:1.5rem}.skin-credit-amount strong{font-size:2.25rem}.skin-credit-home{padding:12px 16px}.skin-credit-actions{gap:16px}}
 
 .skin-shorts{margin:3rem auto;max-width:1100px}.skin-shorts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.5rem}.skin-shorts video{display:block;width:100%;max-width:300px;height:auto;aspect-ratio:9/16;margin:1.2rem auto 0;border-radius:18px;background:#154e58}.skin-shorts .skin-card{padding:1.4rem}.skin-shorts h3{font-size:1.3rem;line-height:1.5}.skin-shorts p{line-height:1.8}
+.skin-store-focus{max-width:860px;margin:0 auto}.skin-site-directory .skin-footer-store-meta{margin:0 0 12px;font-size:.85rem;line-height:1.6}

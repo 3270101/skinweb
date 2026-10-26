@@ -12,6 +12,7 @@
     "test:service-pages": "node test-service-pages.mjs",
     "test:seo": "node test-seo-architecture.mjs",
     "test:membership": "node test-membership-credit.mjs",
+    "test:value-search": "node test-value-search.mjs",
     "quality": "node quality.mjs"
   },
   "dependencies": {

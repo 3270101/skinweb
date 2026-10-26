@@ -5,6 +5,7 @@ import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, 
 import {MembershipCredit,MembershipPlans} from './membership-credit.js';
 import {membership,membershipUsage,money} from './content.js';
 import {ProcessGallery} from './process-gallery.js';
+import {ValueGuide,KoreanBeauticianInfo} from './search-content.js';
 
 export default function Home({initialPlan='SCALP'}) {
   const [M, ol] = gu.useState("home"),
@@ -107,15 +108,15 @@ export default function Home({initialPlan='SCALP'}) {
               }),
               f.jsx("h1", {
                 className: "text-5xl font-bold text-brand-primary mb-4",
-                children: "肌密宣言 SKINOW｜台中・台北美容護膚",
+                children: "肌密宣言 SKINOW｜洗臉護膚・台中夜間洗髮",
               }),
               f.jsx("p", {
                 className: "text-3xl font-light text-brand-secondary mb-4",
-                children: "把日常保養，排進你的生活。",
+                children: "洗臉會員價 NT$550 起，公開價格，透明流程。",
               }),
               f.jsx("p", {
                 className: "text-xl text-gray-600 mb-8",
-                children: "從洗臉、臉部保養，到台中忠明店的洗髮與頭皮養護，依你的需求安排。忠明店服務至晚上 22:30；台北站前店提供臉部護膚。選擇適合的方案，使用 LINE 預約系統安排服務與時段。",
+                children: "從 40 分鐘、15 步驟的洗臉，到 EXOSOME 外泌體做臉，把 CP 值花在看得見的服務。台中忠明店另提供夜間洗髮，會員價 NT$500 起、營業至 22:30，並有持韓國美容師執照的韓國籍美容師駐店服務。會員價需先購買美麗保養金，額度可抵服務；指定美容師班表與可約時段請透過 LINE 確認。",
               }),
               f.jsx("a", {
                 href: "#services",
@@ -128,91 +129,8 @@ export default function Home({initialPlan='SCALP'}) {
         }),
       }),
       f.jsx("div", {className:"skin-credit-home",children:f.jsx(MembershipCredit,{})}),
-      f.jsx("section", {
-        className: "py-16 bg-white",
-        children: f.jsxs("div", {
-          className: "container mx-auto px-4",
-          children: [
-            f.jsx("h2", {
-              className:
-                "text-4xl font-bold text-center text-brand-primary mb-12",
-              children: "關於肌密宣言",
-            }),
-            f.jsx("div", {
-              className: "max-w-4xl mx-auto text-center mb-12",
-              children: f.jsx("p", {
-                className: "text-lg text-gray-700 leading-relaxed",
-                children:
-                  "肌密宣言致力於專業、透明的服務流程，為每張臉龐創造獨特的光彩。我們相信每個人都有屬於自己的美麗故事， 而我們的使命就是幫助您讓這個故事閃閃發光。透過專業的美容護膚服務，我們不僅清潔您的肌膚，更讓您的心靈也煥然一新。",
-              }),
-            }),
-            f.jsxs("div", {
-              className: "grid md:grid-cols-3 gap-8",
-              children: [
-                f.jsxs("div", {
-                  className:
-                    "text-center p-6 rounded-xl bg-gradient-to-br from-yellow-50 to-orange-50 card-hover",
-                  children: [
-                    f.jsx("div", {
-                      className: "text-4xl mb-4",
-                      children: "⭐",
-                    }),
-                    f.jsx("h3", {
-                      className:
-                        "text-xl font-semibold text-brand-primary mb-3",
-                      children: "專業服務",
-                    }),
-                    f.jsx("p", {
-                      className: "text-gray-600",
-                      children:
-                        "採用最新美容技術與專業設備，提供高品質的護膚服務",
-                    }),
-                  ],
-                }),
-                f.jsxs("div", {
-                  className:
-                    "text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-cyan-50 card-hover",
-                  children: [
-                    f.jsx("div", {
-                      className: "text-4xl mb-4",
-                      children: "🔍",
-                    }),
-                    f.jsx("h3", {
-                      className:
-                        "text-xl font-semibold text-brand-primary mb-3",
-                      children: "透明流程",
-                    }),
-                    f.jsx("p", {
-                      className: "text-gray-600",
-                      children:
-                        "所有服務流程公開透明，讓您安心享受每一個護膚步驟",
-                    }),
-                  ],
-                }),
-                f.jsxs("div", {
-                  className:
-                    "text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 card-hover",
-                  children: [
-                    f.jsx("div", {
-                      className: "text-4xl mb-4",
-                      children: "💎",
-                    }),
-                    f.jsx("h3", {
-                      className:
-                        "text-xl font-semibold text-brand-primary mb-3",
-                      children: "個人化護理",
-                    }),
-                    f.jsx("p", {
-                      className: "text-gray-600",
-                      children: "根據每位客戶的肌膚狀況，提供客製化的護理方案",
-                    }),
-                  ],
-                }),
-              ],
-            }),
-          ],
-        }),
-      }),
+      f.jsx("div", {className:"skin-credit-home",children:f.jsx(ValueGuide,{})}),
+      f.jsx("div", {className:"skin-credit-home",children:f.jsx(KoreanBeauticianInfo,{})}),
       f.jsx("section", {
         id: "services",
         className: "py-16 bg-gray-50",
@@ -608,13 +526,13 @@ export default function Home({initialPlan='SCALP'}) {
                             f.jsx("h4", {
                               className:
                                 "text-lg font-semibold text-gray-800 mb-3",
-                              children: "美麗保養金方案與保養額度",
+                              children: "美麗保養金禮遇與保養額度",
                             }),
                             f.jsxs("ul", {
                               className: "space-y-2 text-gray-700",
                               children: [
                                 ...membership.plans.map(plan=>f.jsx("li", {children:`• 購買 ${money(plan.price)} 美麗保養金，獲得 ${money(plan.credit)} 保養額度${plan.gift?'；品牌好禮任選一':''}。`},plan.slug)),
-                                f.jsx("li", {children:`• 三種方案效期皆為 ${membership.months} 個月，享會員價；保養額度可分次抵扣服務，差額另付。`}),
+                                f.jsx("li", {children:`• 三種美麗保養金效期皆為 ${membership.months} 個月，享會員價；保養額度可分次抵扣服務，差額另付。`}),
                                 f.jsx("li", {
                                   children:
                                     "• 會員卡經售出概不退費，且不得轉讓第三者",
@@ -705,7 +623,7 @@ export default function Home({initialPlan='SCALP'}) {
                                 }),
                                 f.jsx("li", {
                                   children:
-                                    "• 美麗保養金分為 NT$999、NT$2,999、NT$4,999 三種方案，分別獲得 NT$1,200、NT$3,600、NT$6,500 保養額度，效期皆為 12 個月，享會員價。",
+                                    "• 美麗保養金提供 NT$999、NT$2,999、NT$4,999 三種加值禮遇，分別獲得 NT$1,200、NT$3,600、NT$6,500 保養額度，效期皆為 12 個月，享會員價。",
                                 }),
                                 f.jsx("li", {
                                   children:

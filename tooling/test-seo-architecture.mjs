@@ -61,7 +61,8 @@ for(const route of routes){
   assert.equal(page.primaryImageOfPage.url,image.url);
   await fs.access(localFile(new URL(image.url).pathname));
   if(route.kind==='service'){
-    assert.equal(graph.filter(n=>n['@type']==='BeautySalon').length,2);
+    assert.equal(graph.filter(n=>n['@type']==='BeautySalon').length,1);
+    assert.equal(graph.find(n=>n['@type']==='BeautySalon')['@id'],site.origin+'/stores/taichung-zhongming/#salon');
     for(const store of stores)assert.ok(visible.includes(`href="/stores/${store.slug}/"`));
     assert.ok(!image.url.endsWith('LOGO3.jpg'),'service-specific image');
   }

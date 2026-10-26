@@ -1,4 +1,4 @@
-import { site, stores, serviceInfo, addons, faqs, manual, amount, membership, membershipUsage, money } from './content.js';
+import { site, stores, serviceInfo, addons, faqs, manual, amount, membership, membershipUsage, money, valueFaqs, nightWashFaqs, exosomeFaqs, koreanBeautician, koreanBeauticianFaqs } from './content.js';
 import {scalpServices,scalpAddon,scalpVideo,scalpFaqs,scalpStoreSlug,videoPagePath} from './scalp.js';
 import { plans } from './plans.js';
 import {pageImage} from './page-image.js';
@@ -8,7 +8,7 @@ export function structuredData(route,imageManifest={}) {
   const url=absolute(route.path);
   const org={'@type':'Organization','@id':orgId,name:site.name,url:absolute('/'),logo:absolute('/LOGO3.jpg'),sameAs:[site.facebook]};
   const website={'@type':'WebSite','@id':absolute('/#website'),url:absolute('/'),name:site.name,inLanguage:'zh-Hant-TW',publisher:{'@id':orgId}};
-  const visibleFaq=route.kind==='home'||route.kind==='faq'?faqs:route.kind==='manual'?[faqs[0],faqs[1],faqs[4]]:route.kind==='scalp'?scalpFaqs:[];
+  const visibleFaq=route.kind==='home'||route.kind==='faq'?faqs:route.kind==='manual'?[faqs[0],faqs[1],faqs[4]]:route.kind==='scalp'?scalpFaqs:route.kind==='service'&&route.key==='A'?valueFaqs:route.kind==='service'&&route.key==='EXOSOME'?exosomeFaqs:route.kind==='pricing'?valueFaqs:route.kind==='store'&&route.key===scalpStoreSlug?[...nightWashFaqs,...koreanBeauticianFaqs]:[];
   const pageType=route.kind==='faq'?'FAQPage':['services','stores','pricing'].includes(route.kind)?'CollectionPage':'WebPage';
   const image=pageImage(route,imageManifest);
   const webpage={'@type':pageType,'@id':url+'#webpage',url,name:route.title,description:route.description,inLanguage:'zh-Hant-TW',isPartOf:{'@id':website['@id']},publisher:{'@id':orgId},dateModified:site.updated,primaryImageOfPage:{'@type':'ImageObject',url:image.url,caption:image.alt,width:image.width,height:image.height}};
@@ -36,17 +36,17 @@ export function structuredData(route,imageManifest={}) {
     webpage.breadcrumb={'@id':url+'#breadcrumb'};
   }
   const hasScalp=['home','services','pricing','scalp'].includes(route.kind)||(route.kind==='store'&&route.key===scalpStoreSlug);
-  const selectedStores=route.kind==='store'?stores.filter(s=>s.slug===route.key):['home','stores','service'].includes(route.kind)?stores:hasScalp?stores.filter(s=>s.slug===scalpStoreSlug):[];
-  for(const s of selectedStores) graph.push({'@type':'BeautySalon','@id':absolute(`/stores/${s.slug}/#salon`),name:`肌密宣言 ${s.name}`,url:absolute(`/stores/${s.slug}/`),image:absolute('/LOGO3.jpg'),telephone:s.tel,parentOrganization:{'@id':orgId},address:{'@type':'PostalAddress',streetAddress:s.street,addressLocality:s.district,addressRegion:s.city,addressCountry:'TW'},hasMap:`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('肌密宣言 '+s.address)}`});
+  const selectedStores=route.kind==='store'?stores.filter(s=>s.slug===route.key):(['home','stores','service'].includes(route.kind)||hasScalp)?stores.filter(s=>s.slug===scalpStoreSlug):[];
+  for(const s of selectedStores) graph.push({'@type':'BeautySalon','@id':absolute(`/stores/${s.slug}/#salon`),name:`肌密宣言 ${s.name}`,url:absolute(`/stores/${s.slug}/`),image:absolute('/LOGO3.jpg'),telephone:s.tel,...(s.slug===koreanBeautician.storeSlug&&['home','services','service','stores','store'].includes(route.kind)?{description:koreanBeautician.description+koreanBeautician.bookingNote}:{}),parentOrganization:{'@id':orgId},address:{'@type':'PostalAddress',streetAddress:s.street,addressLocality:s.district,addressRegion:s.city,addressCountry:'TW'},hasMap:`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('肌密宣言 '+s.address)}`});
   if(route.kind==='store')webpage.mainEntity={'@id':absolute(`/stores/${route.key}/#salon`)};
   if(route.kind==='stores'){
     const id=absolute('/stores/#locations');webpage.mainEntity={'@id':id};
-    graph.push({'@type':'ItemList','@id':id,name:'肌密宣言門市',numberOfItems:stores.length,itemListElement:stores.map((s,i)=>({'@type':'ListItem',position:i+1,item:{'@id':absolute(`/stores/${s.slug}/#salon`)}}))});
+    graph.push({'@type':'ItemList','@id':id,name:'肌密宣言門市',numberOfItems:selectedStores.length,itemListElement:selectedStores.map((s,i)=>({'@type':'ListItem',position:i+1,item:{'@id':absolute(`/stores/${s.slug}/#salon`)}}))});
   }
   const keys=route.kind==='service'?[route.key]:['home','services','pricing'].includes(route.kind)?Object.keys(plans):[];
   for(const key of keys) {
     const p=plans[key], path=`/services/${serviceInfo[key].slug}/`;
-    graph.push({'@type':'Service','@id':absolute(path+'#service'),name:`${p.name} ${p.title}`,serviceType:'臉部美容護膚',description:serviceInfo[key].summary,url:absolute(path),provider:{'@id':orgId},areaServed:['臺中市','臺北市'],offers:[{name:'原價',value:p.originalPrice},{name:'有效會員價；需出示會員卡',value:p.memberPrice}].map(o=>({'@type':'Offer',name:o.name,url:absolute(path),price:amount(o.value),priceCurrency:'TWD',description:o.name,seller:{'@id':orgId}}))});
+    graph.push({'@type':'Service','@id':absolute(path+'#service'),name:`${p.name} ${p.title}`,serviceType:'臉部美容護膚',description:serviceInfo[key].summary,url:absolute(path),provider:{'@id':orgId},areaServed:'臺中市',offers:[{name:'原價',value:p.originalPrice},{name:'有效會員價；需出示會員卡',value:p.memberPrice}].map(o=>({'@type':'Offer',name:o.name,url:absolute(path),price:amount(o.value),priceCurrency:'TWD',description:o.name,seller:{'@id':orgId}}))});
     if(route.kind==='service'){webpage.mainEntity={'@id':absolute(path+'#service')};webpage.about=selectedStores.map(s=>({'@id':absolute(`/stores/${s.slug}/#salon`)}));}
   }
   const extras=route.kind==='manual'?[manual]:['home','services','service','pricing'].includes(route.kind)?addons:[];
@@ -65,7 +65,7 @@ export function structuredData(route,imageManifest={}) {
   const hasMembership=['home','membership','pricing','scalp'].includes(route.kind)||(route.kind==='store'&&route.key===scalpStoreSlug);
   if(hasMembership){
     const offers=membership.plans.map(p=>({'@type':'Offer','@id':absolute(`/membership/#offer-${p.slug}`),name:`${money(p.price)} 美麗保養金`,url:absolute(`/membership/#${p.slug}`),price:p.price,priceCurrency:'TWD',description:`購買 ${money(p.price)} 美麗保養金，獲得 ${money(p.credit)} 保養額度${p.gift?'，品牌好禮任選一':''}。${membershipUsage}`,seller:{'@id':orgId}}));
-    graph.push(...offers,{'@type':'OfferCatalog','@id':absolute('/membership/#catalog'),name:'美麗保養金三方案',itemListElement:offers.map(o=>({'@id':o['@id']}))});
+    graph.push(...offers,{'@type':'OfferCatalog','@id':absolute('/membership/#catalog'),name:'美麗保養金加值禮遇',itemListElement:offers.map(o=>({'@id':o['@id']}))});
   }
   if(route.kind==='membership')webpage.mainEntity={'@id':absolute('/membership/#catalog')};
   if(route.kind==='pricing'){
