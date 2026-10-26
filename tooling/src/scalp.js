@@ -1,4 +1,4 @@
-import {membershipSummary,membershipUsage,nightWashFaqs} from './content.js';
+import {membershipSummary,membershipUsage,newGuestOffer,nightWashFaqs} from './content.js';
 // Content and prices supplied in 頭皮深層養護_服務流程(文字檔).docx, 2026-09-24.
 export const scalpStoreSlug='taichung-zhongming'; // Confirmed by the site owner.
 export const videoPagePath='/videos/store-service-process/';
@@ -11,7 +11,7 @@ export const scalpAddon={slug:'water-glow-essence',name:'水珍柔光精粹',ori
 export const scalpVideo={src:'/assets/video/scalp-care-20260924.mp4',poster:'/images/scalp-care-video-20260924.jpg',name:'肌密宣言全店服務流程影片（包含洗髮方案）',description:'肌密宣言全店服務流程影片，內容包含洗髮方案。洗髮方案以此影片呈現流程；實際服務內容與安排請於預約時向門市確認。',uploadDate:'2026-09-24T00:00:00+08:00',duration:'PT2M33.5S'};
 export const scalpFaqs=[
   ...nightWashFaqs,
-  {q:'洗髮方案如何使用會員權益？',a:membershipSummary+membershipUsage+'預約時由門市說明所選服務、額度抵扣與當次應付金額。'},
+  {q:'洗髮方案如何使用會員權益？',a:newGuestOffer+membershipSummary+membershipUsage+'預約時由門市說明所選服務、額度抵扣與當次應付金額。'},
   {q:'洗髮方案有哪些服務？',a:'洗髮方案包含三種主要服務：深層洗髮 50 分鐘、頭皮調理 60 分鐘、頭皮深層養護 75 分鐘，可依需求選擇。水珍柔光精粹另列為洗髮方案的加購項目。'},
   {q:'洗髮方案的原價與會員價是多少？',a:'深層洗髮原價 NT$1,200、會員價 NT$500；頭皮調理原價 NT$1,600、會員價 NT$899；頭皮深層養護原價 NT$1,800、會員價 NT$1,200。水珍柔光精粹加購原價 NT$1,800、會員價 NT$1,000。會員價須具有效會員資格；三種美麗保養金效期皆為12個月，保養額度可抵扣服務消費。'},
   {q:'洗髮方案是護膚方案的加購項目嗎？',a:'不是。洗髮方案與 A 痘粉清潔、B 柔嫩亮膚、C 提拉保濕及 EXOSOME 科技逆齡並列為主要服務。只有水珍柔光精粹是洗髮方案中另外計價的加購項目。'},

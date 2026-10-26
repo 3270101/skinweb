@@ -1,4 +1,4 @@
-import { site, addons, manual, serviceInfo, stores, faqs, money, membershipSummary, membershipUsage, valueFaqs, nightWashFaqs, exosomeFaqs, koreanBeautician, koreanBeauticianFaqs } from './content.js';
+import { site, addons, manual, serviceInfo, stores, faqs, money, membershipSummary, membershipUsage, newGuestOffer, valueFaqs, nightWashFaqs, exosomeFaqs, koreanBeautician, koreanBeauticianFaqs } from './content.js';
 import {scalpServices,scalpAddon,scalpVideo,scalpFaqs,scalpStoreSlug,videoPagePath} from './scalp.js';
 import { plans } from './plans.js';
 import { imageProps } from './ui.js';
@@ -110,7 +110,7 @@ export function PriceTable() {
         <td>{money(item.original)}</td><td className="skin-price">{money(item.member)}{item.member===0?'（免費）':''}</td>
       </tr>)}</tbody>
     </table></div>
-    <p className="skin-note">會員價適用於有效會員資格期間，結帳時請出示會員卡。{membershipSummary}{membershipUsage}<a href="/membership/">查看美麗保養金與使用規則</a>；預約時請向門市確認方案與加購安排。</p>
+    <p className="skin-note">會員價適用於有效會員或新客活動資格期間。{newGuestOffer}{membershipSummary}{membershipUsage}<a href="/membership/">查看美麗保養金與使用規則</a>；預約時請向門市確認方案與加購安排。</p>
   </>;
 }
 
@@ -135,6 +135,7 @@ export function StoreCard({store,link=true,headingLevel=3}) {
     <p>官網服務時間：{store.hours}</p>
     <p className="skin-note">營業日與可預約時段請向門市確認。</p>
     <p><a className="skin-text-link" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('肌密宣言 '+store.address)}`} target="_blank" rel="noopener noreferrer">開啟地圖與路線</a></p>
+    {store.slug===scalpStoreSlug&&<p className="skin-note" data-booking-new-guest>{newGuestOffer}</p>}
     <BookingLink>預約／詢問{store.name}</BookingLink>
   </article>;
 }
@@ -207,18 +208,18 @@ export function PageBody({route}) {
   if(route.kind==='manual') return <>
     <p className="skin-lead">手工清粉刺原價 {money(manual.original)}，會員加購價 <strong>{money(manual.member)}</strong>。需搭配護膚方案，無法單獨施作。</p>
     <h2>手工清粉刺包含什麼？</h2><p>官網將本服務列為「專業手工清除全臉粉刺」。這是一項加購服務，與 A 方案中的氫氧小氣泡等清潔步驟分開列價。</p>
-    <h2>會員加購價如何計算？</h2><p>會員需在有效資格期間出示會員卡。例如選擇會員價 {money(plans.A.memberPrice)} 的 A 方案，再加購手工清粉刺 {money(manual.member)}，兩項合計為 {money(Number(plans.A.memberPrice.slice(1))+manual.member)}，此為所選服務費用，不含其他加購。美麗保養金的保養額度可分次抵扣服務消費，差額另付；實際抵扣及當次應付金額請向門市確認。</p>
+    <h2>會員加購價如何計算？</h2><p>會員或新客活動資格需在有效期間。例如選擇會員價 {money(plans.A.memberPrice)} 的 A 方案，再加購手工清粉刺 {money(manual.member)}，兩項合計為 {money(Number(plans.A.memberPrice.slice(1))+manual.member)}，此為所選服務費用，不含其他加購。美麗保養金的保養額度可分次抵扣服務消費，差額另付；實際抵扣及當次應付金額請向門市確認。</p>
     <h2>如何搭配護膚方案？</h2><p>先選擇想了解的護膚方案，再告知門市希望加購手工清粉刺。實際施作與時間安排請於預約時確認。</p><ServiceLinks includeScalp={false}/>
     <h2>清粉刺加購常見問題</h2><FaqList items={[faqs[0],faqs[1],faqs[4]]}/>
     <p><a href="/pricing/">查看所有加購價格</a> · <a href="/membership/">查看美麗保養金加值禮遇</a> · <a href="/stores/">查看忠明店預約資訊</a></p><BookingLink/>
   </>;
-  if(route.kind==='pricing') return <><p className="skin-lead">完整列出四種護膚方案、三種洗髮與頭皮養護方案，以及各類加購服務。金額均為新台幣；手工清粉刺會員加購價為 {money(manual.member)}。</p><PriceTable/><ValueGuide/><MembershipCredit/><h2>預約前確認價格條件</h2><p>一般會員消費按原價計算。專屬會員在資格有效期間享有會員價，結帳時需出示有效會員卡。加購服務需搭配方案，無法單獨施作。</p><h2>價格與 CP 值常見問題</h2><FaqList items={valueFaqs}/><BookingLink/><p><a href="/services/">了解各方案完整步驟</a> · <a href="/stores/">門市地址與電話</a></p></>;
+  if(route.kind==='pricing') return <><p className="skin-lead">完整列出四種護膚方案、三種洗髮與頭皮養護方案，以及各類加購服務。金額均為新台幣；手工清粉刺會員加購價為 {money(manual.member)}。</p><PriceTable/><ValueGuide/><MembershipCredit/><h2>預約前確認價格條件</h2><p>未具有效會員或新客活動資格，依原價計費。{newGuestOffer}加購服務需搭配方案，無法單獨施作。</p><h2>價格與 CP 值常見問題</h2><FaqList items={valueFaqs}/><BookingLink/><p><a href="/services/">了解各方案完整步驟</a> · <a href="/stores/">門市地址與電話</a></p></>;
   if(route.kind==='membership') return <><MembershipCredit/><h2>美麗保養金加值禮遇比較</h2><MembershipTable/>
     <h2>保養額度怎麼使用？</h2><p>{membershipUsage}品牌好禮可選品項請洽門市。</p>
     <p>例如購買 NT$999 美麗保養金，獲得 NT$1,200 保養額度；選擇 A 方案會員價 NT$550，抵扣後尚餘 NT$650，可於效期內續用。此例不含其他加購。</p>
     <p>想先從洗臉開始？NT$1,200 保養額度可抵扣兩次 A 方案會員價，共 NT$1,100，仍有 NT$100 額度可於效期內續用；加購另計。既有會員卡的額度與轉換事宜，請先向門市確認。</p>
     <ServiceShorts only="membership"/>
-    <h2>如何使用會員價？</h2><ul><li>依官網規章，年滿十八歲且經審核通過者可申請專屬會員卡。</li><li>會員卡限申請者本人消費使用，不得轉借或轉讓。</li><li>結帳時需出示有效會員卡核對身分。</li><li>特約商店與商品券適用店家依各店公告確認。</li></ul>
+    <h2>如何使用會員價？</h2><p>{newGuestOffer}</p><p>以下為選購美麗保養金的專屬會員卡使用規則：</p><ul><li>依官網規章，年滿十八歲且經審核通過者可申請專屬會員卡。</li><li>會員卡限申請者本人消費使用，不得轉借或轉讓。</li><li>結帳時需出示有效會員卡核對身分。</li><li>特約商店與商品券適用店家依各店公告確認。</li></ul>
     <h2>會員價與方案加購</h2><p>例如 A 方案會員價 NT$550；手工清粉刺會員加購價 {money(manual.member)}，需搭配方案。<a href="/pricing/">查看完整價格</a>。</p>
     <h2>續約與申請諮詢</h2><p>原會員資格續約規則：到期後 2 個月內續約，效期自原到期日起算；超過 2 個月後續約，效期自續約日起算。續約由會員本人親自至門市辦理。完整會員規章可於<a href="/#membership">首頁會員權益</a>查看；保養額度的續購、既有卡片轉換及其他使用問題，請向門市確認。</p><BookingLink>詢問美麗保養金加值禮遇</BookingLink>
   </>;

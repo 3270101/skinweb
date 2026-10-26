@@ -1,4 +1,4 @@
-import {addons,serviceInfo,money,amount,site} from './content.js';
+import {addons,serviceInfo,newGuestOffer,money,amount,site} from './content.js';
 import {plans} from './plans.js';
 import {scalpServices,scalpAddon} from './scalp.js';
 
@@ -24,7 +24,7 @@ export function ServiceFeeOverview(){
   return <section id="pricing" className="skin-fee-section" aria-labelledby="service-fees-title">
     <div className="skin-fee-inner">
       <header className="skin-fee-heading"><p>公開價格 · 透明服務流程</p><h2 id="service-fees-title">服務費用一覽</h2><p>洗頭、洗臉與進階保養，每項服務都有明確價格。先看內容與時間，再決定怎麼保養。</p></header>
-      <p id="service-fees-note" className="skin-fee-conditions">以下金額均為新台幣，主要服務與加購分開計價。<strong>會員價須先購買美麗保養金取得有效會員資格</strong>，所獲額度可分次抵扣；未入會按原價計費。</p>
+      <p id="service-fees-note" className="skin-fee-conditions">以下金額均為新台幣，主要服務與加購分開計價。<strong>新客可免費領取 30 天會員價，無須先儲值</strong>；也可選購美麗保養金，享 12 個月會員價與保養額度。未具有效會員或新客活動資格，依原價計費。</p>
       <div className="skin-fee-table-frame">
         <table className="skin-fee-table" role="table" aria-describedby="service-fees-note">
           <caption>7 項主要服務：內容、時間與費用比較</caption>
@@ -46,7 +46,7 @@ export function ServiceFeeOverview(){
         <div className="skin-fee-addon-card"><h3>洗髮加購</h3><p>需搭配洗髮方案；適用項目請向門市確認。</p><table className="skin-fee-addon-table"><caption className="skin-fee-sr-only">洗髮加購費用</caption><thead><tr><th scope="col">項目</th><th scope="col">原價</th><th scope="col">會員加購價</th></tr></thead><tbody><tr data-fee-addon={scalpAddon.slug}><th scope="row"><a href={`/services/scalp-care/#scalp-${scalpAddon.slug}`}>{scalpAddon.name}</a></th><td>{money(scalpAddon.original)}</td><td className="skin-fee-member">{money(scalpAddon.member)}</td></tr></tbody></table></div>
         <div className="skin-fee-addon-card"><h3>護膚加購</h3><p>需搭配護膚方案，無法單獨施作。</p><table className="skin-fee-addon-table"><caption className="skin-fee-sr-only">護膚加購費用</caption><thead><tr><th scope="col">項目</th><th scope="col">原價</th><th scope="col">會員加購價</th></tr></thead><tbody>{addons.map(a=><tr data-fee-addon={a.slug} key={a.slug}><th scope="row"><a href={a.slug==='manual-extraction'?'/services/manual-extraction/':`/pricing/#price-${a.slug}`}>{a.name}</a></th><td>{money(a.original)}</td><td className="skin-fee-member">{money(a.member)}{a.member===0&&<small>免費</small>}</td></tr>)}</tbody></table></div>
       </div>
-      <p className="skin-fee-conditions">洗髮服務由台中忠明店提供。會員結帳時請出示有效會員卡，保養額度不足的差額另付。服務內容與時間請於預約時確認。</p>
+      <p className="skin-fee-conditions">{newGuestOffer}購買美麗保養金者，保養額度不足的差額另付。洗髮服務由台中忠明店提供，服務內容與時間請於預約時確認。</p>
       <nav className="skin-fee-actions" aria-label="服務費用相關資訊"><a className="skin-button" href={site.line} target="_blank" rel="noopener noreferrer">LINE 線上預約</a><a href="/pricing/">完整價格與使用條件 →</a><a href="/membership/">美麗保養金加值禮遇 →</a></nav>
     </div>
   </section>;

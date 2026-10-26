@@ -26,7 +26,8 @@ for(const r of routes){
 }
 for(const url of ['/','/membership/','/pricing/']){
   const h=docs.get(url);assert.ok(h.replace(/<[^>]+>/g,'').includes('小預算，大保養洗臉洗頭一次到位！'));
-  assert.ok(h.includes('新客需先購買美麗保養金取得會員資格'));
+  assert.ok(h.includes('新客可免費領取 30 天會員價'));
+  assert.doesNotMatch(h,/新客需先購買|會員需先購|會員需購美麗保養金/);
   for(const p of membership.plans)assert.ok(h.includes(p.name));
 }
 for(const url of ['/services/scalp-care/','/stores/taichung-zhongming/']){

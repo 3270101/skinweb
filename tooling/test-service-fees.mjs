@@ -39,7 +39,7 @@ for(const a of [scalpAddon,...addons]){
 }
 assert.ok(fees.includes('需搭配護膚方案，無法單獨施作'));
 assert.ok(fees.includes('需搭配洗髮方案'));
-assert.ok(fees.includes('會員價須先購買美麗保養金取得有效會員資格'));
+assert.ok(fees.includes('新客可免費領取 30 天會員價，無須先儲值'));
 const total=scalpServices[0].member+amount(plans.A.memberPrice);
 assert.equal(total,1050);assert.ok(fees.includes(money(total)));
 for(const url of ['/','/membership/','/pricing/','/services/scalp-care/','/stores/taichung-zhongming/']){

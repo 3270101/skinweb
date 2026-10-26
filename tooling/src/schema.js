@@ -46,11 +46,11 @@ export function structuredData(route,imageManifest={}) {
   const keys=route.kind==='service'?[route.key]:['home','services','pricing'].includes(route.kind)?Object.keys(plans):[];
   for(const key of keys) {
     const p=plans[key], path=`/services/${serviceInfo[key].slug}/`;
-    graph.push({'@type':'Service','@id':absolute(path+'#service'),name:`${p.name} ${p.title}`,serviceType:'臉部美容護膚',description:serviceInfo[key].summary,url:absolute(path),provider:{'@id':orgId},areaServed:'臺中市',offers:[{name:'原價',value:p.originalPrice},{name:'有效會員價；需出示會員卡',value:p.memberPrice}].map(o=>({'@type':'Offer',name:o.name,url:absolute(path),price:amount(o.value),priceCurrency:'TWD',description:o.name,seller:{'@id':orgId}}))});
+    graph.push({'@type':'Service','@id':absolute(path+'#service'),name:`${p.name} ${p.title}`,serviceType:'臉部美容護膚',description:serviceInfo[key].summary,url:absolute(path),provider:{'@id':orgId},areaServed:'臺中市',offers:[{name:'原價',value:p.originalPrice},{name:'有效會員價；含有效新客30天活動資格',value:p.memberPrice}].map(o=>({'@type':'Offer',name:o.name,url:absolute(path),price:amount(o.value),priceCurrency:'TWD',description:o.name,seller:{'@id':orgId}}))});
     if(route.kind==='service'){webpage.mainEntity={'@id':absolute(path+'#service')};webpage.about=selectedStores.map(s=>({'@id':absolute(`/stores/${s.slug}/#salon`)}));}
   }
   const extras=route.kind==='manual'?[manual]:['home','services','service','pricing'].includes(route.kind)?addons:[];
-  for(const a of extras) graph.push({'@type':'Service','@id':absolute(`/pricing/#${a.slug}`),name:a.name,description:a.description+' 需搭配方案加購，無法單獨施作。',provider:{'@id':orgId},url:absolute(a.slug==='manual-extraction'?'/services/manual-extraction/':`/pricing/#price-${a.slug}`),offers:[{name:'方案加購原價',price:a.original},{name:'有效會員加購價；需搭配方案並出示會員卡',price:a.member}].map(o=>({'@type':'Offer',...o,priceCurrency:'TWD',description:'需搭配護膚方案加購，無法單獨施作。'}))});
+  for(const a of extras) graph.push({'@type':'Service','@id':absolute(`/pricing/#${a.slug}`),name:a.name,description:a.description+' 需搭配方案加購，無法單獨施作。',provider:{'@id':orgId},url:absolute(a.slug==='manual-extraction'?'/services/manual-extraction/':`/pricing/#price-${a.slug}`),offers:[{name:'方案加購原價',price:a.original},{name:'有效會員加購價；含新客活動資格且需搭配方案',price:a.member}].map(o=>({'@type':'Offer',...o,priceCurrency:'TWD',description:'需搭配護膚方案加購，無法單獨施作。'}))});
   if(route.kind==='manual')webpage.mainEntity={'@id':absolute(`/pricing/#${manual.slug}`)};
   if(hasScalp) {
     if(route.kind==='scalp')webpage.mainEntity={'@id':absolute('/services/scalp-care/#service')};

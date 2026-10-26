@@ -1,4 +1,4 @@
-import {membership,membershipUsage,money,site} from './content.js';
+import {membership,membershipUsage,newGuestOffer,money,site} from './content.js';
 
 export function MembershipPlans() {
   return <ol className="skin-credit-plans" aria-label="美麗保養金加值禮遇">
@@ -22,7 +22,8 @@ export function MembershipCredit() {
     <p className="skin-credit-kicker">美麗保養金加值禮遇 · 讓保養更有 CP 值</p>
     <h2>小預算，大保養<br/>洗臉洗頭一次到位！</h2>
     <p>深層洗髮 50 分鐘，會員價 NT$500；A 方案洗臉 40 分鐘、15 步驟，會員價 NT$550。購買 NT$999 美麗保養金，即享 NT$1,200 保養額度；選擇這兩項服務合計 NT$1,050，抵扣後還有 NT$150 額度可於效期內續用。洗頭、洗臉都照顧到，價格與流程清楚看得到。</p>
-    <p className="skin-credit-note">兩項服務分別計費，並非單一套餐價。上述為購買保養金後，於有效會員期間使用額度的範例，不含另計加購；深層洗髮原價 NT$1,200，A 方案洗臉原價 NT$850。新客需先購買美麗保養金取得會員資格，同次服務請先確認可約時段。</p>
+    <p className="skin-credit-note">兩項服務分別計費，並非單一套餐價。上述為購買保養金後，於有效會員期間使用額度的範例，不含另計加購；深層洗髮原價 NT$1,200，A 方案洗臉原價 NT$850。同次服務請先確認可約時段。</p>
+    <aside className="skin-search-intro" data-new-guest-offer><h3>第一次來？免費領取 30 天會員價</h3><p>{newGuestOffer}</p><p><a href={site.line} target="_blank" rel="noopener noreferrer">LINE 預約與新客優惠諮詢 →</a></p></aside>
     <MembershipPlans/>
     <p className="skin-credit-note">{membershipUsage}</p>
     <p className="skin-credit-note">購買金額與保養額度不同，服務依所選方案的會員價計費。品牌好禮可選品項請洽門市；洗髮方案僅由台中忠明店提供。</p>
