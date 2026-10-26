@@ -1,10 +1,10 @@
-import { site, addons, manual, serviceInfo, stores, faqs, money, membership } from './content.js';
+import { site, addons, manual, serviceInfo, stores, faqs, money, membership, membershipSummary, membershipUsage } from './content.js';
 import {scalpServices,scalpAddon,scalpVideo,scalpFaqs,scalpStoreSlug,videoPagePath} from './scalp.js';
 import { plans } from './plans.js';
 import { imageProps } from './ui.js';
 import {ProcessGallery} from './process-gallery.js';
 import {PlanPricing,PlanAddonPricing} from './plan-pricing.js';
-import {MembershipCredit} from './membership-credit.js';
+import {MembershipCredit,MembershipTable} from './membership-credit.js';
 import {ServiceShorts} from './service-shorts.js';
 const scalpStore=stores.find(s=>s.slug===scalpStoreSlug);
 
@@ -108,7 +108,7 @@ export function PriceTable() {
         <td>{money(item.original)}</td><td className="skin-price">{money(item.member)}{item.member===0?'（免費）':''}</td>
       </tr>)}</tbody>
     </table></div>
-    <p className="skin-note">會員價適用於有效會員資格期間，結帳時請出示專屬會員卡。<a href="/membership/">專屬會員卡優惠價 {money(membership.price)}（原價 {money(membership.original)}），效期 {membership.months} 個月</a>，購卡費可抵扣服務消費；預約時請向門市確認方案與加購安排。</p>
+    <p className="skin-note">會員價適用於有效會員資格期間，結帳時請出示會員卡。{membershipSummary}{membershipUsage}<a href="/membership/">查看美麗保養金與使用規則</a>；預約時請向門市確認方案與加購安排。</p>
   </>;
 }
 
@@ -178,7 +178,7 @@ export function Header() {
 export function SiteDirectory() {
   return <nav className="skin-site-directory" aria-label="分類網站導覽">
     <div><h2>服務介紹與流程</h2><ul><li><a href="/services/">全部服務方案</a></li><li><a href="/services/scalp-care/">台中洗髮與頭皮養護</a></li>{Object.entries(plans).map(([key,p])=><li key={key}><a href={`/services/${serviceInfo[key].slug}/`}>{p.name} {p.title}</a></li>)}<li><a href="/services/manual-extraction/">手工清粉刺加購</a></li></ul></div>
-    <div><h2>公開價格與預約須知</h2><ul><li><a href="/pricing/">完整價目表</a></li><li><a href="/membership/">專屬會員卡與使用條件</a></li><li><a href="/faq/">洗髮與護膚常見問題</a></li><li><a href={videoPagePath}>全店服務流程影片</a></li></ul></div>
+    <div><h2>公開價格與預約須知</h2><ul><li><a href="/pricing/">完整價目表</a></li><li><a href="/membership/">美麗保養金三方案與會員權益</a></li><li><a href="/faq/">洗髮與護膚常見問題</a></li><li><a href={videoPagePath}>全店服務流程影片</a></li></ul></div>
     <div><h2>台中・台北門市</h2><ul><li><a href="/stores/">門市資訊與預約</a></li>{stores.map(s=><li key={s.slug}><a href={`/stores/${s.slug}/`}>{s.name}｜{s.city}{s.district}</a></li>)}<li><a href="/">肌密宣言首頁</a></li></ul><p>洗髮方案由台中忠明店提供；預約日期、營業日與加購安排請向門市確認。</p></div>
   </nav>;
 }
@@ -188,7 +188,7 @@ export function Footer() {
 
 export function PageBody({route}) {
   if(route.kind==='services') return <><p>洗髮方案與 A、B、C、EXOSOME 護膚方案並列為主要服務；所有費用均以新台幣計價。</p><h2>主要服務方案</h2><ServiceLinks/><h2>洗髮方案細項</h2><ScalpCards/><ScalpAddonCard/><p><a href="/services/scalp-care/#scalp-video">觀看全店服務流程影片（包含洗髮方案） →</a></p><AddonCards headingLevel={2}/><p><a href="/pricing/">比較完整價目表</a></p></>;
-  if(route.kind==='scalp') return <><MembershipCredit/><p className="skin-lead">洗髮方案由肌密宣言台中忠明店提供，包含深層洗髮、頭皮調理與頭皮深層養護三種服務；水珍柔光精粹為洗髮方案加購項目。</p><nav className="skin-link-row" aria-label="洗髮方案細項">{scalpServices.map(s=><a key={s.slug} href={`#scalp-${s.slug}`}>{s.name}</a>)}<a href="#scalp-water-glow-essence">洗髮加購</a><a href="#scalp-video">流程影片</a><a href="#scalp-booking">忠明店預約</a></nav><h2>洗髮方案內容與流程影片</h2><ScalpDetailLayout/><h2>洗髮方案價目表</h2><ScalpPriceTable/><p>專屬會員卡優惠價 {money(membership.price)}（原價 {money(membership.original)}），效期 {membership.months} 個月；<a href="/membership/">查看會員制度</a>。</p><h2 id="scalp-booking">台中忠明店洗髮預約</h2><p><a href={`/stores/${scalpStoreSlug}/`}>肌密宣言{scalpStore.name}</a>：{scalpStore.address}，電話 <a href={`tel:${scalpStore.tel}`}>{scalpStore.phone}</a>，服務時間 {scalpStore.hours}。請透過 LINE 預約系統完成預約；服務與加購問題可向門市詢問。</p><BookingLink/><h2>洗髮方案常見問題</h2><FaqList items={scalpFaqs}/></>;
+  if(route.kind==='scalp') return <><MembershipCredit/><p className="skin-lead">洗髮方案由肌密宣言台中忠明店提供，包含深層洗髮、頭皮調理與頭皮深層養護三種服務；水珍柔光精粹為洗髮方案加購項目。</p><nav className="skin-link-row" aria-label="洗髮方案細項">{scalpServices.map(s=><a key={s.slug} href={`#scalp-${s.slug}`}>{s.name}</a>)}<a href="#scalp-water-glow-essence">洗髮加購</a><a href="#scalp-video">流程影片</a><a href="#scalp-booking">忠明店預約</a></nav><h2>洗髮方案內容與流程影片</h2><ScalpDetailLayout/><h2>洗髮方案價目表</h2><ScalpPriceTable/><p>{membershipUsage}<a href="/membership/">查看美麗保養金三方案</a>。</p><h2 id="scalp-booking">台中忠明店洗髮預約</h2><p><a href={`/stores/${scalpStoreSlug}/`}>肌密宣言{scalpStore.name}</a>：{scalpStore.address}，電話 <a href={`tel:${scalpStore.tel}`}>{scalpStore.phone}</a>，服務時間 {scalpStore.hours}。請透過 LINE 預約系統完成預約；服務與加購問題可向門市詢問。</p><BookingLink/><h2>洗髮方案常見問題</h2><FaqList items={scalpFaqs}/></>;
   if(route.kind==='video') return <><p className="skin-lead">觀看肌密宣言全店服務流程影片，內容包含洗髮方案，完整長度約 2 分 34 秒。</p><ScalpVideo watchLink={false}/><h2>影片與服務資訊</h2><p>本片為全店服務流程介紹，並非只有洗髮方案。洗髮方案由台中忠明店提供，因沒有逐步拆解圖片，以本片呈現流程。各方案的內容、時間與價格請查看對應服務頁，實際安排請向門市確認。</p><nav className="skin-link-row" aria-label="影片相關服務"><a href="/services/scalp-care/">台中忠明店洗髮方案與價格</a><a href="/services/">全部服務方案</a><a href="/pricing/">完整價目表</a><a href="/stores/">門市與預約</a></nav></>;
   if(route.kind==='service') {
     const p=plans[route.key],info=serviceInfo[route.key];
@@ -206,18 +206,20 @@ export function PageBody({route}) {
   if(route.kind==='manual') return <>
     <p className="skin-lead">手工清粉刺原價 {money(manual.original)}，會員加購價 <strong>{money(manual.member)}</strong>。需搭配護膚方案，無法單獨施作。</p>
     <h2>手工清粉刺包含什麼？</h2><p>官網將本服務列為「專業手工清除全臉粉刺」。這是一項加購服務，與 A 方案中的氫氧小氣泡等清潔步驟分開列價。</p>
-    <h2>會員加購價如何計算？</h2><p>會員需在有效資格期間出示會員卡。例如選擇會員價 {money(plans.A.memberPrice)} 的 A 方案，再加購手工清粉刺 {money(manual.member)}，兩項合計為 {money(Number(plans.A.memberPrice.slice(1))+manual.member)}，此為所選服務費用，不含其他加購。專屬會員卡購卡費 NT$999，可抵扣服務消費；實際扣抵及當次應付金額請向門市確認。</p>
+    <h2>會員加購價如何計算？</h2><p>會員需在有效資格期間出示會員卡。例如選擇會員價 {money(plans.A.memberPrice)} 的 A 方案，再加購手工清粉刺 {money(manual.member)}，兩項合計為 {money(Number(plans.A.memberPrice.slice(1))+manual.member)}，此為所選服務費用，不含其他加購。美麗保養金的保養額度可分次抵扣服務消費，差額另付；實際抵扣及當次應付金額請向門市確認。</p>
     <h2>如何搭配護膚方案？</h2><p>先選擇想了解的護膚方案，再告知門市希望加購手工清粉刺。實際施作與時間安排請於預約時確認。</p><ServiceLinks includeScalp={false}/>
     <h2>清粉刺加購常見問題</h2><FaqList items={[faqs[0],faqs[1],faqs[4]]}/>
-    <p><a href="/pricing/">查看所有加購價格</a> · <a href="/membership/">查看專屬會員卡制度</a> · <a href="/stores/">查看台中與台北門市</a></p><BookingLink/>
+    <p><a href="/pricing/">查看所有加購價格</a> · <a href="/membership/">查看美麗保養金三方案</a> · <a href="/stores/">查看台中與台北門市</a></p><BookingLink/>
   </>;
   if(route.kind==='pricing') return <><MembershipCredit/><p className="skin-lead">完整列出四種護膚方案、三種洗髮與頭皮養護方案，以及各類加購服務。金額均為新台幣；手工清粉刺會員加購價為 {money(manual.member)}。</p><PriceTable/><h2>預約前確認價格條件</h2><p>一般會員消費按原價計算。專屬會員在資格有效期間享有會員價，結帳時需出示有效會員卡。加購服務需搭配方案，無法單獨施作。</p><BookingLink/><p><a href="/services/">了解各方案完整步驟</a> · <a href="/stores/">門市地址與電話</a></p></>;
-  if(route.kind==='membership') return <><MembershipCredit/><ServiceShorts only="membership"/><p className="skin-lead">專屬會員卡優惠價 {money(membership.price)}（原價 {money(membership.original)}），有效期限 {membership.months} 個月，享店內服務會員價，購卡費可抵扣服務消費。</p>
-    <img className="skin-membership-image" {...imageProps(membership.image,'專屬會員卡原價 1,200 元，優惠價 999 元')}/>
-    <div className="skin-table-wrap"><table className="skin-table"><caption>專屬會員卡購卡費與效期</caption><thead><tr><th scope="col">會員卡</th><th scope="col">原價</th><th scope="col">優惠價</th><th scope="col">效期</th></tr></thead><tbody><tr><th scope="row">{membership.name}</th><td>{money(membership.original)}</td><td>{money(membership.price)}</td><td>{membership.months} 個月</td></tr></tbody></table></div>
+  if(route.kind==='membership') return <><MembershipCredit/><h2>三種美麗保養金方案比較</h2><MembershipTable/>
+    <h2>保養額度怎麼使用？</h2><p>{membershipUsage}品牌好禮可選品項請洽門市。</p>
+    <p>例如購買 NT$999 美麗保養金，獲得 NT$1,200 保養額度；選擇 A 方案會員價 NT$550，抵扣後尚餘 NT$650，可於效期內續用。此例不含其他加購。</p>
+    <p>原本的 NT$999 會員卡方案現以「美麗保養金」呈現；既有會員卡的額度與轉換事宜，請先向門市確認。</p>
+    <ServiceShorts only="membership"/>
     <h2>如何使用會員價？</h2><ul><li>依官網規章，年滿十八歲且經審核通過者可申請專屬會員卡。</li><li>會員卡限申請者本人消費使用，不得轉借或轉讓。</li><li>結帳時需出示有效會員卡核對身分。</li><li>特約商店與商品券適用店家依各店公告確認。</li></ul>
     <h2>會員價與方案加購</h2><p>例如 A 方案會員價 NT$550；手工清粉刺會員加購價 {money(manual.member)}，需搭配方案。<a href="/pricing/">查看完整價格</a>。</p>
-    <h2>續約與申請諮詢</h2><p>官網列明：到期後 2 個月內續約，效期自原到期日起算；超過 2 個月後續約，效期自續約日起算。續約由會員本人親自至門市辦理。完整會員規章可於<a href="/#membership">首頁會員卡制度</a>查看，申請前請洽門市確認。</p><BookingLink>詢問會員卡申請</BookingLink>
+    <h2>續約與申請諮詢</h2><p>原會員資格續約規則：到期後 2 個月內續約，效期自原到期日起算；超過 2 個月後續約，效期自續約日起算。續約由會員本人親自至門市辦理。完整會員規章可於<a href="/#membership">首頁會員權益</a>查看；保養額度的續購、既有卡片轉換及其他使用問題，請向門市確認。</p><BookingLink>詢問美麗保養金方案</BookingLink>
   </>;
   if(route.kind==='stores') return <><p className="skin-lead">查看台中忠明店與台北站前店的地址、電話與服務時間，請透過 LINE 預約系統完成預約。</p><div className="skin-grid">{stores.map(s=><StoreCard store={s} key={s.slug} headingLevel={2}/>)}</div><p><a href="/services/">查看服務方案</a> · <a href="/pricing/">查看價格</a></p></>;
   if(route.kind==='store') {const s=stores.find(s=>s.slug===route.key);return <>

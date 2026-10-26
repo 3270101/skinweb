@@ -2,8 +2,8 @@ import * as gu from "react";
 import { ui as f } from "./ui.js";
 import { plans } from "./plans.js";
 import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpMainCard, ScalpProcess, PlanTabs, ServiceIntroLink, SiteDirectory } from "./components.js";
-import {MembershipCredit} from './membership-credit.js';
-import {membership} from './content.js';
+import {MembershipCredit,MembershipPlans} from './membership-credit.js';
+import {membership,membershipUsage,money} from './content.js';
 import {ProcessGallery} from './process-gallery.js';
 
 export default function Home({initialPlan='SCALP'}) {
@@ -556,20 +556,13 @@ export default function Home({initialPlan='SCALP'}) {
             f.jsx("h2", {
               className:
                 "text-4xl font-bold text-center text-brand-primary mb-12",
-              children: "會員卡制度",
+              children: "美麗保養金與會員權益",
             }),
             f.jsxs("div", {
               className: "max-w-4xl mx-auto",
               children: [
-                f.jsx("div", {
-                  className:
-                    "bg-white rounded-xl shadow-lg overflow-hidden mb-8",
-                  children: f.jsx("img", {
-                    src: membership.image,
-                    alt: "專屬會員卡原價 1,200 元，優惠價 999 元",
-                    className: "w-full h-auto",
-                  }),
-                }),
+                f.jsx(MembershipPlans, {}),
+                f.jsx("p", {className:"skin-note",children:membershipUsage+"品牌好禮可選品項請洽門市。"}),
                 f.jsxs("div", {
                   className: "bg-gray-50 rounded-xl p-8",
                   children: [
@@ -615,18 +608,13 @@ export default function Home({initialPlan='SCALP'}) {
                             f.jsx("h4", {
                               className:
                                 "text-lg font-semibold text-gray-800 mb-3",
-                              children: "會員卡申請及費用",
+                              children: "美麗保養金方案與保養額度",
                             }),
                             f.jsxs("ul", {
                               className: "space-y-2 text-gray-700",
                               children: [
-                                f.jsxs("li", {
-                                  children: [
-                                    "• ",
-                                    f.jsx("strong", { children: membership.name }),
-                                    `：原價${membership.original.toLocaleString('en-US')}元，優惠價${membership.price}元，有效期限${membership.months}個月；購卡費可抵扣服務消費`,
-                                  ],
-                                }),
+                                ...membership.plans.map(plan=>f.jsx("li", {children:`• 購買 ${money(plan.price)} 美麗保養金，獲得 ${money(plan.credit)} 保養額度${plan.gift?'；品牌好禮任選一':''}。`},plan.slug)),
+                                f.jsx("li", {children:`• 三種方案效期皆為 ${membership.months} 個月，享會員價；保養額度可分次抵扣服務，差額另付。`}),
                                 f.jsx("li", {
                                   children:
                                     "• 會員卡經售出概不退費，且不得轉讓第三者",
@@ -717,7 +705,7 @@ export default function Home({initialPlan='SCALP'}) {
                                 }),
                                 f.jsx("li", {
                                   children:
-                                    "• 專屬會員卡購卡優惠價 NT$999，有效期限 12 個月；享店內服務會員價，購卡費可抵扣服務消費。",
+                                    "• 美麗保養金分為 NT$999、NT$2,999、NT$4,999 三種方案，分別獲得 NT$1,200、NT$3,600、NT$6,500 保養額度，效期皆為 12 個月，享會員價。",
                                 }),
                                 f.jsx("li", {
                                   children:

@@ -1,4 +1,4 @@
-import {site,membership} from './content.js';
+import {site} from './content.js';
 import {plans} from './plans.js';
 import {scalpVideo} from './scalp.js';
 
@@ -8,8 +8,6 @@ export function pageImage(route,manifest={}) {
   if(route.kind==='service'){
     const p=plans[route.key];source='images/'+p.stepImages[0];
     alt=`${p.name} ${p.title}服務流程：${p.stepNames[0]}`;
-  }else if(route.kind==='membership'){
-    source=membership.image;alt='專屬會員卡原價 1,200 元，優惠價 999 元';
   }else if(['scalp','video'].includes(route.kind)){
     source=scalpVideo.poster.slice(1);alt=scalpVideo.name;
   }

@@ -34,7 +34,8 @@ for(const route of routes){
     const video=schema['@graph'].find(n=>n['@type']==='VideoObject');assert.equal(video.contentUrl,site.origin+scalpVideo.src);assert.equal(video.duration,'PT2M33.5S');
   }
   if(['home','membership'].includes(route.kind)){
-    assert.ok(html.includes(`data-fallback-src="/${membership.image}"`));
+    assert.ok(!html.includes(`data-fallback-src="/${membership.image}"`),'retired single-tier artwork');
+    for(const tier of membership.plans)assert.ok(html.includes(`data-beauty-plan="${tier.slug}"`));
     assert.match(html,/999/);assert.match(html,/12\s*個月/);
   }
   if(['home','pricing','scalp'].includes(route.kind))for(const s of [...scalpServices,scalpAddon])assert.ok(html.includes(`data-scalp="${s.slug}"`));
@@ -56,4 +57,4 @@ if(origin){
   else {assert.equal(range.status,206,'video seek');assert.equal(received.byteLength,1024);assert.ok(received.equals(bytes.subarray(0,1024)));videoDelivery='byte-range 206';}
   const poster=await fetch(origin+scalpVideo.poster);assert.equal(poster.status,200);assert.match(poster.headers.get('content-type'),/image\/jpeg/);
 }
-console.log(JSON.stringify({origin:origin||'local',pages:routes.length,imageReferences,membership:'999 / 12 months',stores:2,scalpServices:3,scalpAddons:1,videoBytes:bytes.length,videoDelivery,retiredStoreHandled:true,result:'PASS'},null,2));
+console.log(JSON.stringify({origin:origin||'local',pages:routes.length,imageReferences,membership:'3 beauty-credit plans / 12 months',stores:2,scalpServices:3,scalpAddons:1,videoBytes:bytes.length,videoDelivery,retiredStoreHandled:true,result:'PASS'},null,2));

@@ -42,8 +42,8 @@ for(const route of routes.filter(r=>r.kind==='service')){
   assert.ok(html.includes(`data-price="original">${money(p.originalPrice)}`));
   assert.ok(html.includes(`data-price="member">${money(p.memberPrice)}`));
   assert.ok(html.includes('公開價格・透明服務流程'));
-  assert.ok(html.includes('購卡費可抵服務消費'));
-  assert.ok(html.includes(`專屬會員卡優惠價 ${money(membership.price)}`));
+  assert.ok(html.includes('美麗保養金可抵服務消費'));
+  for(const tier of membership.plans){assert.ok(html.includes(`購買 ${money(tier.price)} 美麗保養金`));assert.ok(html.includes(`獲得 ${money(tier.credit)} 保養額度`));}
   assert.ok(html.includes(`效期 ${membership.months} 個月`));
   assert.ok(html.includes('上述方案價格不包含另外選購的加購項目'));
   assert.ok(html.includes('手工清粉刺是另外計價的加購服務'));

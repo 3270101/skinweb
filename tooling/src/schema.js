@@ -1,4 +1,4 @@
-import { site, stores, serviceInfo, addons, faqs, manual, amount, membership } from './content.js';
+import { site, stores, serviceInfo, addons, faqs, manual, amount, membership, membershipUsage, money } from './content.js';
 import {scalpServices,scalpAddon,scalpVideo,scalpFaqs,scalpStoreSlug,videoPagePath} from './scalp.js';
 import { plans } from './plans.js';
 import {pageImage} from './page-image.js';
@@ -56,14 +56,18 @@ export function structuredData(route,imageManifest={}) {
     if(route.kind==='scalp')webpage.mainEntity={'@id':absolute('/services/scalp-care/#service')};
     const provider={'@id':absolute(`/stores/${scalpStoreSlug}/#salon`)};
     graph.push({'@type':'Service','@id':absolute('/services/scalp-care/#service'),name:'洗髮方案',serviceType:'洗髮與頭皮養護',description:'由台中忠明店提供，包含深層洗髮、頭皮調理、頭皮深層養護三種服務；水珍柔光精粹另列為加購。',url:absolute('/services/scalp-care/'),provider,areaServed:'臺中市',hasOfferCatalog:{'@type':'OfferCatalog',name:'洗髮方案三種主要服務',itemListElement:scalpServices.map(s=>({'@type':'Offer',itemOffered:{'@id':absolute(`/services/scalp-care/#scalp-${s.slug}`)}}))}});
-    for(const s of [...scalpServices,scalpAddon])graph.push({'@type':'Service','@id':absolute(`/services/scalp-care/#scalp-${s.slug}`),name:s.name,serviceType:s.minutes?'洗髮方案主要服務':'洗髮方案加購',description:s.description,url:absolute(`/services/scalp-care/#scalp-${s.slug}`),provider,areaServed:'臺中市',offers:[{name:'原價',price:s.original},{name:s.minutes?'有效會員價；專屬會員卡購卡費 NT$999，效期12個月，購卡費可抵服務消費':'會員加購價；適用洗髮方案請向門市確認',price:s.member}].map(o=>({'@type':'Offer',...o,priceCurrency:'TWD',url:absolute('/services/scalp-care/')}))});
+    for(const s of [...scalpServices,scalpAddon])graph.push({'@type':'Service','@id':absolute(`/services/scalp-care/#scalp-${s.slug}`),name:s.name,serviceType:s.minutes?'洗髮方案主要服務':'洗髮方案加購',description:s.description,url:absolute(`/services/scalp-care/#scalp-${s.slug}`),provider,areaServed:'臺中市',offers:[{name:'原價',price:s.original},{name:s.minutes?'有效會員價；美麗保養金額度可抵服務消費，效期12個月':'會員加購價；適用洗髮方案請向門市確認',price:s.member}].map(o=>({'@type':'Offer',...o,priceCurrency:'TWD',url:absolute('/services/scalp-care/')}))});
   }
   if(['home','scalp','video'].includes(route.kind)) {
     const video={'@type':'VideoObject','@id':absolute(videoPagePath+'#video'),name:scalpVideo.name,description:scalpVideo.description,url:absolute(videoPagePath),thumbnailUrl:[absolute(scalpVideo.poster)],contentUrl:absolute(scalpVideo.src),uploadDate:scalpVideo.uploadDate,duration:scalpVideo.duration,inLanguage:'zh-Hant-TW',publisher:{'@id':orgId}};
     graph.push(video);if(route.kind==='video')webpage.mainEntity={'@id':video['@id']};
   }
-  if(['home','membership'].includes(route.kind))graph.push({'@type':'Offer','@id':absolute('/membership/#offer'),name:membership.name,url:absolute('/membership/'),price:membership.price,priceCurrency:'TWD',description:`原價 NT$${membership.original}，優惠價 NT$${membership.price}，有效期限 ${membership.months} 個月。購卡費可抵扣店內服務消費，會員資格有效期間享會員價。會員卡限本人使用，结帳時須出示有效會員卡。`.replace('结','結'),seller:{'@id':orgId}});
-  if(route.kind==='membership')webpage.mainEntity={'@id':absolute('/membership/#offer')};
+  const hasMembership=['home','membership','pricing','scalp'].includes(route.kind)||(route.kind==='store'&&route.key===scalpStoreSlug);
+  if(hasMembership){
+    const offers=membership.plans.map(p=>({'@type':'Offer','@id':absolute(`/membership/#offer-${p.slug}`),name:`${money(p.price)} 美麗保養金`,url:absolute(`/membership/#${p.slug}`),price:p.price,priceCurrency:'TWD',description:`購買 ${money(p.price)} 美麗保養金，獲得 ${money(p.credit)} 保養額度${p.gift?'，品牌好禮任選一':''}。${membershipUsage}`,seller:{'@id':orgId}}));
+    graph.push(...offers,{'@type':'OfferCatalog','@id':absolute('/membership/#catalog'),name:'美麗保養金三方案',itemListElement:offers.map(o=>({'@id':o['@id']}))});
+  }
+  if(route.kind==='membership')webpage.mainEntity={'@id':absolute('/membership/#catalog')};
   if(route.kind==='pricing'){
     const id=absolute('/pricing/#catalog');webpage.mainEntity={'@id':id};
     graph.push({'@type':'OfferCatalog','@id':id,name:'服務方案與加購價目表',itemListElement:graph.filter(n=>n['@type']==='Service'&&n.name!=='洗髮方案').map(n=>({'@type':'Offer',itemOffered:{'@id':n['@id']}}))});
