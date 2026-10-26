@@ -15,8 +15,8 @@ export function ValueGuide(){
     <h2>CP 值，不只看價格，更要看服務</h2>
     <p>洗臉、洗髮、進階做臉，按需求選擇。不用猜費用，也不用猜流程：先看服務時間、原價與會員價，再決定這次怎麼照顧自己。</p>
     <div className="skin-grid">
-      <article className="skin-card"><h3><a href="/services/cleansing/">洗臉會員價 NT$550 起</a></h3><p>A 方案痘粉清潔，40 分鐘、15 步驟；原價 NT$850。潔面、小氣泡清潔到舒緩保養，逐步照片公開。</p><a href="/services/cleansing/#process">查看洗臉 15 步驟圖解 →</a></article>
-      <article className="skin-card"><h3><a href="/services/scalp-care/">台中夜間洗髮，會員價 NT$500 起</a></h3><p>忠明店深層洗髮約 50 分鐘，原價 NT$1,200。營業時間 13:30–22:30，下班後也能安排頭皮清潔與放鬆。</p><a href="/services/scalp-care/#night-wash">查看夜間洗髮與預約時段 →</a></article>
+      <article className="skin-card"><h3><a href="/services/cleansing/">A 方案洗臉會員價 NT$550</a></h3><p>A 方案痘粉清潔，40 分鐘、15 步驟；原價 NT$850。潔面、小氣泡清潔到舒緩保養，逐步照片公開。</p><a href="/services/cleansing/#process">查看洗臉 15 步驟圖解 →</a></article>
+      <article className="skin-card"><h3><a href="/services/scalp-care/">台中深層洗髮，會員價 NT$500</a></h3><p>忠明店深層洗髮約 50 分鐘，原價 NT$1,200。營業時間 13:30–22:30，下班後也能安排頭皮清潔與放鬆。</p><a href="/services/scalp-care/#night-wash">查看夜間洗髮與預約時段 →</a></article>
       <article className="skin-card"><h3><a href="/services/exosome/">外泌體做臉，會員價 NT$2,480</a></h3><p>EXOSOME 方案約 60 分鐘、17 步驟；原價 NT$4,480。了解外泌體精華搭配儀器護理、面膜與鎖水保養的完整流程。</p><a href="/services/exosome/#process">查看外泌體做臉 17 步驟 →</a></article>
     </div>
     <p className="skin-note">以上為有效會員價，會員資格需先購買美麗保養金，獲得的額度可分次抵扣服務。手工清粉刺另計會員加購 NT$300；其他加購依價目表計算。洗髮僅於台中忠明店提供，22:30 為營業結束時間，最晚可約時段請向門市確認。</p>

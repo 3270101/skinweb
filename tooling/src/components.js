@@ -6,6 +6,7 @@ import {ProcessGallery} from './process-gallery.js';
 import {PlanPricing,PlanAddonPricing} from './plan-pricing.js';
 import {MembershipCredit,MembershipTable} from './membership-credit.js';
 import {ServiceShorts} from './service-shorts.js';
+import {ServiceFeeOverview} from './service-fees.js';
 import {ValueGuide,NightWashInfo,ExosomeIntro,KoreanBeauticianInfo} from './search-content.js';
 const scalpStore=stores.find(s=>s.slug===scalpStoreSlug);
 
@@ -23,7 +24,7 @@ export function ScalpMainCard() {
     <div className="skin-scalp-card-header"><p>3 種服務</p><div><h3>洗髮方案</h3><span>50–75 分鐘</span></div></div>
     <div className="p-6"><h4 className="text-xl font-semibold text-gray-800 mb-3">洗髮與頭皮養護</h4><p className="text-gray-600 text-sm mb-4">深層洗髮、頭皮調理、頭皮深層養護，三種服務依需求選擇。</p>
       <p className="skin-note">提供門市：{scalpStore.name}</p>
-      <p className="text-sm text-gray-500">原價 {money(scalpServices[0].original)} 起</p><p className="skin-scalp-main-price">會員價 {money(scalpServices[0].member)} 起</p>
+      <ul className="skin-scalp-card-prices">{scalpServices.map(s=><li key={s.slug}><span>{s.name}</span><span><small>原價 {money(s.original)}</small><strong>會員價 {money(s.member)}</strong></span></li>)}</ul>
       <a className="skin-text-link" href="#process" data-select-plan="SCALP">查看方案與流程影片 →</a>
       <a className="skin-text-link" href="/services/scalp-care/">完整介紹與原價 →</a>
     </div>
@@ -114,15 +115,11 @@ export function PriceTable() {
 }
 
 export function PricingSection() {
-  return <section id="pricing" className="py-16 bg-gray-50"><div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-center text-brand-primary mb-4">完整價目表</h2>
-    <p className="text-center text-gray-600 mb-12">方案、時間與加購費用，一次看清楚</p>
-    <div className="max-w-4xl mx-auto"><PriceTable/><a className="skin-text-link" href="/pricing/">前往完整價格與預約說明 →</a></div>
-  </div></section>;
+  return <ServiceFeeOverview/>;
 }
 
 export function ServiceLinks({includeScalp=true}) {
-  return <div className="skin-grid skin-service-links">{includeScalp&&<article className="skin-card skin-scalp-summary"><h3><a href="/services/scalp-care/">洗髮方案</a></h3><p>深層洗髮、頭皮調理與頭皮深層養護，三種服務依需求選擇。</p><p>{scalpStore.name} · 50–75 分鐘 · 會員價 NT$500 起</p><a className="skin-text-link" href="/services/scalp-care/">查看方案與全店服務流程影片 →</a></article>}{Object.entries(plans).map(([key,p])=><article className="skin-card" key={key}>
+  return <div className="skin-grid skin-service-links">{includeScalp&&<article className="skin-card skin-scalp-summary"><h3><a href="/services/scalp-care/">洗髮方案</a></h3><p>深層洗髮、頭皮調理與頭皮深層養護，三種服務依需求選擇。</p><p>{scalpStore.name} · 50–75 分鐘</p><p>會員價：{scalpServices.map(s=>`${s.name} ${money(s.member)}`).join('、')}。</p><a className="skin-text-link" href="/services/scalp-care/">查看方案與全店服務流程影片 →</a></article>}{Object.entries(plans).map(([key,p])=><article className="skin-card" key={key}>
     <h3><a href={`/services/${serviceInfo[key].slug}/`}>{p.name} {p.title}</a></h3>
     <p>{serviceInfo[key].summary}</p><p>{p.duration} · {p.steps} 步驟 · 會員價 {money(p.memberPrice)}</p>
     <a className="skin-text-link" href={`/services/${serviceInfo[key].slug}/`}>查看完整流程 →</a>

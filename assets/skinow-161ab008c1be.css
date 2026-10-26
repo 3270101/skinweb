@@ -52,3 +52,57 @@ html{scroll-padding-top:90px}body{color:#334155}a,button{-webkit-tap-highlight-c
 
 .skin-shorts{margin:3rem auto;max-width:1100px}.skin-shorts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.5rem}.skin-shorts video{display:block;width:100%;max-width:300px;height:auto;aspect-ratio:9/16;margin:1.2rem auto 0;border-radius:18px;background:#154e58}.skin-shorts .skin-card{padding:1.4rem}.skin-shorts h3{font-size:1.3rem;line-height:1.5}.skin-shorts p{line-height:1.8}
 .skin-store-focus{max-width:860px;margin:0 auto}.skin-site-directory .skin-footer-store-meta{margin:0 0 12px;font-size:.85rem;line-height:1.6}
+/* Homepage price overview: a real, crawlable comparison table, not a poster image. */
+.skin-fee-section{padding:54px 20px 44px;background:#fff}
+.skin-fee-inner{max-width:1120px;margin:0 auto}
+.skin-fee-heading{text-align:center;margin-bottom:24px;color:var(--skin-ink)}
+.skin-fee-heading>p:first-child{font-size:.85rem;font-weight:700;letter-spacing:.12em;margin-bottom:10px}
+.skin-fee-heading h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;line-height:1.4;margin:0 0 16px}
+.skin-fee-heading>p:last-child{line-height:1.85;color:#49606a}
+.skin-fee-conditions{font-size:.9rem;line-height:1.8;color:#49606a;margin:18px 0}
+.skin-fee-table-frame{border:1px solid #bcd6dd;border-radius:18px;overflow:hidden}
+.skin-fee-table{width:100%;border-collapse:collapse;text-align:left;line-height:1.6;background:#fff}
+.skin-fee-table caption{padding:15px 20px;background:#edf6f8;color:var(--skin-ink);text-align:left;font-size:.9rem;font-weight:700}
+.skin-fee-table thead{background:var(--skin-accent);color:#fff}
+.skin-fee-table th,.skin-fee-table td{padding:16px 18px;border-bottom:1px solid #dbe9ed;vertical-align:middle}
+.skin-fee-table thead th{font-size:.9rem;white-space:nowrap}
+.skin-fee-table tbody th[scope=row]{width:21%;font-weight:700;color:var(--skin-ink);font-size:1.03rem}
+.skin-fee-table a,.skin-fee-addon-table a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px}
+.skin-fee-time{width:12%;white-space:nowrap;color:#49606a;font-size:.9rem}
+.skin-fee-time small,.skin-fee-member small{display:block;font-size:.8rem;margin-top:3px;font-weight:400}
+.skin-fee-highlight{font-size:.92rem;color:#49606a}
+.skin-fee-original{color:#63727a;white-space:nowrap;font-variant-numeric:tabular-nums}
+.skin-fee-member{background:#edf8f8;color:#126779;font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums}
+.skin-fee-table .skin-fee-member{font-size:1.25rem}
+.skin-fee-group th{background:#e4f0f3;color:var(--skin-ink);font-size:.9rem;letter-spacing:.04em;padding:10px 18px;text-align:left}
+.skin-fee-mobile-label{display:none}
+.skin-fee-combination{margin:22px 0;padding:20px 24px;border-left:4px solid var(--skin-accent);background:#f2f8f9;border-radius:0 12px 12px 0}
+.skin-fee-combination h3,.skin-fee-addon-card h3{color:var(--skin-ink);font-weight:700;font-size:1.1rem;margin:0 0 8px}
+.skin-fee-combination p{font-size:.94rem;line-height:1.8;margin:5px 0}.skin-fee-combination strong{white-space:nowrap;color:var(--skin-accent)}
+.skin-fee-addons{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:24px;align-items:start;margin:24px 0}
+.skin-fee-addon-card{border:1px solid var(--skin-border);border-radius:16px;padding:22px;min-width:0;background:#fff}
+.skin-fee-addon-card>p{font-size:.85rem;line-height:1.7;color:#596d75;margin-bottom:14px}
+.skin-fee-addon-table{width:100%;border-collapse:collapse;line-height:1.5;text-align:left;font-size:.9rem}
+.skin-fee-addon-table th,.skin-fee-addon-table td{padding:10px 8px;border-bottom:1px solid var(--skin-border)}
+.skin-fee-addon-table thead{background:#f3f8fa;color:#49606a;font-size:.8rem}.skin-fee-addon-table thead th{white-space:nowrap}
+.skin-fee-addon-table tbody th{font-weight:600;color:var(--skin-ink)}.skin-fee-addon-table td{white-space:nowrap}
+.skin-fee-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:18px 28px;margin:28px 0 8px}
+.skin-fee-actions a:not(.skin-button){color:var(--skin-accent);text-decoration:underline;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center}
+.skin-fee-sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.skin-scalp-card-prices{list-style:none!important;padding:0!important;margin:12px 0}
+.skin-scalp-card-prices li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;padding:8px 0;border-top:1px solid var(--skin-border);font-size:.85rem;line-height:1.6}
+.skin-scalp-card-prices small{display:block;color:#63727a;font-size:.75rem}.skin-scalp-card-prices strong{display:block;color:#424f7d;white-space:nowrap}
+@media(max-width:767px){
+  .skin-fee-section{padding:34px 16px}.skin-fee-table-frame{border:0;border-radius:0;overflow:visible}
+  .skin-fee-table,.skin-fee-table tbody{display:block}.skin-fee-table caption{display:block;border-radius:12px;font-size:.85rem;margin-bottom:10px}
+  .skin-fee-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .skin-fee-table tr[data-fee-service]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1px solid #cbdfe4;border-radius:14px;overflow:hidden;margin:12px 0;background:#fff}
+  .skin-fee-table tbody th[scope=row]{width:auto;font-size:1.05rem;padding:14px 14px 8px;border:0}
+  .skin-fee-table .skin-fee-time{width:auto;text-align:right;padding:14px 14px 8px;border:0;white-space:normal}
+  .skin-fee-highlight{grid-column:1/-1;padding:6px 14px 16px!important;border:0!important;font-size:.9rem}
+  .skin-fee-mobile-label{display:block;font-size:.75rem;font-weight:400;color:#49606a;margin-bottom:4px}
+  .skin-fee-table .skin-fee-original,.skin-fee-table .skin-fee-member{padding:12px 14px;border-top:1px solid #dbe9ed;border-bottom:0;font-size:1.15rem}
+  .skin-fee-table .skin-fee-group{display:block;margin-top:20px}.skin-fee-group th{display:block;border-radius:10px;border:0}
+  .skin-fee-addons{grid-template-columns:1fr;gap:16px}.skin-fee-addon-card{padding:16px 12px}.skin-fee-addon-table{font-size:.8rem}.skin-fee-addon-table th,.skin-fee-addon-table td{padding:9px 6px}
+  .skin-fee-addon-table thead{font-size:.75rem}.skin-fee-combination{padding:18px}.skin-fee-actions{gap:12px 20px}
+}

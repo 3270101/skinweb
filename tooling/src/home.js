@@ -112,22 +112,23 @@ export default function Home({initialPlan='SCALP'}) {
               }),
               f.jsx("p", {
                 className: "text-3xl font-light text-brand-secondary mb-4",
-                children: "洗臉會員價 NT$550 起，公開價格，透明流程。",
+                children: "洗頭、洗臉，服務與價格一次看清楚。",
               }),
               f.jsx("p", {
                 className: "text-xl text-gray-600 mb-8",
-                children: "從 40 分鐘、15 步驟的洗臉，到 EXOSOME 外泌體做臉，把 CP 值花在看得見的服務。台中忠明店另提供夜間洗髮，會員價 NT$500 起、營業至 22:30，並有持韓國美容師執照的韓國籍美容師駐店服務。會員價需先購買美麗保養金，額度可抵服務；指定美容師班表與可約時段請透過 LINE 確認。",
+                children: "台中忠明店深層洗髮 50 分鐘，會員價 NT$500；A 方案洗臉 40 分鐘、15 步驟，會員價 NT$550，另有 EXOSOME 外泌體做臉。公開每項價格與流程，把 CP 值花在看得見的服務。營業至 22:30，韓國籍持照美容師駐店；會員需先購美麗保養金，指定美容師與夜間時段請先確認。",
               }),
               f.jsx("a", {
-                href: "#services",
+                href: "#pricing",
                 className:
                   "bg-brand-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-brand-secondary transition-all duration-300 transform hover:scale-105 shadow-lg",
-                children: "探索服務項目 ✨",
+                children: "查看服務費用表 ✨",
               }),
             ],
           }),
         }),
       }),
+      f.jsx(PricingSection, {}),
       f.jsx("div", {className:"skin-credit-home",children:f.jsx(MembershipCredit,{})}),
       f.jsx("div", {className:"skin-credit-home",children:f.jsx(ValueGuide,{})}),
       f.jsx("div", {className:"skin-credit-home",children:f.jsx(KoreanBeauticianInfo,{})}),
@@ -464,7 +465,6 @@ export default function Home({initialPlan='SCALP'}) {
           ],
         }),
       }),
-      f.jsx(PricingSection, {}),
       f.jsx("section", {
         id: "membership",
         className: "py-16 bg-white",

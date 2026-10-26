@@ -38,7 +38,10 @@ for(const route of routes){
     for(const tier of membership.plans)assert.ok(html.includes(`data-beauty-plan="${tier.slug}"`));
     assert.match(html,/999/);assert.match(html,/12\s*個月/);
   }
-  if(['home','pricing','scalp'].includes(route.kind))for(const s of [...scalpServices,scalpAddon])assert.ok(html.includes(`data-scalp="${s.slug}"`));
+  if(['home','pricing','scalp'].includes(route.kind))for(const s of [...scalpServices,scalpAddon]){
+    const marker=route.kind==='home'?(s.minutes?'data-fee-service':'data-fee-addon'):'data-scalp';
+    assert.ok(html.includes(`${marker}="${s.slug}"`),route.path+' scalp price row '+s.slug);
+  }
 }
 const sitemap=await read('/sitemap.xml'),llms=await read('/llms.txt');
 assert.ok(sitemap.includes('/services/scalp-care/'));assert.ok(!sitemap.includes('taichung-jingming'));

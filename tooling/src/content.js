@@ -54,7 +54,7 @@ export const addons = [
 ];
 export const manual = addons.find(item=>item.slug==='manual-extraction');
 export const serviceInfo = {
-  A: {slug:'cleansing', focus:'希望用清楚的預算安排洗臉、臉部清潔與小氣泡護理', lead:'洗臉會員價 NT$550 起：A 方案痘粉清潔約 40 分鐘、15 個步驟，原價 NT$850。從潔面到舒緩保養，價格與流程都看得見。', summary:'包含潔面、粉刺導出液、氫氧小氣泡、超聲波清潔與後續舒緩保養。', related:'manual-extraction'},
+  A: {slug:'cleansing', focus:'希望用清楚的預算安排洗臉、臉部清潔與小氣泡護理', lead:'A 方案洗臉會員價 NT$550：A 方案痘粉清潔約 40 分鐘、15 個步驟，原價 NT$850。從潔面到舒緩保養，價格與流程都看得見。', summary:'包含潔面、粉刺導出液、氫氧小氣泡、超聲波清潔與後續舒緩保養。', related:'manual-extraction'},
   B: {slug:'brightening', focus:'希望在清潔之外安排柔嫩亮膚與放鬆保養', lead:'B 方案以柔嫩亮膚為主，約 50 分鐘，共 15 個步驟，會員價 NT$850。', summary:'在清潔流程中搭配牛奶肌光感保養、植萃精油按摩與後續潤膚護理。', related:'cleansing'},
   C: {slug:'hydration', focus:'希望了解保濕與提拉護理的完整安排', lead:'C 方案以提拉保濕為主，約 60 分鐘，共 17 個步驟，會員價 NT$1,250。', summary:'包含臉部清潔、玻尿酸精華、水光探頭、精油按摩與射頻探頭保養。', related:'brightening'},
   EXOSOME: {slug:'exosome', focus:'希望了解外泌體做臉的價格、精華與儀器搭配流程', lead:'EXOSOME 外泌體做臉，原價 NT$4,480、有效會員價 NT$2,480，約 60 分鐘、17 個步驟。台中忠明店提供預約諮詢，從清潔到精華護理，逐步公開服務內容。', summary:'外泌體做臉在清潔後搭配外泌體精華、儀器護理、面膜與鎖水保養；產品及施作方式請向門市確認。', related:'hydration'},
@@ -67,7 +67,7 @@ export const faqs = [
 
   {q:'手工清粉刺的會員價是多少？', a:`手工清粉刺原價 ${money(manual.original)}，會員價 ${money(manual.member)}。這是方案加購項目，需搭配護膚方案，無法單獨施作。`},
   {q:'手工清粉刺可以單獨預約嗎？', a:'不可以。手工清粉刺與其他護膚加購項目皆需搭配護膚方案，預約時請先告知門市想選擇的方案與加購項目。'},
-  {q:'肌密宣言有哪些主要服務方案？', a:'主要服務依序為洗髮方案、A 痘粉清潔、B 柔嫩亮膚、C 提拉保濕與 EXOSOME 科技逆齡。洗髮方案包含三種服務，會員價 NT$500 起；四種護膚方案會員價依序為 NT$550、NT$850、NT$1,250、NT$2,480。完整內容與原價可查看價目表。'},
+  {q:'肌密宣言有哪些主要服務方案？', a:'主要服務依序為洗髮方案、A 痘粉清潔、B 柔嫩亮膚、C 提拉保濕與 EXOSOME 科技逆齡。洗髮方案的深層洗髮會員價 NT$500、頭皮調理 NT$899、頭皮深層養護 NT$1,200；四種護膚方案會員價依序為 NT$550、NT$850、NT$1,250、NT$2,480。完整內容與原價可查看價目表。'},
   {q:'一次護膚需要多久？', a:'A 方案約 40 分鐘，B 方案約 50 分鐘，C 與 EXOSOME 方案約 60 分鐘。加購與現場安排可能影響所需時間，請於預約時確認。'},
   {q:'A 方案的小氣泡清潔和手工清粉刺是一樣的嗎？', a:'不是同一項目。A 方案包含粉刺導出液與氫氧小氣泡等清潔步驟；手工清粉刺在官網列為另外計價的加購服務，需搭配方案。'},
   {q:'要如何享有會員價？', a:`購買任一金額的美麗保養金，於 ${membership.months} 個月有效會員期間享店內服務會員價；結帳時需出示有效會員卡，會員卡限本人使用。${membershipSummary}`},
@@ -86,15 +86,15 @@ faqs.push(
 );
 
 export const routes = [
-  {path:'/',kind:'home',title:'肌密宣言 SKINOW｜洗臉會員價550起・台中夜間洗髮',description:'台中忠明店韓國籍美容師駐店、持韓國美容師執照。洗臉會員價 NT$550起、夜間洗髮 NT$500起、外泌體做臉 NT$2,480；13:30–22:30。會員需購美麗保養金，額度可抵服務。公開價格與流程，清楚比較 CP 值；指定美容師與時段請先預約確認。'},
+  {path:'/',kind:'home',title:'肌密宣言 SKINOW｜洗臉會員價550・台中夜間洗髮',description:'台中忠明店韓國籍美容師駐店、持韓國美容師執照。深層洗髮會員價 NT$500、A 方案洗臉 NT$550、外泌體做臉 NT$2,480；13:30–22:30。首頁費用表公開服務內容、時間、原價、會員價及加購。會員需購美麗保養金；指定美容師與時段請先確認。'},
   {path:'/services/',kind:'services',title:'台中洗臉護膚與洗髮服務｜韓國美容師駐店｜肌密宣言',description:'台中忠明店提供洗臉、外泌體做臉、夜間洗髮與頭皮養護；韓國籍美容師持韓國美容師執照駐店服務，班表與可約項目請先確認。比較原價、會員價、時間與逐步流程，會員需購美麗保養金，加購另計。'},
-  {path:'/services/scalp-care/',kind:'scalp',title:'台中夜間洗髮｜會員價500起・忠明店營業至22:30｜肌密宣言',description:'下班後也能安排台中夜間洗髮。忠明店13:30–22:30，深層洗髮50分鐘會員價 NT$500、頭皮調理60分鐘 NT$899、深層養護75分鐘 NT$1,200。會員需購美麗保養金；最晚可約時段依 LINE 系統與門市確認。查看原價與流程影片。'},
+  {path:'/services/scalp-care/',kind:'scalp',title:'台中夜間洗髮｜深層洗髮會員價500・忠明店營業至22:30｜肌密宣言',description:'下班後也能安排台中夜間洗髮。忠明店13:30–22:30，深層洗髮50分鐘會員價 NT$500、頭皮調理60分鐘 NT$899、深層養護75分鐘 NT$1,200。會員需購美麗保養金；最晚可約時段依 LINE 系統與門市確認。查看原價與流程影片。'},
   {path:'/videos/store-service-process/',kind:'video',title:'全店服務流程影片｜包含洗髮方案｜肌密宣言 SKINOW',description:'觀看肌密宣言全店服務流程影片，完整約 2 分 34 秒，內容包含洗髮方案。連結台中忠明店洗髮服務、護膚方案、價目表與門市預約資訊。'},
   ...Object.entries(serviceInfo).map(([key,info])=>({path:`/services/${info.slug}/`,kind:'service',key,title:key==='A'?'洗臉做臉 A方案｜會員價550・40分鐘15步驟｜肌密宣言':key==='EXOSOME'?'外泌體做臉 EXOSOME方案｜會員價2,480・17步驟｜肌密宣言':`${plans[key].name} ${plans[key].title}｜台中護膚・會員價 ${money(plans[key].memberPrice)}｜肌密宣言`,description:key==='A'?'想找高 CP 值洗臉做臉？A方案原價 NT$850、有效會員價 NT$550，40分鐘15步驟含潔面、小氣泡與舒緩保養，逐步照片公開。手工清粉刺另計，會員需購美麗保養金。查看台中忠明店預約。':key==='EXOSOME'?'台中 EXOSOME 外泌體做臉原價 NT$4,480、有效會員價 NT$2,480，60分鐘17步驟。清潔、外泌體精華與儀器護理、面膜鎖水，流程照片與加購費用透明。查看會員條件、門市與 LINE 預約。':`${info.lead}原價 ${money(plans[key].originalPrice)}，提供 ${plans[key].steps} 步驟照片圖解。${info.summary}查看會員條件、另計加購費用與台中忠明店預約。`})),
   {path:'/services/manual-extraction/',kind:'manual',title:`手工清粉刺會員加購價 ${money(manual.member)}｜肌密宣言 SKINOW`,description:`手工清粉刺原價 ${money(manual.original)}，會員加購價 ${money(manual.member)}，需搭配護膚方案、無法單獨施作。查看方案搭配、價格條件與台中忠明店預約資訊。`},
-  {path:'/pricing/',kind:'pricing',title:'洗臉・洗髮公開價目表｜比較價格、流程與 CP 值｜肌密宣言',description:'洗臉會員價 NT$550起、台中夜間洗髮 NT$500起、外泌體做臉 NT$2,480。比較原價、會員價、時間、步驟及另計加購，找到適合預算的保養。會員需購美麗保養金，額度可抵服務；所有費用公開，LINE 預約。'},
-  {path:'/membership/',kind:'membership',title:'美麗保養金加值禮遇｜999享1,200額度・會員洗臉550起｜肌密宣言',description:'洗臉會員價 NT$550起，保養預算更有 CP 值。美麗保養金購買 NT$999享1,200額度、2,999享3,600額度、4,999享6,500額度；後兩種享品牌好禮任選一。效期12個月、享會員價，可分次抵扣服務，差額另付。'},
+  {path:'/pricing/',kind:'pricing',title:'洗臉・洗髮公開價目表｜比較價格、流程與 CP 值｜肌密宣言',description:'A 方案洗臉會員價 NT$550、台中深層洗髮會員價 NT$500、外泌體做臉 NT$2,480。比較原價、會員價、時間、步驟及另計加購，找到適合預算的保養。會員需購美麗保養金，額度可抵服務；所有費用公開，LINE 預約。'},
+  {path:'/membership/',kind:'membership',title:'美麗保養金加值禮遇｜999享1,200額度・會員洗臉550｜肌密宣言',description:'A 方案洗臉會員價 NT$550，保養預算更有 CP 值。美麗保養金購買 NT$999享1,200額度、2,999享3,600額度、4,999享6,500額度；後兩種享品牌好禮任選一。效期12個月、享會員價，可分次抵扣服務，差額另付。'},
   {path:'/stores/',kind:'stores',title:'台中忠明店預約資訊｜地址、營業時間與韓國美容師｜肌密宣言',description:'肌密宣言台中忠明店位於北區忠明路502-1號，13:30–22:30 提供護膚與夜間洗髮。韓國籍美容師駐店、持韓國美容師執照；指定美容師班表與最晚可約時間請先確認。查看電話、地圖與 LINE 預約。'},
-  ...stores.map(store=>({path:`/stores/${store.slug}/`,kind:'store',key:store.slug,title:`${store.name}｜${store.slug==='taichung-zhongming'?'台中夜間洗髮・韓國美容師駐店':store.address+'・美容護膚預約'}｜肌密宣言`,description:`肌密宣言${store.name}位於${store.address}，電話 ${store.phone}，服務時間 ${store.hours}。${store.slug==='taichung-zhongming'?'韓國籍美容師持韓國美容師執照駐店服務。夜間洗髮會員價 NT$500起、洗臉 NT$550起，另有外泌體做臉；會員需購美麗保養金。班表與最晚可約時段請先確認。':'提供洗臉與外泌體做臉等護膚服務，不提供洗髮。查看公開價格、會員條件與 LINE 預約。'}`})),
+  ...stores.map(store=>({path:`/stores/${store.slug}/`,kind:'store',key:store.slug,title:`${store.name}｜${store.slug==='taichung-zhongming'?'台中夜間洗髮・韓國美容師駐店':store.address+'・美容護膚預約'}｜肌密宣言`,description:`肌密宣言${store.name}位於${store.address}，電話 ${store.phone}，服務時間 ${store.hours}。${store.slug==='taichung-zhongming'?'韓國籍美容師持韓國美容師執照駐店服務。深層洗髮會員價 NT$500、A 方案洗臉 NT$550，另有外泌體做臉；會員需購美麗保養金。班表與最晚可約時段請先確認。':'提供洗臉與外泌體做臉等護膚服務，不提供洗髮。查看公開價格、會員條件與 LINE 預約。'}`})),
   {path:'/faq/',kind:'faq',title:'洗髮與護膚常見問題｜價格、會員、門市預約｜肌密宣言',description:'解答洗髮與頭皮養護方案、手工清粉刺會員加購價格、服務時間、會員價條件與 LINE 預約方式。了解台中忠明店夜間洗髮、韓國籍持照美容師、外泌體做臉與公開價格，預約前先確認服務與時段。'},
 ];

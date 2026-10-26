@@ -25,7 +25,7 @@ for(const r of routes){
   }
 }
 for(const url of ['/','/membership/','/pricing/']){
-  const h=docs.get(url);assert.ok(h.replace(/<[^>]+>/g,'').includes('洗臉會員價 NT$550 起'));
+  const h=docs.get(url);assert.ok(h.replace(/<[^>]+>/g,'').includes('小預算，大保養洗臉洗頭一次到位！'));
   assert.ok(h.includes('新客需先購買美麗保養金取得會員資格'));
   for(const p of membership.plans)assert.ok(h.includes(p.name));
 }
