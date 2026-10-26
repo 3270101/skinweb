@@ -15,6 +15,14 @@ GitHub Pages 備援網域維持 [backup.skinow.tw](https://backup.skinow.tw/)，
 
 ## 修改與發布
 
+### 2026-10-27 Google Ads 全站瀏覽觀察
+
+- 依業主提供的代碼，在共用 HTML head 安裝 `AW-18492825753`，每次文件載入送出一次 `AW-18492825753/PozuCPOO16odEJnBiPJE` 網頁瀏覽事件。15 個內容頁及 404 頁均適用，後續新路由自動繼承。既有精明店轉址頁不重複計數。
+- 事件僅用於瀏覽觀察，不代表預約、成交或營收；未設定虛構金額、不新增個人資料欄位、不修改 Google Ads 的出價、預算或轉換目標。Google Ads 後台的主要／次要設定不由網站程式控制。
+- 正式網域 `skinow.tw`、兩個公開備援 `backup.skinow.tw` 與 `skinweb.pages.dev` 會送出；localhost、臨時 Cloudflare 預覽及其他網域不送出。分頁選擇、錨點、捲動不額外觸發。
+- `npm run test:google-tag --prefix tooling` 檢查每頁僅一個非同步載入器、一次設定、一次事件、正確 ID／label 及預覽排除。可用 `SKINOW_TEST_ORIGIN=https://skinow.tw` 驗證線上 HTML；測試於隔離環境模擬佇列，不送出測試轉換。
+- 安裝與測試通過不等同 Google Ads 已完成回報或歸因；訪客的瀏覽器封鎖及同意狀態也可能影響記錄。發布前基準 `dc9cbbc`，若需撤回可對此次提交使用 `git revert` 後重新部署。
+
 ### 2026-10-27 新客 30 天會員價與廣告到達頁一致性
 
 - 業主確認台中忠明店新客可免費領取 30 天會員價，無須先購買美麗保養金。免費的是會員價資格，服務與加購仍依價目表收費，不附送保養額度；領取方式與生效日於預約時確認。

@@ -14,6 +14,7 @@
     "test:membership": "node test-membership-credit.mjs",
     "test:value-search": "node test-value-search.mjs",
     "test:service-fees": "node test-service-fees.mjs",
+    "test:google-tag": "node test-google-tag.mjs",
     "quality": "node quality.mjs"
   },
   "dependencies": {
