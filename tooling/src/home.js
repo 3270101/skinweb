@@ -122,16 +122,16 @@ export default function Home({initialPlan='SCALP'}) {
                 href: "#pricing",
                 className:
                   "bg-brand-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-brand-secondary transition-all duration-300 transform hover:scale-105 shadow-lg",
-                children: "查看服務費用表 ✨",
+                children: "快速了解服務一覽表",
               }),
             ],
           }),
         }),
       }),
-      f.jsx(PricingSection, {}),
       f.jsx("div", {className:"skin-credit-home",children:f.jsx(MembershipCredit,{})}),
       f.jsx("div", {className:"skin-credit-home",children:f.jsx(ValueGuide,{})}),
       f.jsx("div", {className:"skin-credit-home",children:f.jsx(KoreanBeauticianInfo,{})}),
+      f.jsx(PricingSection, {}),
       f.jsx("section", {
         id: "services",
         className: "py-16 bg-gray-50",

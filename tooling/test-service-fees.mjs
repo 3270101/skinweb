@@ -20,9 +20,11 @@ for(const route of routes){
 const home=docs.get('/').replace(/<template\b[^]*?<\/template>/g,'');
 const fees=home.match(/<section id="pricing"[^]*?<\/section>/)?.[0];assert.ok(fees);
 assert.equal((home.match(/id="pricing"/g)||[]).length,1);
-assert.ok(home.indexOf('id="pricing"')<home.indexOf('class="skin-credit"'),'fee table before membership promotion');
+assert.ok(home.indexOf('id="korean-beautician"')>=0,'Korean beautician section exists');
+assert.ok(home.indexOf('id="korean-beautician"')<home.indexOf('id="pricing"'),'fee table after Korean beautician section');
 assert.ok(home.indexOf('id="pricing"')<home.indexOf('id="services"'),'fee table before service cards');
-assert.ok(home.includes('href="#pricing"')&&home.includes('查看服務費用表'));
+assert.match(home,/<a href="#pricing"[^>]*>快速了解服務一覽表<\/a>/);
+assert.ok(!home.includes('查看服務費用表'));
 assert.equal((fees.match(/data-fee-service=/g)||[]).length,7);
 const mainRows=[...scalpServices,...Object.entries(plans).map(([k,p])=>({slug:serviceInfo[k].slug,original:p.originalPrice,member:p.memberPrice}))];
 for(const s of mainRows){
