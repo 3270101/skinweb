@@ -1,14 +1,13 @@
 import * as gu from "react";
 import { ui as f } from "./ui.js";
 import { plans } from "./plans.js";
-import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpMainCard, ScalpProcess, PlanTabs, ServiceIntroLink, SiteDirectory } from "./components.js";
-import {MembershipCredit,MembershipPlans} from './membership-credit.js';
-import {AnniversaryNotice} from './brand-gifts.js';
-import {membership,membershipUsage,money} from './content.js';
+import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpMainCard, ScalpProcess, PlanTabs, ServiceIntroLink, SiteDirectory, ServicePhoto } from "./components.js";
+import {MembershipCredit} from './membership-credit.js';
+import {membership,membershipUsage,money,serviceInfo} from './content.js';
 import {ProcessGallery} from './process-gallery.js';
-import {ValueGuide,KoreanBeauticianInfo} from './search-content.js';
+import {KoreanBeauticianInfo} from './search-content.js';
 
-export default function Home({initialPlan='SCALP'}) {
+export default function Home({initialPlan='A'}) {
   const [M, ol] = gu.useState("home"),
     [k, g] = gu.useState(initialPlan),
     [B, K] = gu.useState(0),
@@ -117,7 +116,7 @@ export default function Home({initialPlan='SCALP'}) {
               }),
               f.jsx("p", {
                 className: "text-xl text-gray-600 mb-8",
-                children: "台中忠明店深層洗髮 50 分鐘，會員價 NT$500；A 方案洗臉 40 分鐘、15 步驟，會員價 NT$550，另有 EXOSOME 外泌體做臉。公開每項價格與流程，把 CP 值花在看得見的服務。營業至 22:30，韓國籍持照美容師駐店；新客可免費領取 30 天會員價，指定美容師與夜間時段請先確認。",
+                children: "公開價格，透明流程。台中忠明店營業至 22:30，從日常洗臉、夜間洗髮到 EXOSOME 外泌體做臉，選擇適合自己的保養。",
               }),
               f.jsx("a", {
                 href: "#pricing",
@@ -129,8 +128,7 @@ export default function Home({initialPlan='SCALP'}) {
           }),
         }),
       }),
-      f.jsx("div", {className:"skin-credit-home",children:f.jsx(MembershipCredit,{})}),
-      f.jsx("div", {className:"skin-credit-home",children:f.jsx(ValueGuide,{})}),
+      f.jsx("div", {className:"skin-credit-home",children:f.jsx(MembershipCredit,{compact:true})}),
       f.jsx("div", {className:"skin-credit-home",children:f.jsx(KoreanBeauticianInfo,{})}),
       f.jsx(PricingSection, {}),
       f.jsx("section", {
@@ -156,6 +154,7 @@ export default function Home({initialPlan='SCALP'}) {
                   className:
                     "bg-white rounded-xl shadow-lg overflow-hidden card-hover",
                   children: [
+                    f.jsx(ServicePhoto, {planKey:"A"}),
                     f.jsxs("div", {
                       className: "bg-brand-primary text-white p-4 text-center",
                       children: [
@@ -213,6 +212,7 @@ export default function Home({initialPlan='SCALP'}) {
                   className:
                     "bg-white rounded-xl shadow-lg overflow-hidden card-hover",
                   children: [
+                    f.jsx(ServicePhoto, {planKey:"B"}),
                     f.jsxs("div", {
                       className: "bg-orange-500 text-white p-4 text-center",
                       children: [
@@ -270,6 +270,7 @@ export default function Home({initialPlan='SCALP'}) {
                   className:
                     "bg-white rounded-xl shadow-lg overflow-hidden card-hover",
                   children: [
+                    f.jsx(ServicePhoto, {planKey:"C"}),
                     f.jsxs("div", {
                       className: "bg-green-500 text-white p-4 text-center",
                       children: [
@@ -332,6 +333,7 @@ export default function Home({initialPlan='SCALP'}) {
                         "absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full",
                       children: "熱門推薦",
                     }),
+                    f.jsx(ServicePhoto, {planKey:"EXOSOME"}),
                     f.jsxs("div", {
                       className: "bg-red-500 text-white p-4 text-center",
                       children: [
@@ -365,7 +367,7 @@ export default function Home({initialPlan='SCALP'}) {
                         f.jsx("p", {
                           className: "text-gray-600 text-sm mb-4",
                           children:
-                            A.EXOSOME.description,
+                            serviceInfo.EXOSOME.summary,
                         }),
                         f.jsxs("div", {
                           className: "space-y-2",
@@ -480,15 +482,13 @@ export default function Home({initialPlan='SCALP'}) {
             f.jsxs("div", {
               className: "max-w-4xl mx-auto",
               children: [
-                f.jsx(AnniversaryNotice, {}),
-                f.jsx(MembershipPlans, {}),
                 f.jsx("p", {className:"skin-note",children:membershipUsage+"週年慶好禮每人限領一份，不重複贈送。"}),
-                f.jsxs("div", {
-                  className: "bg-gray-50 rounded-xl p-8",
+                f.jsxs("details", {
+                  className: "skin-disclosure bg-gray-50 rounded-xl p-8",
                   children: [
-                    f.jsx("h3", {
+                    f.jsx("summary", {
                       className: "text-2xl font-bold text-brand-primary mb-6",
-                      children: "肌密宣言會員規章",
+                      children: f.jsx("h3", {className:"skin-disclosure-title",children:"查看完整會員規章與舊卡權益"}),
                     }),
                     f.jsxs("div", {
                       className: "space-y-6",

@@ -19,7 +19,7 @@ const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
 const write=async(relative,content)=>{const file=path.join(root,relative);await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file,content);};
 await fs.mkdir(path.join(tooling,'.cache'),{recursive:true});
 const manifest={};
-const sources=[...new Set(['LOGO3.jpg','LOGO4.jpg',membership.image,...brandGifts.flatMap(g=>g.images),...Object.values(plans).flatMap(p=>p.stepImages.map(name=>'images/'+name))])];
+const sources=[...new Set(['LOGO3.jpg','LOGO4.jpg',membership.image,scalpVideo.poster.slice(1),...brandGifts.flatMap(g=>g.images),...Object.values(plans).flatMap(p=>p.stepImages.map(name=>'images/'+name))])];
 let originalBytes=0, optimizedBytes=0;
 for (const source of sources) {
   const input=await fs.readFile(path.join(root,source));

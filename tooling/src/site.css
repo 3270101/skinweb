@@ -104,6 +104,48 @@ html{scroll-padding-top:90px}body{color:#334155}a,button{-webkit-tap-highlight-c
 .skin-scalp-card-prices{list-style:none!important;padding:0!important;margin:12px 0}
 .skin-scalp-card-prices li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;padding:8px 0;border-top:1px solid var(--skin-border);font-size:.85rem;line-height:1.6}
 .skin-scalp-card-prices small{display:block;color:#63727a;font-size:.75rem}.skin-scalp-card-prices strong{display:block;color:#424f7d;white-space:nowrap}
+.skin-service-photo{display:block;width:100%;height:180px;object-fit:cover;object-position:center}
+.skin-scalp-photo{object-position:center 40%}
+.skin-visual-services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0}
+.skin-visual-services>a{display:block;overflow:hidden;background:#fff;border:1px solid #c8e0e4;border-radius:18px;text-decoration:none;color:#174a55}
+.skin-visual-services img{display:block;width:100%;height:230px;object-fit:cover;object-position:center 40%}
+.skin-visual-services span{display:block;padding:16px;font-size:.95rem;font-weight:650;line-height:1.7}
+.skin-visual-services strong{display:block;font-size:1.5rem;font-weight:800;color:#175e70}
+.skin-visual-services small{display:block;font-weight:400;font-size:.8rem;color:#526975}
+.skin-disclosure{border:1px solid #c8e0e4;border-radius:14px;padding:16px 20px;margin:20px 0;background:#fff}
+.skin-disclosure>summary{cursor:pointer;min-height:44px;align-content:center;color:#175e70;font-weight:700;line-height:1.6}
+.skin-disclosure[open]>summary{margin-bottom:16px}
+.skin-disclosure p{margin:12px 0}
+.skin-disclosure-title{display:inline;font-size:inherit;font-weight:inherit}
+.skin-gift-preview{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:18px 0}
+.skin-anniversary-notice .skin-gift-preview a{display:flex;flex-direction:column;gap:6px;text-decoration:none;font-size:.75rem;text-align:center;min-width:0}
+.skin-gift-preview img{display:block;width:100%;height:110px;object-fit:contain;background:#fff;border-radius:12px;padding:8px}
+@media(max-width:767px){
+  .skin-home-links{display:flex!important;overflow-x:auto!important;gap:4px!important;scrollbar-width:thin;padding-bottom:2px}
+  .skin-home-links a{white-space:nowrap;min-height:44px;padding:10px 14px!important;align-content:center}
+  html{scroll-padding-top:136px!important}#home{padding-top:144px!important;padding-bottom:24px}
+  #home .w-32{display:none}#home h1{font-size:1.65rem;line-height:1.45}
+  #home .text-xl{font-size:1rem;line-height:1.8}#home .text-3xl{font-size:1.1rem}
+  .skin-credit-home{padding:6px 16px}.skin-credit{padding:20px 16px;margin:16px 0 24px}
+  .skin-credit h2{font-size:1.75rem}.skin-credit-kicker{font-size:.75rem}.skin-credit p{font-size:.9rem}
+  .skin-visual-services{gap:10px;margin:18px 0}.skin-visual-services img{height:150px}.skin-visual-services span{padding:12px 9px;font-size:.78rem}.skin-visual-services strong{font-size:1.08rem}.skin-visual-services small{font-size:.7rem}
+  .skin-credit-compact .skin-credit-plans{gap:12px}.skin-credit-compact .skin-credit-plans>li{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;padding:16px}
+  .skin-credit-compact .skin-credit-plan-number{grid-column:1/-1;margin:0}.skin-credit-compact .skin-credit-plans h3{font-size:1.08rem}
+  .skin-credit-compact .skin-credit-plans h3 small{font-size:.75rem}.skin-credit-compact .skin-credit-amount{border:0;margin:0;padding:0;text-align:right;font-size:.75rem}
+  .skin-credit-compact .skin-credit-amount strong{font-size:1.35rem}.skin-credit-compact .skin-credit-bonus{grid-column:1/-1;margin:0;font-size:.8rem}
+  .skin-credit-compact .skin-credit-gift,.skin-credit-compact .skin-credit-origin{grid-column:1/-1;margin:0;padding:4px 8px}
+  .skin-credit-compact .skin-credit-validity{grid-column:1/-1;font-size:.75rem}
+  .skin-search-intro{padding:20px!important;margin:24px 0!important}.skin-search-intro h2{font-size:1.4rem!important;line-height:1.5}
+  .skin-search-intro p{font-size:.9rem}.skin-anniversary-notice{padding:18px 14px}.skin-anniversary-notice h3{font-size:1.18rem}
+  .skin-gift-preview{gap:5px;margin:14px 0}.skin-gift-preview img{height:78px;padding:4px}.skin-anniversary-notice .skin-gift-preview a{font-size:.65rem}
+  #services,#process,#membership,#contact,#faq,#explore{padding-top:36px;padding-bottom:36px}
+  #process .mb-12{margin-bottom:24px}#process .p-8{padding:20px}#process h2{font-size:1.7rem}#process h3{font-size:1.25rem}
+  .skin-plan-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .skin-plan-tabs button{padding:12px 6px;font-size:13px}.skin-plan-tabs button[data-plan=SCALP]{grid-column:1/-1}
+  .skin-scalp-film{order:-1}.skin-scalp-film video{max-height:58vh}.skin-scalp-process-intro{margin-bottom:18px}
+  .skin-service-photo{height:210px}.skin-main-services .p-6{padding:20px}.skin-main-services .text-sm{line-height:1.75}
+  .skin-disclosure{padding:14px 16px}.skin-disclosure>summary{font-size:.95rem!important;margin-bottom:0!important}
+}
 @media(max-width:767px){
   .skin-fee-section{padding:34px 16px}.skin-fee-table-frame{border:0;border-radius:0;overflow:visible}
   .skin-fee-table,.skin-fee-table tbody{display:block}.skin-fee-table caption{display:block;border-radius:12px;font-size:.85rem;margin-bottom:10px}

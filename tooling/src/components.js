@@ -5,7 +5,7 @@ import { imageProps } from './ui.js';
 import {ProcessGallery} from './process-gallery.js';
 import {PlanPricing,PlanAddonPricing} from './plan-pricing.js';
 import {MembershipCredit,MembershipTable} from './membership-credit.js';
-import {BrandGifts} from './brand-gifts.js';
+import {BrandGifts,AnniversaryNotice} from './brand-gifts.js';
 import {ServiceShorts} from './service-shorts.js';
 import {ServiceFeeOverview} from './service-fees.js';
 import {ValueGuide,NightWashInfo,ExosomeIntro,KoreanBeauticianInfo} from './search-content.js';
@@ -20,8 +20,14 @@ export function ServiceIntroLink({planKey}) {
   return <a className="skin-text-link" href={`/services/${info.slug}/`} aria-label={`${plan.name} ${plan.title}：完整介紹與原價`} data-service-intro={planKey}>完整介紹與原價 →</a>;
 }
 
+export function ServicePhoto({planKey}) {
+  const p=plans[planKey],index={A:4,B:7,C:8,EXOSOME:7}[planKey];
+  return <img className="skin-service-photo" {...imageProps('images/'+p.stepImages[index],`${p.name} ${p.title}實際服務：${p.stepNames[index]}`)} sizes="(max-width: 639px) 100vw, 400px"/>;
+}
+
 export function ScalpMainCard() {
   return <article id="scalp-care" className="skin-scalp-main-card bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+    <img className="skin-service-photo skin-scalp-photo" {...imageProps(scalpVideo.poster,'全店服務流程影片封面，內容包含洗髮方案')}/>
     <div className="skin-scalp-card-header"><p>3 種服務</p><div><h3>洗髮方案</h3><span>50–75 分鐘</span></div></div>
     <div className="p-6"><h4 className="text-xl font-semibold text-gray-800 mb-3">洗髮與頭皮養護</h4><p className="text-gray-600 text-sm mb-4">深層洗髮、頭皮調理、頭皮深層養護，三種服務依需求選擇。</p>
       <p className="skin-note">提供門市：{scalpStore.name}</p>
@@ -33,7 +39,7 @@ export function ScalpMainCard() {
 }
 export function PlanTabs({selected}) {
   return <div className="skin-plan-tabs flex flex-wrap justify-center gap-4 mb-12" role="group" aria-label="選擇服務流程方案">
-    {[['SCALP',{name:'洗髮方案'}],...Object.entries(plans)].map(([key,p])=><button key={key} type="button" data-plan={key} aria-pressed={selected===key} className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${selected===key?(key==='SCALP'?'skin-scalp-active text-white':key==='A'?'bg-brand-primary text-white':key==='B'?'bg-orange-500 text-white':key==='C'?'bg-green-500 text-white':'bg-red-500 text-white'):'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{key==='SCALP'?'洗髮方案（流程影片）':`${p.name} (${p.steps}步驟)`}</button>)}
+    {[...Object.entries(plans),['SCALP',{name:'洗髮方案'}]].map(([key,p])=><button key={key} type="button" data-plan={key} aria-pressed={selected===key} className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${selected===key?(key==='SCALP'?'skin-scalp-active text-white':key==='A'?'bg-brand-primary text-white':key==='B'?'bg-orange-500 text-white':key==='C'?'bg-green-500 text-white':'bg-red-500 text-white'):'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>{key==='SCALP'?'洗髮方案（流程影片）':`${p.name} (${p.steps}步驟)`}</button>)}
   </div>;
 }
 export function ScalpProcess() {
@@ -154,7 +160,7 @@ export function StoresSection() {
 }
 
 export function FaqList({items=faqs}) {
-  return <div className="skin-faq">{items.map(item=><details key={item.q}><summary>{item.q}</summary><p>{item.a}</p></details>)}</div>;
+  return <div className="skin-faq">{items.map(item=><details data-faq key={item.q}><summary>{item.q}</summary><p>{item.a}</p></details>)}</div>;
 }
 export function FaqSection() {
   return <section id="faq" className="py-16 bg-white"><div className="container mx-auto px-4">
@@ -165,7 +171,6 @@ export function FaqSection() {
 export function ExploreSection() {
   return <section id="explore" className="py-16 bg-gray-50"><div className="container mx-auto px-4">
     <h2 className="text-4xl font-bold text-center text-brand-primary mb-8">找到適合自己的服務方案</h2>
-    <ServiceLinks/>
     <nav className="skin-link-row" aria-label="護膚資訊導覽">
       <a href="/services/">所有服務</a><a href="/services/scalp-care/">洗髮方案與影片</a><a href="/services/manual-extraction/">手工清粉刺</a><a href="/pricing/">價目表</a><a href="/membership/">會員制度</a><a href="/stores/">門市資訊</a><a href="/faq/">常見問題</a>
     </nav>
@@ -196,7 +201,7 @@ export function PageBody({route}) {
     const relatedKey=Object.keys(serviceInfo).find(key=>serviceInfo[key].slug===info.related);
     const relatedLabel=relatedKey?`${plans[relatedKey].name} ${plans[relatedKey].title}完整介紹`:'手工清粉刺加購價格與條件';
     return <>
-      <p className="skin-lead">{info.lead}</p><PlanPricing plan={p}/>{route.key==='B'&&<ServiceShorts only="facial"/>}
+      <p className="skin-lead">{info.lead}</p><PlanPricing plan={p}/><AnniversaryNotice/>{route.key==='B'&&<ServiceShorts only="facial"/>}
       <h2>這個方案著重什麼？</h2><p>{info.focus}的顧客，可先參考本方案，再向門市確認當次護理內容與適用情況。</p>
       {route.key==='EXOSOME'&&<ExosomeIntro/>}
       <section id="process" className="skin-service-process" aria-labelledby="service-process-title"><h2 id="service-process-title">{p.name}完整服務流程圖解</h2><p>{p.description}</p><ProcessGallery plan={p}/></section>

@@ -41,6 +41,20 @@
       }
     ]
   },
+  "images/scalp-care-video-20260924.jpg": {
+    "width": 720,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/media/scalp-care-video-20260924-c68bedcf56b6-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/scalp-care-video-20260924-e7445949a3ae-720.webp",
+        "width": 720
+      }
+    ]
+  },
   "images/brand-gifts/device.webp": {
     "width": 1000,
     "height": 1000,

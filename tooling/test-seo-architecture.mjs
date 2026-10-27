@@ -52,7 +52,7 @@ for(const route of routes){
   }
   edges.set(route.path,destinations);
   for(const faq of graph.filter(n=>n['@type']==='FAQPage')){
-    assert.equal(faq.mainEntity.length,(visible.match(/<details\b/g)||[]).length);
+    assert.equal(faq.mainEntity.length,(visible.match(/<details data-faq=/g)||[]).length,'schema matches FAQ disclosures, not other expandable content');
     for(const q of faq.mainEntity){assert.ok(visible.includes(q.name));assert.ok(visible.includes(q.acceptedAnswer.text));}
   }
   const image=pageImage(route,manifest);

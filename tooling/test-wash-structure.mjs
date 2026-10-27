@@ -89,11 +89,13 @@ for(const [link,key] of introLinks){
   assert.ok(link.includes('>完整介紹與原價 →</a>'),key+' visible introduction link');
 }
 const processSection=visibleHome.match(/<section id="process"[^]*?<\/section>/)[0];
-assert.deepEqual([...processSection.matchAll(/data-plan="([^"]+)"/g)].map(m=>m[1]),['SCALP','A','B','C','EXOSOME']);
-assert.match(processSection,/data-plan="SCALP" aria-pressed="true"/);
-assert.ok(processSection.includes('<video'));
-assert.ok(!processSection.includes('data-role="step-image"'),'wash does not invent step images');
-assert.deepEqual([...home.matchAll(/data-plan-template="([^"]+)"/g)].map(m=>m[1]),['SCALP','A','B','C','EXOSOME']);
+assert.deepEqual([...processSection.matchAll(/data-plan="([^"]+)"/g)].map(m=>m[1]),['A','B','C','EXOSOME','SCALP']);
+assert.match(processSection,/data-plan="A" aria-pressed="true"/);
+assert.ok(processSection.includes('data-role="step-image"'),'default A flow starts with real service photography');
+const scalpTemplate=home.match(/<template data-plan-template="SCALP"[^]*?<\/template>/)[0];
+assert.ok(scalpTemplate.includes('<video'));
+assert.ok(!scalpTemplate.includes('data-role="step-image"'),'wash does not invent step images');
+assert.deepEqual([...home.matchAll(/data-plan-template="([^"]+)"/g)].map(m=>m[1]),['A','B','C','EXOSOME','SCALP']);
 for(const key of ['A','B','C','EXOSOME'])assert.ok(home.match(new RegExp(`<template data-plan-template="${key}"[^]*?</template>`))[0].includes('data-role="step-image"'));
 const pricing=documents.get('/pricing/');
 assert.ok(pricing.indexOf('洗髮方案價目表')<pricing.indexOf('護膚方案價目表'));

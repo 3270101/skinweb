@@ -4,7 +4,6 @@ export function KoreanBeauticianInfo(){
   return <section id="korean-beautician" className="skin-search-intro" aria-label="台中韓國美容師服務資訊">
     <h2>韓國美容師駐店，台中忠明店預約服務</h2>
     <p><strong>{koreanBeautician.description}</strong></p>
-    <p>從日常洗臉到進階護膚，先看公開價格與逐步流程，再選擇適合自己的保養。想比較不同服務，可查看 A 方案痘粉清潔或 EXOSOME 外泌體做臉的完整介紹。</p>
     <p className="skin-note">{koreanBeautician.bookingNote}</p>
     <p><a href="/stores/taichung-zhongming/">忠明店地址與預約資訊 →</a> · <a href="/services/cleansing/">洗臉 15 步驟 →</a> · <a href="/services/exosome/">外泌體做臉流程 →</a></p>
   </section>;

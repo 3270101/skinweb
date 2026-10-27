@@ -39,5 +39,5 @@ export function BrandGifts() {
 }
 
 export function AnniversaryNotice(){
-  return <aside className="skin-anniversary-notice" aria-label="2026 週年慶活動"><p className="skin-eyebrow">2026 週年慶 · {anniversary.dates}</p><h3>來店填問卷，免費領品牌好禮</h3><p>不需消費，新舊客戶皆可參加。限量 300 份、每人一份，依現場庫存選擇，送完為止；本檔活動贈品不重複領取。</p><a href={giftPagePath+'#anniversary'}>看活動辦法與 5 款好禮 →</a></aside>;
+  return <aside className="skin-anniversary-notice" aria-label="2026 週年慶活動"><p className="skin-eyebrow">2026 週年慶 · {anniversary.dates}</p><h3>來店填問卷，免費領品牌好禮</h3><div className="skin-gift-preview" aria-label="品牌好禮商品預覽">{brandGifts.map(g=><a href={giftPagePath+'#'+g.slug} key={g.slug}><img {...imageProps(g.images[0],`${g.brand} ${g.name}`)} sizes="(max-width: 639px) 18vw, 120px"/><span>{g.category}</span></a>)}</div><p>不需消費，新舊客戶皆可參加。限量 300 份、每人一份，依現場庫存選擇，送完為止；本檔活動贈品不重複領取。</p><a href={giftPagePath+'#anniversary'}>看活動辦法與 5 款好禮 →</a></aside>;
 }
