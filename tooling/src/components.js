@@ -184,7 +184,7 @@ export function SiteDirectory() {
   return <nav className="skin-site-directory" aria-label="分類網站導覽">
     <div><h2>服務介紹與流程</h2><ul><li><a href="/services/">全部服務方案</a></li><li><a href="/services/scalp-care/">台中洗髮與頭皮養護</a></li>{Object.entries(plans).map(([key,p])=><li key={key}><a href={`/services/${serviceInfo[key].slug}/`}>{p.name} {p.title}</a></li>)}<li><a href="/services/manual-extraction/">手工清粉刺加購</a></li></ul></div>
     <div><h2>公開價格與預約須知</h2><ul><li><a href="/pricing/">完整價目表</a></li><li><a href="/membership/">美麗保養金加值禮遇與會員權益</a></li><li><a href="/membership/gifts/">品牌好禮任選一：5 款介紹</a></li><li><a href="/faq/">洗髮與護膚常見問題</a></li><li><a href={videoPagePath}>全店服務流程影片</a></li></ul></div>
-    <div><h2>門市資訊</h2><ul><li><a href="/stores/">門市資訊與預約</a></li>{stores.map(s=><li key={s.slug}><a href={`/stores/${s.slug}/`}>{s.name}</a><p className="skin-footer-store-meta">{s.address}<br/><a href={`tel:${s.tel}`}>{s.phone}</a> · {s.hours}</p></li>)}<li><a href="/">肌密宣言首頁</a></li></ul><p>洗髮方案由台中忠明店提供；預約日期、營業日與加購安排請向門市確認。</p></div>
+    <div><h2>門市資訊</h2><ul><li><a href="/stores/">門市資訊與預約</a></li>{stores.map(s=><li key={s.slug}><a href={`/stores/${s.slug}/`}>{s.name}</a><p className="skin-footer-store-meta">{s.address}<br/><a href={`tel:${s.tel}`}>{s.phone}</a> · {s.hours}</p></li>)}<li><a href="/">肌密宣言首頁</a></li><li><a href="/privacy/">LINE 詢問追蹤與隱私選擇</a></li></ul><p>洗髮方案由台中忠明店提供；預約日期、營業日與加購安排請向門市確認。</p></div>
   </nav>;
 }
 export function Footer() {

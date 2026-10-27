@@ -2,7 +2,9 @@
   "name": "skinow-static-site",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.19" },
+  "engines": {
+    "node": ">=22.19"
+  },
   "scripts": {
     "build": "node build.mjs",
     "test": "node test.mjs",
@@ -16,11 +18,13 @@
     "test:service-fees": "node test-service-fees.mjs",
     "test:google-tag": "node test-google-tag.mjs",
     "test:line-click": "node test-line-click.mjs",
+    "test:inquiry": "node test-inquiry.mjs",
     "test:brand-gifts": "node test-brand-gifts.mjs",
     "test:mobile-content": "node test-mobile-content.mjs",
     "quality": "node quality.mjs"
   },
   "dependencies": {
+    "qrcode": "1.5.4",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

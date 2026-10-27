@@ -11,6 +11,7 @@ import {structuredData} from './src/schema.js';
 import {pageImage} from './src/page-image.js';
 import {googleTag,lineClickTag} from './src/google-tag.js';
 import {brandGifts} from './src/gifts.js';
+import {inquiryPrivacy,inquiryBridge} from './src/inquiry-pages.js';
 
 const tooling=path.dirname(fileURLToPath(import.meta.url));
 const root=path.dirname(tooling);
@@ -36,9 +37,10 @@ for (const source of sources) {
   manifest[source]={width:metadata.width,height:metadata.height,variants};
 }
 await write('tooling/src/image-manifest.json',JSON.stringify(manifest,null,2)+'\n');
-const client=await build({absWorkingDir:tooling,entryPoints:['src/client.js','src/images.js'],bundle:true,minify:true,format:'esm',target:['es2020'],jsx:'automatic',loader:{'.js':'jsx'},define:{'process.env.NODE_ENV':'"production"'},outdir:path.join(root,'assets'),entryNames:'skinow-[hash]',metafile:true,legalComments:'eof'});
+const client=await build({absWorkingDir:tooling,entryPoints:['src/client.js','src/images.js','src/inquiry.js','src/inquiry-bridge.js'],bundle:true,minify:true,format:'esm',target:['es2022'],jsx:'automatic',loader:{'.js':'jsx'},define:{'process.env.NODE_ENV':'"production"'},outdir:path.join(root,'assets'),entryNames:'skinow-[hash]',metafile:true,legalComments:'eof'});
 const outputPath=entry=>'/'+path.relative(root,path.resolve(tooling,Object.entries(client.metafile.outputs).find(([,m])=>m.entryPoint===entry)[0])).split(path.sep).join('/');
 const jsPath=outputPath('src/client.js'),imageJsPath=outputPath('src/images.js');
+const inquiryJsPath=outputPath('src/inquiry.js'),bridgeJsPath=outputPath('src/inquiry-bridge.js');
 const css=(await fs.readFile(path.join(tooling,'src/legacy.css'),'utf8'))+'\n'+await fs.readFile(path.join(tooling,'src/site.css'),'utf8');
 const cssPath=`/assets/skinow-${hash(css)}.css`;
 await write(cssPath.slice(1),css);
@@ -48,9 +50,14 @@ function htmlPage(route,body,{notFound=false}={}) {
   const canonical=site.origin+route.path;
   const social=pageImage(route,manifest);
   const document = `<!doctype html>\n<html lang="zh-Hant-TW"><head>\n<meta charset="UTF-8"/>\n<meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n<title>${escape(route.title)}</title>\n<meta name="description" content="${escape(route.description)}"/>\n<meta name="robots" content="${notFound?'noindex, follow':'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}"/>\n${notFound?'':`<link rel="canonical" href="${canonical}"/>`}\n<meta name="theme-color" content="#217d92"/>\n<meta property="og:type" content="website"/>\n<meta property="og:locale" content="zh_TW"/>\n<meta property="og:site_name" content="${site.name}"/>\n<meta property="og:title" content="${escape(route.title)}"/>\n<meta property="og:description" content="${escape(route.description)}"/>\n<meta property="og:url" content="${canonical}"/>\n<meta property="og:image" content="${social.url}"/>\n<meta property="og:image:alt" content="${escape(social.alt)}"/>\n<meta name="twitter:card" content="${social.large?'summary_large_image':'summary'}"/>\n<meta name="twitter:title" content="${escape(route.title)}"/>\n<meta name="twitter:description" content="${escape(route.description)}"/>\n<meta name="twitter:image" content="${social.url}"/>\n<meta name="twitter:image:alt" content="${escape(social.alt)}"/>\n<link rel="icon" href="/LOGO4.jpg" type="image/jpeg"/>\n<link rel="stylesheet" href="${cssPath}"/>\n${notFound?'':`<script type="application/ld+json">${JSON.stringify(structuredData(route,manifest)).replaceAll('<','\\u003c')}</script>`}\n${notFound?'':`<script type="module" src="${['home','service'].includes(route.kind)?jsPath:imageJsPath}"></script>`}\n</head><body><a class="skin-skip" href="#main-content">跳至主要內容</a><div id="root">${body}</div></body></html>\n`;
-  return document.replace('</head>', googleTag()+'\n'+lineClickTag(site.line)+'\n</head>');
+  return document.replace('</head>', googleTag()+'\n'+lineClickTag(site.line)+`\n<script type="module" src="${inquiryJsPath}"></script>\n</head>`);
 }
 for(const route of routes) await write(route.path.slice(1)+'index.html',htmlPage(route,renderPage(route)));
+// Utility pages deliberately omit all Google tags; a bridge visit is not another
+// booking click or conversion. No click identifiers ever appear in their URLs.
+function utilityPage(title,body,script){return `<!doctype html><html lang="zh-Hant-TW"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, follow"><meta name="referrer" content="no-referrer"><title>${title}｜肌密宣言 SKINOW</title><link rel="stylesheet" href="${cssPath}"><script type="module" src="${script}"></script></head><body><main id="main-content" class="skin-document skin-inquiry-document"><a href="/" class="skin-brand">肌密宣言 SKINOW</a>${body}</main></body></html>`;}
+await write('privacy/index.html',utilityPage('LINE 詢問追蹤與隱私說明',inquiryPrivacy(),inquiryJsPath));
+await write('line/index.html',utilityPage('LINE 詢問',inquiryBridge(),bridgeJsPath));
 await write('404.html',htmlPage({path:'/404.html',kind:'404',title:'找不到頁面｜肌密宣言 SKINOW',description:'此頁面不存在，請返回肌密宣言首頁或價目表。'},'<main id="main-content" class="skin-document"><h1>找不到這個頁面</h1><p>連結可能已變更，請從以下入口繼續瀏覽。</p><nav class="skin-link-row"><a href="/">返回首頁</a><a href="/pricing/">完整價目表</a><a href="/stores/">門市預約</a></nav></main>',{notFound:true}));
 await write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+routes.map(r=>`  <url><loc>${site.origin}${r.path}</loc><lastmod>${site.updated}</lastmod></url>`).join('\n')+'\n</urlset>\n');
 await write('video-sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"><url><loc>${site.origin}${videoPagePath}</loc><video:video><video:thumbnail_loc>${site.origin}${scalpVideo.poster}</video:thumbnail_loc><video:title>${escape(scalpVideo.name)}</video:title><video:description>${escape(scalpVideo.description)}</video:description><video:content_loc>${site.origin}${scalpVideo.src}</video:content_loc><video:duration>154</video:duration><video:publication_date>${scalpVideo.uploadDate}</video:publication_date></video:video></url></urlset>\n`);
@@ -68,7 +75,7 @@ await write('.nojekyll','');
 await write('.assetsignore','tooling/\n.git/\nREADME.md\n');
 // Retire only this builder's hash-named outputs, never original/user assets.
 for(const name of await fs.readdir(path.join(root,'assets'))) {
-  if(/^skinow-[a-zA-Z0-9]+\.(js|css)$/.test(name)&&!['/assets/'+name].some(value=>value===jsPath||value===imageJsPath||value===cssPath))await fs.unlink(path.join(root,'assets',name));
+  if(/^skinow-[a-zA-Z0-9]+\.(js|css)$/.test(name)&&![jsPath,imageJsPath,cssPath,inquiryJsPath,bridgeJsPath].includes('/assets/'+name))await fs.unlink(path.join(root,'assets',name));
 }
 await write('tooling/.cache/build-summary.json',JSON.stringify({pages:routes.length,originalImageBytes:originalBytes,optimizedImageBytes:optimizedBytes,jsPath,cssPath},null,2));
 console.log(JSON.stringify({pages:routes.length,originalImageBytes:originalBytes,optimizedImageBytes:optimizedBytes,jsPath,cssPath},null,2));
