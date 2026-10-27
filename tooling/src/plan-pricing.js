@@ -7,7 +7,8 @@ export function PlanPricing({plan}) {
     <dl className="skin-plan-price-grid"><div><dt>原價</dt><dd><span data-price="original">{money(plan.originalPrice)}</span><p>未具有效會員或新客活動資格，依原價計費。</p></dd></div><div className="skin-plan-member-price"><dt>有效會員價</dt><dd><span data-price="member">{money(plan.memberPrice)}</span><p>適用有效會員及已領取活動資格的 30 天新客。</p></dd></div></dl>
     <p className="skin-plan-price-note" data-new-guest-offer>{newGuestOffer}</p>
     <dl className="skin-plan-facts"><div><dt>服務時間</dt><dd>{plan.duration}</dd></div><div><dt>方案流程</dt><dd>{plan.steps} 個步驟</dd></div></dl>
-    <p className="skin-plan-price-note"><strong>美麗保養金可抵服務消費：</strong>{membershipSummary}{membershipUsage}上述方案價格不包含另外選購的加購項目。<a href="/membership/">查看加值禮遇與使用規則 →</a></p>
+    <p className="skin-note">上述方案價格不包含另外選購的加購項目。美麗保養金額度可分次抵扣服務，餘額不足可補差額。</p>
+    <details className="skin-disclosure"><summary>美麗保養金怎麼抵扣？查看額度與使用規則</summary><p className="skin-plan-price-note"><strong>美麗保養金可抵服務消費：</strong>{membershipSummary}{membershipUsage}<a href="/membership/">查看加值禮遇與使用規則 →</a></p></details>
     <nav className="skin-plan-jump" aria-label="方案內容導覽"><a href="#process">查看 {plan.steps} 步驟照片圖解 ↓</a><a href="#plan-addons">查看加購價格 ↓</a><a href="#service-booking">選擇預約門市 ↓</a></nav>
   </section>;
 }

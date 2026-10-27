@@ -107,6 +107,7 @@ html{scroll-padding-top:90px}body{color:#334155}a,button{-webkit-tap-highlight-c
 .skin-scalp-card-prices li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;padding:8px 0;border-top:1px solid var(--skin-border);font-size:.85rem;line-height:1.6}
 .skin-scalp-card-prices small{display:block;color:#63727a;font-size:.75rem}.skin-scalp-card-prices strong{display:block;color:#424f7d;white-space:nowrap}
 .skin-service-photo{display:block;width:100%;height:180px;object-fit:cover;object-position:center}
+.skin-service-hero{margin:24px 0}.skin-service-hero img{height:clamp(230px,45vw,420px);border-radius:18px;object-position:center 42%}.skin-service-hero figcaption{font-size:.8rem;line-height:1.7;color:#566575;margin-top:10px}
 .skin-scalp-photo{object-position:center 40%}
 .skin-visual-services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0}
 .skin-visual-services>a{display:block;overflow:hidden;background:#fff;border:1px solid #c8e0e4;border-radius:18px;text-decoration:none;color:#174a55}

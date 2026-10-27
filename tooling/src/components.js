@@ -201,7 +201,7 @@ export function PageBody({route}) {
     const relatedKey=Object.keys(serviceInfo).find(key=>serviceInfo[key].slug===info.related);
     const relatedLabel=relatedKey?`${plans[relatedKey].name} ${plans[relatedKey].title}完整介紹`:'手工清粉刺加購價格與條件';
     return <>
-      <p className="skin-lead">{info.lead}</p><PlanPricing plan={p}/><AnniversaryNotice/>{route.key==='B'&&<ServiceShorts only="facial"/>}
+      <p className="skin-lead">{info.lead}</p><figure className="skin-service-hero"><ServicePhoto planKey={route.key}/><figcaption>{p.name} · {p.steps} 個步驟的實際服務照片，完整圖解見下方流程。</figcaption></figure><PlanPricing plan={p}/><AnniversaryNotice/>{route.key==='B'&&<ServiceShorts only="facial"/>}
       <h2>這個方案著重什麼？</h2><p>{info.focus}的顧客，可先參考本方案，再向門市確認當次護理內容與適用情況。</p>
       {route.key==='EXOSOME'&&<ExosomeIntro/>}
       <section id="process" className="skin-service-process" aria-labelledby="service-process-title"><h2 id="service-process-title">{p.name}完整服務流程圖解</h2><p>{p.description}</p><ProcessGallery plan={p}/></section>
