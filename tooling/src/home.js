@@ -3,6 +3,7 @@ import { ui as f } from "./ui.js";
 import { plans } from "./plans.js";
 import { AddonCards, PricingSection, StoresSection, FaqSection, ExploreSection, ScalpMainCard, ScalpProcess, PlanTabs, ServiceIntroLink, SiteDirectory } from "./components.js";
 import {MembershipCredit,MembershipPlans} from './membership-credit.js';
+import {AnniversaryNotice} from './brand-gifts.js';
 import {membership,membershipUsage,money} from './content.js';
 import {ProcessGallery} from './process-gallery.js';
 import {ValueGuide,KoreanBeauticianInfo} from './search-content.js';
@@ -479,8 +480,9 @@ export default function Home({initialPlan='SCALP'}) {
             f.jsxs("div", {
               className: "max-w-4xl mx-auto",
               children: [
+                f.jsx(AnniversaryNotice, {}),
                 f.jsx(MembershipPlans, {}),
-                f.jsx("p", {className:"skin-note",children:membershipUsage+"品牌好禮可選品項請洽門市。"}),
+                f.jsx("p", {className:"skin-note",children:membershipUsage+"週年慶好禮每人限領一份，不重複贈送。"}),
                 f.jsxs("div", {
                   className: "bg-gray-50 rounded-xl p-8",
                   children: [
@@ -532,7 +534,7 @@ export default function Home({initialPlan='SCALP'}) {
                               className: "space-y-2 text-gray-700",
                               children: [
                                 ...membership.plans.map(plan=>f.jsx("li", {children:`• 購買 ${money(plan.price)} 美麗保養金，獲得 ${money(plan.credit)} 保養額度${plan.gift?'；品牌好禮任選一':''}。`},plan.slug)),
-                                f.jsx("li", {children:`• 三種美麗保養金效期皆為 ${membership.months} 個月，享會員價；保養額度可分次抵扣服務，差額另付。`}),
+                                f.jsx("li", {children:`• ${membershipUsage}`}),
                                 f.jsx("li", {
                                   children:
                                     "• 會員卡經售出概不退費，且不得轉讓第三者",
@@ -546,14 +548,14 @@ export default function Home({initialPlan='SCALP'}) {
                             f.jsx("h4", {
                               className:
                                 "text-lg font-semibold text-gray-800 mb-3",
-                              children: "會員卡有效期限及續約",
+                              children: "舊銀卡、金卡權益照舊",
                             }),
                             f.jsxs("ul", {
                               className: "space-y-2 text-gray-700",
                               children: [
                                 f.jsx("li", {
                                   children:
-                                    "• 於會員卡到期後2個月內續約，效期自原到期日起算",
+                                    "• 以下續約規則僅適用原有舊卡；美麗保養金本金及贈額無使用期限。舊卡到期後2個月內續約，效期自原到期日起算",
                                 }),
                                 f.jsx("li", {
                                   children:
@@ -623,7 +625,7 @@ export default function Home({initialPlan='SCALP'}) {
                                 }),
                                 f.jsx("li", {
                                   children:
-                                    "• 美麗保養金提供 NT$999、NT$2,999、NT$4,999 三種加值禮遇，分別獲得 NT$1,200、NT$3,600、NT$6,500 保養額度，效期皆為 12 個月，享會員價。",
+                                    "• 美麗保養金提供 NT$999、NT$2,999、NT$4,999 三種加值禮遇，分別獲得 NT$1,200、NT$3,600、NT$6,500 保養額度，本金及贈額無使用期限，享會員價。",
                                 }),
                                 f.jsx("li", {
                                   children:

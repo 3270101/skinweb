@@ -41,6 +41,90 @@
       }
     ]
   },
+  "images/brand-gifts/device.webp": {
+    "width": 1000,
+    "height": 1000,
+    "variants": [
+      {
+        "src": "/assets/media/device-6870ac5fb472-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/device-2c830cc91b3c-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/brand-gifts/aroma-set.png": {
+    "width": 531,
+    "height": 841,
+    "variants": [
+      {
+        "src": "/assets/media/aroma-set-3c0ff9813bb1-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/aroma-set-c0850562a9a5-531.webp",
+        "width": 531
+      }
+    ]
+  },
+  "images/brand-gifts/aroma-set-02.png": {
+    "width": 595,
+    "height": 1555,
+    "variants": [
+      {
+        "src": "/assets/media/aroma-set-02-edf9718bdb71-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/aroma-set-02-d743b87c67ec-595.webp",
+        "width": 595
+      }
+    ]
+  },
+  "images/brand-gifts/body-lotion.png": {
+    "width": 1054,
+    "height": 1492,
+    "variants": [
+      {
+        "src": "/assets/media/body-lotion-56183b651c2d-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/body-lotion-d802495a36bf-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/brand-gifts/body-wash.png": {
+    "width": 1054,
+    "height": 1492,
+    "variants": [
+      {
+        "src": "/assets/media/body-wash-976f01756592-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/body-wash-5d81df9183d1-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "images/brand-gifts/laundry.png": {
+    "width": 1180,
+    "height": 1333,
+    "variants": [
+      {
+        "src": "/assets/media/laundry-602059c8fa04-256.webp",
+        "width": 256
+      },
+      {
+        "src": "/assets/media/laundry-6325bd616e42-800.webp",
+        "width": 800
+      }
+    ]
+  },
   "images/a-c-step-01-makeup-removal.png": {
     "width": 1040,
     "height": 1040,

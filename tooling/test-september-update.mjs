@@ -7,7 +7,7 @@ import {scalpServices,scalpAddon,scalpVideo} from './src/scalp.js';
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const origin=process.env.SKINOW_TEST_ORIGIN;
 const read=async p=>{if(!origin)return fs.readFile(path.join(root,p.endsWith('/')?p+'index.html':p),'utf8');const r=await fetch(origin+p);assert.equal(r.status,200,p);return r.text();};
-const forbidden=/精明店|精明一街|04-2326-0035|銀卡|金卡|NT\$3,000|NT\$5,000|12:00[–—-]20:00|三間門市/;
+const forbidden=/精明店|精明一街|04-2326-0035|NT\$3,000|NT\$5,000|12:00[–—-]20:00|三間門市/;
 assert.equal(stores.length,2);assert.equal(stores[0].hours,'13:30–22:30');
 assert.deepEqual(scalpServices.map(s=>[s.minutes,s.original,s.member]),[[50,1200,500],[60,1600,899],[75,1800,1200]]);
 assert.deepEqual([scalpAddon.original,scalpAddon.member],[1800,1000]);
@@ -36,7 +36,7 @@ for(const route of routes){
   if(['home','membership'].includes(route.kind)){
     assert.ok(!html.includes(`data-fallback-src="/${membership.image}"`),'retired single-tier artwork');
     for(const tier of membership.plans)assert.ok(html.includes(`data-beauty-plan="${tier.slug}"`));
-    assert.match(html,/999/);assert.match(html,/12\s*個月/);
+    assert.match(html,/999/);assert.match(html,/本金及贈額無使用期限/);
   }
   if(['home','pricing','scalp'].includes(route.kind))for(const s of [...scalpServices,scalpAddon]){
     const marker=route.kind==='home'?(s.minutes?'data-fee-service':'data-fee-addon'):'data-scalp';
@@ -60,4 +60,4 @@ if(origin){
   else {assert.equal(range.status,206,'video seek');assert.equal(received.byteLength,1024);assert.ok(received.equals(bytes.subarray(0,1024)));videoDelivery='byte-range 206';}
   const poster=await fetch(origin+scalpVideo.poster);assert.equal(poster.status,200);assert.match(poster.headers.get('content-type'),/image\/jpeg/);
 }
-console.log(JSON.stringify({origin:origin||'local',pages:routes.length,imageReferences,membership:'3 beauty-credit plans / 12 months',stores:2,scalpServices:3,scalpAddons:1,videoBytes:bytes.length,videoDelivery,retiredStoreHandled:true,result:'PASS'},null,2));
+console.log(JSON.stringify({origin:origin||'local',pages:routes.length,imageReferences,membership:'3 beauty-credit tiers / no credit expiry',stores:2,scalpServices:3,scalpAddons:1,videoBytes:bytes.length,videoDelivery,retiredStoreHandled:true,result:'PASS'},null,2));

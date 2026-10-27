@@ -10,6 +10,8 @@ export function pageImage(route,manifest={}) {
     alt=`${p.name} ${p.title}服務流程：${p.stepNames[0]}`;
   }else if(['scalp','video'].includes(route.kind)){
     source=scalpVideo.poster.slice(1);alt=scalpVideo.name;
+  }else if(route.kind==='gifts'){
+    source='images/brand-gifts/device.webp';alt='品牌好禮之一：康生漾電波醒膚儀';
   }
   const data=manifest[source],variant=!source.startsWith('LOGO')&&data?.variants.at(-1);
   return {url:site.origin+(variant?variant.src:'/'+source),alt,

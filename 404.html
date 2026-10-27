@@ -21,7 +21,7 @@
 <meta name="twitter:image" content="https://skinow.tw/LOGO3.jpg"/>
 <meta name="twitter:image:alt" content="肌密宣言 SKINOW 品牌標誌"/>
 <link rel="icon" href="/LOGO4.jpg" type="image/jpeg"/>
-<link rel="stylesheet" href="/assets/skinow-161ab008c1be.css"/>
+<link rel="stylesheet" href="/assets/skinow-7d1ba33fd607.css"/>
 
 
 <!-- Google tag (gtag.js): page views are observations, not bookings. -->
@@ -35,5 +35,24 @@ if (["skinow.tw","backup.skinow.tw","skinweb.pages.dev"].includes(window.locatio
   gtag('config', 'AW-18492825753');
   gtag('event', 'conversion', {'send_to': 'AW-18492825753/PozuCPOO16odEJnBiPJE'});
 }
+</script>
+<!-- LINE booking-button clicks: separate from page views and bookings. -->
+<script data-skinow-line-tracking>
+(function () {
+  if (!["skinow.tw","backup.skinow.tw","skinweb.pages.dev"].includes(window.location.hostname) || window.skinowLineTrackingInstalled) return;
+  window.skinowLineTrackingInstalled = true;
+  function recordLineClick(event) {
+    if (event.defaultPrevented || (event.type === 'click' && event.button !== 0) || (event.type === 'auxclick' && event.button !== 1)) return;
+    var target = event.target;
+    var link = target && typeof target.closest === 'function' ? target.closest('a[href]') : null;
+    if (!link || link.href !== "https://lin.ee/ANemNqJ") return;
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {'send_to': 'AW-18492825753/CE8SCI_N16sdEJnBiPJE'});
+    }
+    // Preserve native new-tab / LINE-app navigation. Never wait for analytics.
+  }
+  document.addEventListener('click', recordLineClick);
+  document.addEventListener('auxclick', recordLineClick);
+})();
 </script>
 </head><body><a class="skin-skip" href="#main-content">跳至主要內容</a><div id="root"><main id="main-content" class="skin-document"><h1>找不到這個頁面</h1><p>連結可能已變更，請從以下入口繼續瀏覽。</p><nav class="skin-link-row"><a href="/">返回首頁</a><a href="/pricing/">完整價目表</a><a href="/stores/">門市預約</a></nav></main></div></body></html>

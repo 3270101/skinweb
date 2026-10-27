@@ -27,7 +27,7 @@ for (const path of paths) {
   assert.ok(head.includes(scripts[0][0]),path+' event in head');
   const script = scripts[0][1];
   assert.equal((html.match(/gtag\('config'/g)||[]).length,1,path+' one config');
-  assert.equal((html.match(/gtag\('event', 'conversion'/g)||[]).length,1,path+' one event');
+  assert.equal((script.match(/gtag\('event', 'conversion'/g)||[]).length,1,path+' one page-view event');
   assert.equal((html.match(/PozuCPOO16odEJnBiPJE/g)||[]).length,1,path+' exact event once');
   assert.doesNotMatch(script,/addEventListener|setInterval|setTimeout/,'no repeated, click or scroll triggers');
   for (const hostname of [...googleAds.publicHosts,'localhost','127.0.0.1','preview.skinweb.pages.dev','unrelated.example']) {

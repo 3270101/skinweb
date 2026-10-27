@@ -24,7 +24,7 @@ export function ServiceFeeOverview(){
   return <section id="pricing" className="skin-fee-section" aria-labelledby="service-fees-title">
     <div className="skin-fee-inner">
       <header className="skin-fee-heading"><p>公開價格 · 透明服務流程</p><h2 id="service-fees-title">服務費用一覽</h2><p>洗頭、洗臉與進階保養，每項服務都有明確價格。先看內容與時間，再決定怎麼保養。</p></header>
-      <p id="service-fees-note" className="skin-fee-conditions">以下金額均為新台幣，主要服務與加購分開計價。<strong>新客可免費領取 30 天會員價，無須先儲值</strong>；也可選購美麗保養金，享 12 個月會員價與保養額度。未具有效會員或新客活動資格，依原價計費。</p>
+      <p id="service-fees-note" className="skin-fee-conditions">以下金額均為新台幣，主要服務與加購分開計價。<strong>新客可免費領取 30 天會員價，無須先儲值</strong>；也可選購美麗保養金，享會員價，本金及贈額無使用期限。未具有效會員或新客活動資格，依原價計費。</p>
       <div className="skin-fee-table-frame">
         <table className="skin-fee-table" role="table" aria-describedby="service-fees-note">
           <caption>7 項主要服務：內容、時間與費用比較</caption>

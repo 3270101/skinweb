@@ -2,6 +2,7 @@ import { site, stores, serviceInfo, addons, faqs, manual, amount, membership, me
 import {scalpServices,scalpAddon,scalpVideo,scalpFaqs,scalpStoreSlug,videoPagePath} from './scalp.js';
 import { plans } from './plans.js';
 import {pageImage} from './page-image.js';
+import {brandGifts,giftPagePath} from './gifts.js';
 const absolute = path=>site.origin+path;
 const orgId=absolute('/#organization');
 export function structuredData(route,imageManifest={}) {
@@ -9,7 +10,7 @@ export function structuredData(route,imageManifest={}) {
   const org={'@type':'Organization','@id':orgId,name:site.name,url:absolute('/'),logo:absolute('/LOGO3.jpg'),sameAs:[site.facebook]};
   const website={'@type':'WebSite','@id':absolute('/#website'),url:absolute('/'),name:site.name,inLanguage:'zh-Hant-TW',publisher:{'@id':orgId}};
   const visibleFaq=route.kind==='home'||route.kind==='faq'?faqs:route.kind==='manual'?[faqs[0],faqs[1],faqs[4]]:route.kind==='scalp'?scalpFaqs:route.kind==='service'&&route.key==='A'?valueFaqs:route.kind==='service'&&route.key==='EXOSOME'?exosomeFaqs:route.kind==='pricing'?valueFaqs:route.kind==='store'&&route.key===scalpStoreSlug?[...nightWashFaqs,...koreanBeauticianFaqs]:[];
-  const pageType=route.kind==='faq'?'FAQPage':['services','stores','pricing'].includes(route.kind)?'CollectionPage':'WebPage';
+  const pageType=route.kind==='faq'?'FAQPage':['services','stores','pricing','gifts'].includes(route.kind)?'CollectionPage':'WebPage';
   const image=pageImage(route,imageManifest);
   const webpage={'@type':pageType,'@id':url+'#webpage',url,name:route.title,description:route.description,inLanguage:'zh-Hant-TW',isPartOf:{'@id':website['@id']},publisher:{'@id':orgId},dateModified:site.updated,primaryImageOfPage:{'@type':'ImageObject',url:image.url,caption:image.alt,width:image.width,height:image.height}};
   const graph=[org,website,webpage];
@@ -31,6 +32,7 @@ export function structuredData(route,imageManifest={}) {
     const crumbs=[{name:'首頁',item:absolute('/')}];
     if(['service','manual','scalp'].includes(route.kind)) crumbs.push({name:'服務項目',item:absolute('/services/')});
     if(route.kind==='store') crumbs.push({name:'門市資訊',item:absolute('/stores/')});
+    if(route.kind==='gifts') crumbs.push({name:'美麗保養金',item:absolute('/membership/')});
     crumbs.push({name:route.title.split('｜')[0],item:url});
     graph.push({'@type':'BreadcrumbList','@id':url+'#breadcrumb',itemListElement:crumbs.map((c,i)=>({'@type':'ListItem',position:i+1,...c}))});
     webpage.breadcrumb={'@id':url+'#breadcrumb'};
@@ -56,7 +58,7 @@ export function structuredData(route,imageManifest={}) {
     if(route.kind==='scalp')webpage.mainEntity={'@id':absolute('/services/scalp-care/#service')};
     const provider={'@id':absolute(`/stores/${scalpStoreSlug}/#salon`)};
     graph.push({'@type':'Service','@id':absolute('/services/scalp-care/#service'),name:'洗髮方案',serviceType:'洗髮與頭皮養護',description:'由台中忠明店提供，包含深層洗髮、頭皮調理、頭皮深層養護三種服務；水珍柔光精粹另列為加購。',url:absolute('/services/scalp-care/'),provider,areaServed:'臺中市',hasOfferCatalog:{'@type':'OfferCatalog',name:'洗髮方案三種主要服務',itemListElement:scalpServices.map(s=>({'@type':'Offer',itemOffered:{'@id':absolute(`/services/scalp-care/#scalp-${s.slug}`)}}))}});
-    for(const s of [...scalpServices,scalpAddon])graph.push({'@type':'Service','@id':absolute(`/services/scalp-care/#scalp-${s.slug}`),name:s.name,serviceType:s.minutes?'洗髮方案主要服務':'洗髮方案加購',description:s.description,url:absolute(`/services/scalp-care/#scalp-${s.slug}`),provider,areaServed:'臺中市',offers:[{name:'原價',price:s.original},{name:s.minutes?'有效會員價；美麗保養金額度可抵服務消費，效期12個月':'會員加購價；適用洗髮方案請向門市確認',price:s.member}].map(o=>({'@type':'Offer',...o,priceCurrency:'TWD',url:absolute('/services/scalp-care/')}))});
+    for(const s of [...scalpServices,scalpAddon])graph.push({'@type':'Service','@id':absolute(`/services/scalp-care/#scalp-${s.slug}`),name:s.name,serviceType:s.minutes?'洗髮方案主要服務':'洗髮方案加購',description:s.description,url:absolute(`/services/scalp-care/#scalp-${s.slug}`),provider,areaServed:'臺中市',offers:[{name:'原價',price:s.original},{name:s.minutes?'有效會員價；美麗保養金本金及贈額無使用期限，可抵服務消費':'會員加購價；適用洗髮方案請向門市確認',price:s.member}].map(o=>({'@type':'Offer',...o,priceCurrency:'TWD',url:absolute('/services/scalp-care/')}))});
   }
   if(['home','scalp','video'].includes(route.kind)) {
     const video={'@type':'VideoObject','@id':absolute(videoPagePath+'#video'),name:scalpVideo.name,description:scalpVideo.description,url:absolute(videoPagePath),thumbnailUrl:[absolute(scalpVideo.poster)],contentUrl:absolute(scalpVideo.src),uploadDate:scalpVideo.uploadDate,duration:scalpVideo.duration,inLanguage:'zh-Hant-TW',publisher:{'@id':orgId}};
@@ -68,6 +70,10 @@ export function structuredData(route,imageManifest={}) {
     graph.push(...offers,{'@type':'OfferCatalog','@id':absolute('/membership/#catalog'),name:'美麗保養金加值禮遇',itemListElement:offers.map(o=>({'@id':o['@id']}))});
   }
   if(route.kind==='membership')webpage.mainEntity={'@id':absolute('/membership/#catalog')};
+  if(route.kind==='gifts'){
+    const id=absolute(giftPagePath+'#gift-selection');webpage.mainEntity={'@id':id};
+    graph.push({'@type':'ItemList','@id':id,name:'品牌好禮任選一',numberOfItems:brandGifts.length,itemListElement:brandGifts.map((gift,i)=>({'@type':'ListItem',position:i+1,url:absolute(giftPagePath+'#'+gift.slug),name:gift.brand+' '+gift.name,description:gift.description,image:absolute('/'+gift.images[0])}))});
+  }
   if(route.kind==='pricing'){
     const id=absolute('/pricing/#catalog');webpage.mainEntity={'@id':id};
     graph.push({'@type':'OfferCatalog','@id':id,name:'服務方案與加購價目表',itemListElement:graph.filter(n=>n['@type']==='Service'&&n.name!=='洗髮方案').map(n=>({'@type':'Offer',itemOffered:{'@id':n['@id']}}))});

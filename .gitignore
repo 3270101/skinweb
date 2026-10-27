@@ -3,3 +3,4 @@ images/.DS_Store
 tooling/node_modules/
 tooling/.cache/
 tooling/artifacts/
+tooling/source-assets/

@@ -13,7 +13,7 @@ async function read(url){
 }
 const expected=[[999,1200,false],[2999,3600,true],[4999,6500,true]];
 assert.deepEqual(membership.plans.map(p=>[p.price,p.credit,p.gift]),expected);
-assert.equal(membership.months,12);
+assert.equal(membership.creditValidity,'本金及贈額無使用期限');
 const cardPages=['/','/membership/','/pricing/','/services/scalp-care/','/stores/taichung-zhongming/'];
 const retired=/專屬會員卡(?:原價|優惠價|購卡優惠價|購卡費)|購卡費可抵|購卡費可扣|原價1,200元，優惠價999元|membercard-999-20260924|membership-wash-flow-music-20261005-v6/;
 let cards=0,offers=0;
@@ -38,7 +38,7 @@ for(const route of routes){
         assert.ok(card.includes(`data-credit="${p.credit}">${money(p.credit)}`));
         assert.equal(card.includes('data-gift="one"'),p.gift);
         assert.equal(card.includes('品牌好禮任選一'),p.gift);
-        assert.ok(card.includes('12 個月效期 · 享會員價'));cards++;
+        assert.ok(card.includes('本金及贈額無使用期限 · 享會員價'));cards++;
       }
       const offer=tierOffers.find(o=>o['@id'].endsWith('offer-'+p.slug));
       assert.equal(offer.price,p.price,'charge purchase amount, not credit amount');
@@ -62,4 +62,4 @@ for(const route of routes){
   }
 }
 const llms=await read('/llms.txt');assert.doesNotMatch(llms,retired);assert.ok(llms.includes(membershipSummary));assert.ok(llms.includes(membershipUsage));
-console.log(JSON.stringify({origin:origin||'local',pages:routes.length,tiers:expected,cardInstances:cards,structuredOffers:offers,expiryMonths:12,priceAndCreditSeparated:true,retiredPromotionAbsent:true,result:'PASS'},null,2));
+console.log(JSON.stringify({origin:origin||'local',pages:routes.length,tiers:expected,cardInstances:cards,structuredOffers:offers,creditExpiry:null,priceAndCreditSeparated:true,retiredPromotionAbsent:true,result:'PASS'},null,2));

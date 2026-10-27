@@ -50,6 +50,20 @@ html{scroll-padding-top:90px}body{color:#334155}a,button{-webkit-tap-highlight-c
 
 .skin-shorts{margin:3rem auto;max-width:1100px}.skin-shorts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.5rem}.skin-shorts video{display:block;width:100%;max-width:300px;height:auto;aspect-ratio:9/16;margin:1.2rem auto 0;border-radius:18px;background:#154e58}.skin-shorts .skin-card{padding:1.4rem}.skin-shorts h3{font-size:1.3rem;line-height:1.5}.skin-shorts p{line-height:1.8}
 .skin-store-focus{max-width:860px;margin:0 auto}.skin-site-directory .skin-footer-store-meta{margin:0 0 12px;font-size:.85rem;line-height:1.6}
+/* Gift catalog: original product photography, accessible text and responsive cards. */
+.skin-anniversary-notice{padding:22px 24px;margin:24px 0;background:#fffaf0;border:1px solid #e0d2b5;border-radius:16px;color:#4d432e}.skin-anniversary-notice h3{font-size:1.25rem;line-height:1.5;font-weight:750;margin:8px 0}.skin-anniversary-notice p{font-size:.9rem;line-height:1.8;margin:8px 0}.skin-anniversary-notice a{display:inline-flex;align-items:center;min-height:44px;color:#175e70;text-decoration:underline;text-underline-offset:4px;font-weight:700}.skin-gift-notes article h3{font-size:1.2rem;font-weight:700;line-height:1.5;color:var(--skin-ink)}
+.skin-credit-gift a{text-decoration:underline;text-underline-offset:4px;display:inline-flex;align-items:center;min-height:44px;color:inherit}
+.skin-gift-intro{padding:clamp(24px,4vw,48px);border-radius:24px;background:linear-gradient(120deg,#edf8fa,#f8f4ed);border:1px solid #d5e8eb;margin:24px 0 48px}
+.skin-document .skin-gift-intro h2{font-size:clamp(1.65rem,3vw,2.5rem);margin-top:12px;line-height:1.4}.skin-gift-intro>p{max-width:52em}
+.skin-gift-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:28px 0 40px}
+.skin-gift-card{border:1px solid var(--skin-border);border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 8px 24px #164e5d08;min-width:0}
+.skin-gift-image{height:310px;display:flex;align-items:center;justify-content:center;gap:8px;padding:28px;position:relative;background:#f7f7f4}
+.skin-gift-image img{display:block;width:auto;max-width:85%;height:100%;object-fit:contain}.skin-gift-pair img{max-width:43%;height:88%}.skin-gift-pair img:last-child{height:66%;align-self:flex-end;margin-bottom:18px}
+.skin-gift-number{position:absolute;top:18px;left:20px;font-size:.85rem;letter-spacing:.08em;font-weight:700;color:#526975}
+.skin-gift-copy{padding:26px}.skin-document .skin-gift-brand{font-weight:800;color:var(--skin-accent);letter-spacing:.06em;margin:0 0 10px}.skin-gift-brand span{font-weight:400;font-size:.8rem;letter-spacing:0;color:#63727a}
+.skin-document .skin-gift-copy h3{font-size:1.35rem;color:var(--skin-ink);line-height:1.55;margin:0 0 14px}.skin-document .skin-gift-spec{border-bottom:1px solid var(--skin-border);padding-bottom:16px;font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}.skin-gift-spec strong{font-size:1.05rem;white-space:nowrap;color:var(--skin-ink)}
+.skin-gift-copy>p{font-size:.95rem}.skin-gift-copy ul{font-size:.85rem;line-height:1.8;color:#526975}.skin-gift-notes{padding:24px 28px;background:var(--skin-light);border-radius:20px}.skin-document .skin-gift-notes h2{margin-top:0}
+@media(max-width:639px){.skin-gift-grid{grid-template-columns:1fr;gap:22px}.skin-gift-image{height:280px}.skin-gift-copy{padding:22px}.skin-gift-notes{padding:22px}.skin-gift-intro{margin-bottom:32px}}
 /* Homepage price overview: a real, crawlable comparison table, not a poster image. */
 .skin-fee-section{padding:54px 20px 44px;background:#fff}
 .skin-fee-inner{max-width:1120px;margin:0 auto}

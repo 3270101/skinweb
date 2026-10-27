@@ -23,7 +23,7 @@ for(const route of routes){
   const graph=JSON.parse(html.match(/<script type="application\/ld\+json">([^]*?)<\/script>/)[1])['@graph'];
   const page=graph.find(n=>n['@id']===site.origin+route.path+'#webpage');
   assert.ok(page,route.path+' webpage');
-  const expectedType=route.kind==='faq'?'FAQPage':['services','stores','pricing'].includes(route.kind)?'CollectionPage':'WebPage';
+  const expectedType=route.kind==='faq'?'FAQPage':['services','stores','pricing','gifts'].includes(route.kind)?'CollectionPage':'WebPage';
   assert.equal(page['@type'],expectedType);
   assert.ok(page.mainEntity,route.path+' explicit primary entity');
   if(route.kind==='faq')assert.ok(Array.isArray(page.mainEntity));
